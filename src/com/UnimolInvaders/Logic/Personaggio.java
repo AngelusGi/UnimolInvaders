@@ -1,4 +1,4 @@
-package com.UnimolInvaders;
+package com.UnimolInvaders.Logic;
 
 /********************************
  *

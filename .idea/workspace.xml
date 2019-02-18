@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91dfd594-16d3-4a8e-abc3-2ce9f220f2e8" name="Default Changelist" comment="" />
+    <list default="true" id="91dfd594-16d3-4a8e-abc3-2ce9f220f2e8" name="Default Changelist" comment="refactoring packages">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/UnimolInvaders/com/UnimolInvaders/Alieno.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/UnimolInvaders/com/UnimolInvaders/AlienoBoss.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/UnimolInvaders/com/UnimolInvaders/GameController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/UnimolInvaders/com/UnimolInvaders/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UnimolInvaders/com/UnimolInvaders/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/UnimolInvaders/com/UnimolInvaders/Nemico.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/UnimolInvaders/com/UnimolInvaders/Personaggio.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/UnimolInvaders/Alieno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/UnimolInvaders/Logic/Alieno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/UnimolInvaders/AlienoBoss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/UnimolInvaders/Logic/AlienoBoss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/UnimolInvaders/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/UnimolInvaders/Logic/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/UnimolInvaders/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/UnimolInvaders/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/UnimolInvaders/Nemico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/UnimolInvaders/Logic/Nemico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/UnimolInvaders/Personaggio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/UnimolInvaders/Logic/Personaggio.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,56 +25,59 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Nemico.java">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
-              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/GameController.java">
+        <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Logic/Nemico.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1240">
-              <caret line="62" column="7" selection-start-line="42" selection-start-column="2" selection-end-line="62" selection-end-column="7" />
+            <state relative-caret-position="136">
+              <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Personaggio.java">
+        <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Logic/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+            <state relative-caret-position="30">
+              <caret line="29" column="39" lean-forward="true" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
+              <folding>
+                <element signature="e#901#935#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Alieno.java">
+        <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Logic/Personaggio.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="27" column="26" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+            <state relative-caret-position="-344">
+              <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Logic/Alieno.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/AlienoBoss.java">
+        <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Logic/AlienoBoss.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="13" selection-start-line="13" selection-end-line="13" />
+            <state relative-caret-position="136">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -89,15 +106,17 @@
         <option value="$PROJECT_DIR$/src/com/UnimolInvaders/Personaggio.java" />
         <option value="$PROJECT_DIR$/src/com/UnimolInvaders/AlienoBoss.java" />
         <option value="$PROJECT_DIR$/src/com/UnimolInvaders/Alieno.java" />
-        <option value="$PROJECT_DIR$/src/com/UnimolInvaders/Main.java" />
         <option value="$PROJECT_DIR$/src/com/UnimolInvaders/GameController.java" />
+        <option value="$PROJECT_DIR$/src/com/UnimolInvaders/Logic/AlienoBoss.java" />
+        <option value="$PROJECT_DIR$/src/com/UnimolInvaders/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/UnimolInvaders/Logic/GameController.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
-    <option name="width" value="1384" />
+    <option name="width" value="1385" />
     <option name="height" value="755" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -106,7 +125,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -125,11 +144,18 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="UnimolInvaders" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="UnimolInvaders" type="b2602c69:ProjectViewProjectNode" />
+              <item name="UnimolInvaders" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UnimolInvaders" type="462c0819:PsiDirectoryNode" />
+              <item name="Logic" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -183,26 +209,38 @@
       <workItem from="1549134648599" duration="4215000" />
       <workItem from="1549229529022" duration="123000" />
       <workItem from="1550314950033" duration="828000" />
+      <workItem from="1550315963796" duration="271000" />
+      <workItem from="1550483866776" duration="583000" />
     </task>
+    <task id="LOCAL-00001" summary="Prima reversione">
+      <created>1550316127618</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1550316127618</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6092000" />
+    <option name="totallyTimeSpent" value="6946000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Capture Tool" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26442954" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19261745" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Learn" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Image Layers" order="6" />
+      <window_info id="Capture Tool" order="7" />
+      <window_info active="true" id="Repositories" order="8" visible="true" weight="0.3295302" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32943144" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32943144" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932885" weight="0.329429" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39966556" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -210,11 +248,9 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="10" side_tool="true" visible="true" weight="0.329429" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Messages" order="12" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067115" side_tool="true" visible="true" weight="0.329429" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.4986577" weight="0.329429" />
+      <window_info active="true" anchor="bottom" id="Messages" order="12" sideWeight="0.49932885" visible="true" weight="0.329429" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -222,6 +258,8 @@
       <window_info anchor="right" id="Maven" order="4" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
       <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,51 +268,102 @@
   <component name="UpdateCopyrightCheckinHandler">
     <option name="UPDATE_COPYRIGHT" value="true" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="Prima versione" />
-    <option name="LAST_COMMIT_MESSAGE" value="Prima versione" />
+    <MESSAGE value="Prima reversione" />
+    <MESSAGE value="refactoring packages" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring packages" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/UnimolInvaders.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Logic/Nemico.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Logic/AlienoBoss.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Logic/GameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="29" column="39" lean-forward="true" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
+          <folding>
+            <element signature="e#901#935#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Logic/Personaggio.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-344">
+          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Nemico.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/GameController.java">
+    <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Logic/Alieno.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1240">
-          <caret line="62" column="7" selection-start-line="42" selection-start-column="2" selection-end-line="62" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Personaggio.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/Alieno.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="27" column="26" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/UnimolInvaders/AlienoBoss.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        <state relative-caret-position="136">
+          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
         </state>
       </provider>
     </entry>
