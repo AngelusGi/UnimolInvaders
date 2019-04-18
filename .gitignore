@@ -1,4 +1,4 @@
-
+*.iml
 *.log
 *.class
 
@@ -6,3 +6,5 @@
 
 /**/out/*
 /**/.idea/*
+/.idea/*
+./.idea/*
