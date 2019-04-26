@@ -32,8 +32,6 @@ public abstract class Nemico extends Personaggio {
             }
         }
 
-    protected abstract void moveDown(int posX, int posY){
-        //todo
-    }
+    protected abstract void moveDown(int posX, int posY);
 
 }

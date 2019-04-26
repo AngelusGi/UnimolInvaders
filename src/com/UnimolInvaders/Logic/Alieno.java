@@ -23,6 +23,10 @@ public class Alieno extends Nemico {
 
     }
 
+    
+    protected abstract void moveDown(int posX, int posY){
+        //todo
+    }
 
     // todo inserire immagine
     // todo inserire sparo

@@ -22,6 +22,11 @@ public class AlienoBoss extends Alieno {
         super(vita, tipo);
     }
 
+    
+    protected abstract void moveDown(int posX, int posY){
+        //todo
+    }
+
     // todo inserire immagine
     // todo inserire sparo
 }
