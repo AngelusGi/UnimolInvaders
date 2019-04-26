@@ -22,10 +22,18 @@ public abstract class Nemico extends Personaggio {
         this.tipo = tipo;
     }
 
+    protected void move(int posX, int posY){
+            //todo
+            if (checkBorder()){
+                //SE SONO AL BORDO DX SCENDI DI UNA CASELLA
+                moveDown();
+            } else{
+                //VAI A DESTRA O SINISTRA
+            }
+        }
 
-
-    protected void moveDown(int posX, int posY){
-
+    protected abstract void moveDown(int posX, int posY){
+        //todo
     }
 
 }
