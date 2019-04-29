@@ -47,13 +47,14 @@ public abstract class Nemico extends Personaggio {
         //BORDO DX
         if (this.posX + spostamentoX > LARGHEZZA_FIN - DIM_ALIENO - 20) {
             //sposta in basso
-            this.posY = posY + spostamentoY;
+            moveDown();
 
             spostamentoX = SINISTRA;
         }
 
         //BORDO BASSO
         if (this.posY + spostamentoY > pos_muri - DIM_ALIENO - 20){
+            //collider muretti?
 
         }
 

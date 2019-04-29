@@ -13,6 +13,7 @@ package Logica;
 public class AlienoBoss extends Alieno {
 
     private static int VITA_ALIENO_BOSS = 15;
+    private static int SPOSTAMENTO_Y = 15;
 
     public AlienoBoss(){
         this(VITA_ALIENO_BOSS, ALIENO_BOSS);
@@ -24,7 +25,7 @@ public class AlienoBoss extends Alieno {
 
     
     protected void moveDown(int posX, int posY){
-        //todo
+        this.posY = posY + SPOSTAMENTO_Y;
     }
 
     // todo inserire immagine

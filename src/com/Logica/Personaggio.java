@@ -20,11 +20,14 @@ public abstract class Personaggio {
     private int posX;
     private int posY;
 
+    private String nome;
+
     boolean isVivo;
     boolean hasFired;
 
-    public Personaggio(int vita) {
-        this.vita = vita;
+    public Personaggio(String nome) {
+        this.vita = 10;
+        this.nome = nome;
         isVivo = true;
         hasFired = false;
     }
@@ -39,6 +42,10 @@ public abstract class Personaggio {
 
     public int getPosX() {
         return posX;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public int getPosY() {
