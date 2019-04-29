@@ -13,7 +13,7 @@ package com.UnimolInvaders.Logic;
 public abstract class Personaggio {
 
     private final static int RIGHT = 1;
-    private final static int LEFT = 1;
+    private final static int LEFT = -1;
 
     private int vita;
 
@@ -30,7 +30,7 @@ public abstract class Personaggio {
     }
 
     protected void moveLeft(int posX, int posY){
-        this.posX = posX - LEFT;
+        this.posX = posX + LEFT;
     }
 
     protected void moveRight(int posX, int posY){
