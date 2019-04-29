@@ -1,6 +1,4 @@
-package com.UnimolInvaders;
-
-import com.UnimolInvaders.Logic.GameController;
+import Logica.GameController;
 
 public class Main {
 

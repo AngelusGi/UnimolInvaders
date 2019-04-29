@@ -1,4 +1,4 @@
-package com.UnimolInvaders.Logic;
+package Logica;
 
 /********************************
  *
@@ -24,7 +24,7 @@ public class Alieno extends Nemico {
     }
 
     
-    protected abstract void moveDown(int posX, int posY){
+    protected void moveDown(int posX, int posY){
         //todo
     }
 
