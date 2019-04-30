@@ -10,7 +10,7 @@ package Logica;
  ********************************/
 
 
-public abstract class Nemico extends Personaggio {
+public abstract class Nemico {
 
     protected static final int ALIENO_BOSS = 1;
     protected static final int ALIENO_NORMALE = 0;
