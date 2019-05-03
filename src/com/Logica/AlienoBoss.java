@@ -23,10 +23,17 @@ public class AlienoBoss extends Alieno {
         super(vita, tipo);
     }
 
-    
-    protected void moveDown(int posX, int posY){
+    @Override
+    protected void move(int posX, int posY) {
+
+        super.move(posX, posY);
+    }
+
+    @Override
+    protected void moveDown(int posX, int posY) {
         this.posY = posY + SPOSTAMENTO_Y;
     }
+
 
     // todo inserire immagine
     // todo inserire sparo
