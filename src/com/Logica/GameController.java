@@ -22,9 +22,12 @@ public class GameController {
 
     private Alieno[][] matrixAliens = new Alieno[AlieniX][AlieniY];
 
+
     public GameController(){
-        
-        inizializzaPersonaggio(nome);
+
+
+        //all'avvio prompt per il nome del personaggio
+        inizializzaPersonaggio();
 
         if (!isDipari(levelNumber)){
             inizializzaAlieni(matrixAliens);
@@ -47,12 +50,16 @@ public class GameController {
         }
     }
 
-     private void inizializzaAlieni(Alieno[][] matrixAliens){
-        AlienoBoss alienoBoss = new AlienoBoss();
+     private void inizializzaBoss(){
+         AlienoBoss alienoBoss = new AlienoBoss();
      }
 
      private void inizializzaPersonaggio(){
-         Personaggio giocatore = new Personaggio();
+
+//        finestra input nome giocatore
+
+        String nome;
+        Personaggio giocatore = new Personaggio(nome);
      }
 
      private void memorizzaPunteggio(Personaggio giocatore){

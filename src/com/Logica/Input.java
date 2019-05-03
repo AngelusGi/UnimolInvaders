@@ -1,5 +1,8 @@
 package Logica;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 /********************************
  *
  *   user:      angel
@@ -9,7 +12,7 @@ package Logica;
  *
  ********************************/
 
- public static class Input implements KeyListner {
+ public class Input implements KeyListener {
 
      @Override
         public void keyTyped(KeyEvent e) {

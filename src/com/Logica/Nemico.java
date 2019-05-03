@@ -15,8 +15,8 @@ public abstract class Nemico {
     protected static final int ALIENO_BOSS = 1;
     protected static final int ALIENO_NORMALE = 0;
 
-    private int posX = 0;
-    private int posY = 0;
+    protected int posX = 0;
+    protected int posY = 0;
 
     private int spostamentoX = 5;
     private int spostamentoY = 5;
@@ -26,9 +26,10 @@ public abstract class Nemico {
     private static final int SINISTRA = -1;
 
     private int tipo;
+    private int vita;
 
     public Nemico(int vita, int tipo) {
-        super(vita);
+        this.vita = vita;
         this.tipo = tipo;
     }
 
