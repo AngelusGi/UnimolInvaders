@@ -46,18 +46,18 @@ public abstract class Nemico {
         }
 
         //BORDO DX
-        if (this.posX + spostamentoX > LARGHEZZA_FIN - DIM_ALIENO - 20) {
-            //sposta in basso
-            moveDown();
-
-            spostamentoX = SINISTRA;
-        }
-
-        //BORDO BASSO
-        if (this.posY + spostamentoY > pos_muri - DIM_ALIENO - 20){
-            //collider muretti?
-
-        }
+//        if (this.posX + spostamentoX > LARGHEZZA_FIN - DIM_ALIENO - 20) {
+//            //sposta in basso
+//            moveDown();
+//
+//            spostamentoX = SINISTRA;
+//        }
+//
+//        //BORDO BASSO
+//        if (this.posY + spostamentoY > pos_muri - DIM_ALIENO - 20){
+//            //collider muretti?
+//
+//        }
 
     }
 

@@ -13,11 +13,11 @@ package Logica;
 
 public class GameController {
 
-    private final int AlieniX = 5;
-    private final int AlieniY = 3;
+    private int AlieniX = 5;
+    private int AlieniY = 3;
     
     private int levelNumber = 0;
-    private int punteggio = 0;
+    private int punteggio;
 
 
     private Alieno[][] matrixAliens = new Alieno[AlieniX][AlieniY];
@@ -29,15 +29,27 @@ public class GameController {
         //all'avvio prompt per il nome del personaggio
         inizializzaPersonaggio();
 
-        if (!isDipari(levelNumber)){
+        if (levelNumber == 0){
+            this.punteggio = 0;
+
+        } else if (!isDipari(levelNumber)){
             inizializzaAlieni(matrixAliens);
         } else {
             inizializzaBoss();
         }
     }
 
+    public int getLevelNumber() {
+        return levelNumber;
+    }
+
+    public int getPunteggio() {
+        return punteggio;
+    }
+
     private boolean isDipari(int levelNumber) {
 
+        //se il livello è dispari alieni normali, altrimenti BOSS
         return (levelNumber % 2) != 0;
     }
 
@@ -58,13 +70,13 @@ public class GameController {
 
 //        finestra input nome giocatore
 
-        String nome;
-        Personaggio giocatore = new Personaggio(nome);
+
+        Personaggio giocatore = new Personaggio();
      }
 
      private void memorizzaPunteggio(Personaggio giocatore){
-        String nomeGiocatore = giocatore.getNome();
-        this.punteggio.toString();
+
+//        this.punteggio.toString();
 
         //todo
         //salva punteggio giocatore con data e punteggio

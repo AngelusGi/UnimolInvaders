@@ -10,7 +10,7 @@ package Logica;
  ********************************/
 
 
-public abstract class Personaggio {
+public class Personaggio {
 
     private final static int RIGHT = 1;
     private final static int LEFT = -1;
@@ -20,14 +20,11 @@ public abstract class Personaggio {
     private int posX;
     private int posY;
 
-    private String nome;
-
     boolean isVivo;
     boolean hasFired;
 
-    public Personaggio(String nome) {
+    public Personaggio() {
         this.vita = 10;
-        this.nome = nome;
         isVivo = true;
         hasFired = false;
     }
@@ -42,10 +39,6 @@ public abstract class Personaggio {
 
     public int getPosX() {
         return posX;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public int getPosY() {
