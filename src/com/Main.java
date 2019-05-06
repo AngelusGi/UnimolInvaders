@@ -7,6 +7,7 @@ public class Main {
 
         GameController gameController = new GameController();
 
+//        //verifica la corretta inizializzazione degli oggetti
 //        gameController.stampaPersonaggi();
 //        gameController.stampaLivello();
     }
