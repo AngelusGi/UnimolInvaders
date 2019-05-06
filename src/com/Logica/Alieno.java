@@ -13,9 +13,10 @@ package Logica;
 public class Alieno extends Nemico {
 
     private static int VITA_ALIENO = 1;
-    private static int SPOSTAMENTO_Y = 5;
+    private int SPOSTAMENTO_Y = 2;
+    private int SPOSTAMENTO_X = 2;
 
-    public Alieno(){
+    protected Alieno(){
         this(VITA_ALIENO, ALIENO_NORMALE);
     }
 
@@ -24,10 +25,17 @@ public class Alieno extends Nemico {
 
     }
 
+    @Override
+    protected void setVelocita(int livello) {
+        if (livello>0){
+            this.SPOSTAMENTO_X = SPOSTAMENTO_X * 2;
+            this.SPOSTAMENTO_Y = SPOSTAMENTO_Y * 2;
+        }
+    }
 
     @Override
-    protected void move(int posX, int posY) {
-        super.move(posX, posY);
+    protected void move(int posX, int posY, int spostamentoX, int spostamentoY) {
+        super.move(posX, posY, spostamentoX, spostamentoY);
     }
 
     @Override

@@ -45,32 +45,32 @@ import java.util.TimeZone;
 
 public class Input extends JFrame {
 
-    private JLabel label;
-    private JTextField textField;
-    private JButton button;
+    private JLabel etichetta;
+    private JTextField campoNome;
+    private JButton inserisciNome;
 
     private String nomeGiocatore;
 
     public Input(){
         setLayout(new FlowLayout());
-        label = new JLabel("Inserisci il tuo nomeGiocatore");
-        add(label);
+        etichetta = new JLabel("Inserisci il tuo nomeGiocatore");
+        add(etichetta);
 
-        textField = new JTextField(20);
-        add(textField);
+        campoNome = new JTextField(20);
+        add(campoNome);
 
-        button = new JButton("Inizia la partitia");
-        add(button);
+        inserisciNome = new JButton("Inizia la partitia");
+        add(inserisciNome);
 
         scrittura scrittura = new scrittura();
-        button.addActionListener(scrittura);
+        inserisciNome.addActionListener(scrittura);
     }
 
     class scrittura  implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             try{
-                nomeGiocatore = textField.getText();
+                nomeGiocatore = campoNome.getText();
                 FileWriter stream = new FileWriter(".\\score.txt");
                 BufferedWriter out = new BufferedWriter(stream);
 
@@ -81,7 +81,7 @@ public class Input extends JFrame {
                 GameController gameController = new GameController();
 
                 out.write("Giocatore: " + getNomeGiocatore() + " \tData: " + dataPartita.toLocaleString() + " \tPunteggio: " + gameController.getPunteggio()
-                + " \tLivello: " + gameController.getLevelNumber());
+                + " \tLivello: " + gameController.getNumLivello());
                 out.close();
             } catch (Exception ex){
 
@@ -98,7 +98,7 @@ public class Input extends JFrame {
         Input gui = new Input();
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gui.setSize(300,150);
-        gui.setTitle("Benvenuto");
+        gui.setTitle("Benvenuto UniMol Invaders");
         gui.setVisible(true);
     }
 }

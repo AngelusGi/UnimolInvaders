@@ -12,15 +12,9 @@ package Logica;
 
 
 public class GameController {
-
-    private int AlieniX = 5;
-    private int AlieniY = 3;
     
-    private int levelNumber = 0;
+    private int numLivello = 0;
     private int punteggio;
-
-
-    private Alieno[][] matrixAliens = new Alieno[AlieniX][AlieniY];
 
 
     public GameController(){
@@ -29,41 +23,41 @@ public class GameController {
         //all'avvio prompt per il nome del personaggio
         inizializzaPersonaggio();
 
-        if (levelNumber == 0){
-            this.punteggio = 0;
+        //se il livello è pari alieni normali, altrimenti BOSS
+        if (isPari(numLivello)){
 
-        } else if (!isDipari(levelNumber)){
-            inizializzaAlieni(matrixAliens);
+            //se il livello è 0, inizializza punteggio, altrimenti resta invariato
+            if (numLivello == 0){
+                this.punteggio = 0;
+            }
+
+            Alieni alieni = new Alieni(getNumLivello());
+            alieni.inizializzaAlieni(alieni.getMatrixAliens());
+
         } else {
             inizializzaBoss();
         }
     }
 
-    public int getLevelNumber() {
-        return levelNumber;
+    protected int getNumLivello() {
+        return numLivello;
     }
 
-    public int getPunteggio() {
+    protected int getPunteggio() {
         return punteggio;
     }
 
-    private boolean isDipari(int levelNumber) {
+    private boolean isPari(int levelNumber) {
 
-        //se il livello è dispari alieni normali, altrimenti BOSS
-        return (levelNumber % 2) != 0;
+        //se il livello è pari (0, 2,...) ritorna TRUE, altrimenti FALSE
+        return levelNumber % 2 == 0;
     }
 
-    private void inizializzaAlieni(Alieno[][] matrixAliens){
-        for (int i = 0; i < matrixAliens.length; i++) {
-            for (int j = 0; j < matrixAliens[i].length; j++) {
-                matrixAliens[i][j] = new Alieno();
-            }
 
-        }
-    }
 
      private void inizializzaBoss(){
          AlienoBoss alienoBoss = new AlienoBoss();
+         alienoBoss.setVelocita(getNumLivello());
      }
 
      private void inizializzaPersonaggio(){
@@ -83,10 +77,10 @@ public class GameController {
      }
 
 //    public void stampaLivello(){
-//        System.out.print("Livello: " + levelNumber);
-//        System.out.println(" è dispari: " + isDipari(levelNumber));
-//        if (levelNumber<=5){
-//            levelNumber+=1;
+//        System.out.print("Livello: " + numLivello);
+//        System.out.println(" è dispari: " + isPari(numLivello));
+//        if (numLivello<=5){
+//            numLivello+=1;
 //        } else{
 //            System.exit(1);
 //        }
@@ -103,6 +97,7 @@ public class GameController {
 //            System.out.println();
 //        }
 //    }
+
 
 
 }

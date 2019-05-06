@@ -18,8 +18,8 @@ public abstract class Nemico {
     protected int posX = 0;
     protected int posY = 0;
 
-    private int spostamentoX = 5;
-    private int spostamentoY = 5;
+    private int spostamentoX;
+    private int spostamentoY;
 
 
     private static final int DESTRA = 1;
@@ -28,13 +28,15 @@ public abstract class Nemico {
     private int tipo;
     private int vita;
 
-    public Nemico(int vita, int tipo) {
+    protected Nemico(int vita, int tipo) {
         this.vita = vita;
         this.tipo = tipo;
     }
 
+    protected abstract void setVelocita(int livello);
 
-    protected void move(int posX, int posY) {
+
+    protected void move(int posX, int posY, int spostamentoX, int spostamentoY) {
 
         //todo
         int DIM_ALIENO, pos_muri, LARGHEZZA_FIN;
