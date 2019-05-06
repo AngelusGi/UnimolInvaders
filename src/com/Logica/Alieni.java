@@ -2,8 +2,8 @@ package Logica;
 
 public class Alieni extends Alieno {
 
-    private int AlieniX = 5;
-    private int AlieniY = 3;
+    private int AlieniY = 4;
+    private int AlieniX = 4;
     private int livello;
 
     private Alieno[][] matrixAliens;

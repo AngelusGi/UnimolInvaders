@@ -16,12 +16,16 @@ public class GameController {
     private int numLivello = 0;
     private int punteggio;
 
+    private Alieni alieni;
+    private AlienoBoss alienoBoss;
+    private Personaggio giocatore;
+
 
     public GameController(){
 
 
         //all'avvio prompt per il nome del personaggio
-        inizializzaPersonaggio();
+        this.giocatore = inizializzaPersonaggio();
 
         //se il livello è pari alieni normali, altrimenti BOSS
         if (isPari(numLivello)){
@@ -31,11 +35,11 @@ public class GameController {
                 this.punteggio = 0;
             }
 
-            Alieni alieni = new Alieni(getNumLivello());
-            alieni.inizializzaAlieni(alieni.getMatrixAliens());
+            this.alieni = new Alieni(getNumLivello());
+            this.alieni.inizializzaAlieni(alieni.getMatrixAliens());
 
         } else {
-            inizializzaBoss();
+            this.alienoBoss = inizializzaBoss();
         }
     }
 
@@ -53,19 +57,36 @@ public class GameController {
         return levelNumber % 2 == 0;
     }
 
+    public void setNumLivello(int incremento) {
+        this.numLivello += incremento;
+    }
+
+    private void vintoPerso() {
+        //todo
+
+        //IF vinto, livello incrementato di 1
+        setNumLivello(1);
+
+        //else
+        //finestra inserimento nome e salvataggio su file
+    }
 
 
-     private void inizializzaBoss(){
+    private AlienoBoss inizializzaBoss() {
          AlienoBoss alienoBoss = new AlienoBoss();
          alienoBoss.setVelocita(getNumLivello());
+
+        return alienoBoss;
      }
 
-     private void inizializzaPersonaggio(){
+    private Personaggio inizializzaPersonaggio() {
 
 //        finestra input nome giocatore
 
 
         Personaggio giocatore = new Personaggio();
+
+        return giocatore;
      }
 
      private void memorizzaPunteggio(Personaggio giocatore){
@@ -76,9 +97,10 @@ public class GameController {
         //salva punteggio giocatore con data e punteggio
      }
 
+//     //testa la corretta inizializzazione dei livelli e la gestione dei livelli (pari/dispari)
 //    public void stampaLivello(){
 //        System.out.print("Livello: " + numLivello);
-//        System.out.println(" è dispari: " + isPari(numLivello));
+//        System.out.println(" è pari: " + isPari(numLivello));
 //        if (numLivello<=5){
 //            numLivello+=1;
 //        } else{
@@ -88,14 +110,27 @@ public class GameController {
 //        stampaLivello();
 //    }
 //
-//    public void stampaAlieni(){
-//        for (int i = 0; i < matrixAliens.length; i++) {
-//            System.out.print(i+1);
-//            for (int j = 0; j < matrixAliens[i].length; j++) {
-//                System.out.print(matrixAliens[i][j] + " ");
+//    public void stampaPersonaggi(){
+//
+//        this.alieni = new Alieni(getNumLivello());
+//        this.alieni.inizializzaAlieni(this.alieni.getMatrixAliens());
+//        Alieno[][] matrixAliens =  this.alieni.getMatrixAliens();
+//
+//        for (int riga = 0; riga < matrixAliens.length; riga++) {
+//            System.out.print("NumRiga: \t" + riga + "\n");
+//            for (int colonna = 0; colonna < matrixAliens[riga].length; colonna++) {
+//                System.out.print("Alieno[" + riga + "][" + colonna + "] > " + matrixAliens[riga][colonna] + " \t ");
 //            }
-//            System.out.println();
+//            System.out.println("\n");
 //        }
+//
+//        alienoBoss = inizializzaBoss();
+//        System.out.println("\nBoss > " + alienoBoss + "\n");
+//
+//
+//        giocatore = inizializzaPersonaggio();
+//        System.out.println("giocatore > " + giocatore + "\n");
+//
 //    }
 
 

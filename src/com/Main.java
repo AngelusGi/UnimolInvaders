@@ -7,7 +7,7 @@ public class Main {
 
         GameController gameController = new GameController();
 
-//        gameController.stampaAlieni();
+//        gameController.stampaPersonaggi();
 //        gameController.stampaLivello();
     }
 }
