@@ -1,5 +1,16 @@
 package Logica;
 
+
+/********************************
+ *
+ *   user:      angel
+ *   date:      01/05/2019
+ *   project:   UnimolInvaders
+ *   angelus_gi / angelusgi
+ *
+ ********************************/
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,16 +21,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-
-/********************************
- *
- *   user:      angel
- *   date:      02/02/2019
- *   project:   UnimolInvaders
- *   angelus_gi / angelusgi
- *
- ********************************/
-
 
 
 // public class Input implements KeyListener {

@@ -1,5 +1,14 @@
 package Logica;
 
+/********************************
+ *
+ *   user:      angel
+ *   date:      06/05/2019
+ *   project:   UnimolInvaders
+ *   angelus_gi / angelusgi
+ *
+ ********************************/
+
 public class Alieni extends Alieno {
 
     private int AlieniY = 4;
@@ -14,7 +23,6 @@ public class Alieni extends Alieno {
         this.livello = livello;
 
     }
-
 
 
     protected void inizializzaAlieni(Alieno[][] matrixAliens){

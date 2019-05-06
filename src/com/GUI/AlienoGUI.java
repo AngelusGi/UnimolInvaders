@@ -1,5 +1,14 @@
 package GUI;
 
+/********************************
+ *
+ *   user:      angel
+ *   date:      02/02/2019
+ *   project:   UnimolInvaders
+ *   angelus_gi / angelusgi
+ *
+ ********************************/
+
 import Logica.Alieni;
 import Logica.Alieno;
 
