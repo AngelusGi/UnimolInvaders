@@ -1,6 +1,6 @@
 import Logica.GameController;
 
-public class Main {
+public class UniMolInvaders {
 
     public static void main(String[] args) {
 
