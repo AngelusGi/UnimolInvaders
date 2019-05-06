@@ -12,29 +12,55 @@ package Logica;
 
 public class AlienoBoss extends Alieno {
 
-    private static int VITA_ALIENO_BOSS = 15;
-    private int SPOSTAMENTO_Y = 5;
-    private int SPOSTAMENTO_X = 5;
+    private static int vitaAlienoBoss = 15;
+    private int spostamentoY = 5;
+    private int spostamentoX = 5;
+    private boolean isVivo;
 
     protected AlienoBoss(){
-        this(VITA_ALIENO_BOSS, ALIENO_BOSS);
+        // posiziona il boss sempre in posizione (10, 10)
         this.posX = 10;
         this.posY = 10;
+        setVivo(true);
+    }
+
+    public static int getVitaAlienoBoss() {
+        return vitaAlienoBoss;
+    }
+
+    public static void setVitaAlienoBoss(int vitaAlienoBoss) {
+        AlienoBoss.vitaAlienoBoss += vitaAlienoBoss;
+    }
+
+    @Override
+    protected boolean decrementaVita() {
+        //se la vita è maggiore di 1 la decrementa
+        if (getVitaAlienoBoss() > 1) {
+            setVitaAlienoBoss(-1);
+        } else {
+            //altrimenti lo setta come morto
+            setVivo(false);
+        }
+
+        return isVivo();
+    }
+
+    public boolean isVivo() {
+        return isVivo;
+    }
+
+    public void setVivo(boolean vivo) {
+        isVivo = vivo;
     }
 
     @Override
     protected void setVelocita(int livello) {
         if (livello>1){
-            this.SPOSTAMENTO_X = SPOSTAMENTO_X * 2;
-            this.SPOSTAMENTO_Y = SPOSTAMENTO_Y * 2;
+            this.spostamentoX = spostamentoX * 2;
+            this.spostamentoY = spostamentoY * 2;
         }
     }
 
-
-
-    private AlienoBoss(int vita, int tipo) {
-        super(vita, tipo);
-    }
 
     @Override
     protected void move(int posX, int posY, int spostamentoX, int spostamentoY) {
@@ -44,7 +70,7 @@ public class AlienoBoss extends Alieno {
 
     @Override
     protected void moveDown(int posX, int posY) {
-        this.posY = posY + SPOSTAMENTO_Y;
+        this.posY = posY + spostamentoY;
     }
 
 

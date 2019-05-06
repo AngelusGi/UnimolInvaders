@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class AlienoGUI {
 
-
+    private static int DISTANZA_ALIENI = 10;
 
     public AlienoGUI(Alieni alieni){
 

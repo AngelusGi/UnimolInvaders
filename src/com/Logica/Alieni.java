@@ -8,14 +8,12 @@ public class Alieni extends Alieno {
 
     private Alieno[][] matrixAliens;
 
-    protected Alieni(int livello){
+
+    public Alieni(int livello) {
         matrixAliens = new Alieno[AlieniX][AlieniY];
         this.livello = livello;
 
     }
-
-
-
 
 
 

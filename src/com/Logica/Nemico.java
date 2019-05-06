@@ -21,19 +21,15 @@ public abstract class Nemico {
     private int spostamentoX;
     private int spostamentoY;
 
-
     private static final int DESTRA = 1;
     private static final int SINISTRA = -1;
 
     private int tipo;
     private int vita;
 
-    protected Nemico(int vita, int tipo) {
-        this.vita = vita;
-        this.tipo = tipo;
-    }
-
     protected abstract void setVelocita(int livello);
+
+    protected abstract boolean decrementaVita();
 
 
     protected void move(int posX, int posY, int spostamentoX, int spostamentoY) {
