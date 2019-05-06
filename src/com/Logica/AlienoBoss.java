@@ -17,6 +17,8 @@ public class AlienoBoss extends Alieno {
     private int spostamentoX = 5;
     private boolean isVivo;
 
+    private Colpo colpo;
+
     protected AlienoBoss(){
         // posiziona il boss sempre in posizione (10, 10)
         this.posX = 10;

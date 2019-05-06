@@ -12,8 +12,8 @@ package Logica;
 
 public class Personaggio {
 
-    private final static int RIGHT = 1;
-    private final static int LEFT = -1;
+    private final static int DESTRA = 1;
+    private final static int SINISTRA = -1;
 
     private int vita;
 
@@ -23,18 +23,38 @@ public class Personaggio {
     boolean isVivo;
     boolean hasFired;
 
+    private Colpo colpo;
+
     public Personaggio() {
-        this.vita = 10;
-        isVivo = true;
-        hasFired = false;
+        setVita(10);
+        setVivo(true);
+        setHasFired(false);
+        setPosX(350);
+        setPosY(700);
+    }
+
+    public boolean isVivo() {
+        return isVivo;
+    }
+
+    public void setVivo(boolean vivo) {
+        isVivo = vivo;
+    }
+
+    public boolean isHasFired() {
+        return hasFired;
+    }
+
+    public void setHasFired(boolean hasFired) {
+        this.hasFired = hasFired;
     }
 
     protected void moveLeft(int posX, int posY){
-        this.posX = posX + LEFT;
+        this.posX = posX + SINISTRA;
     }
 
     protected void moveRight(int posX, int posY){
-        this.posX = posX + RIGHT;
+        this.posX = posX + DESTRA;
     }
 
     public int getPosX() {
@@ -45,8 +65,16 @@ public class Personaggio {
         return posY;
     }
 
-    protected void shot(int posX, int posY){
+    public void setVita(int vita) {
+        this.vita = vita;
+    }
 
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
     }
 
 

@@ -17,6 +17,8 @@ public class Alieno extends Nemico {
     private int spostamentoX = 2;
     private boolean isVivo;
 
+    private Colpo colpo;
+
 
     protected Alieno() {
         setVitaAlieno(1);

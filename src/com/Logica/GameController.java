@@ -68,7 +68,8 @@ public class GameController {
         setNumLivello(1);
 
         //else
-        //finestra inserimento nome e salvataggio su file
+        //todo finestra inserimento nome e salvataggio su file
+        memorizzaPunteggio(giocatore);
     }
 
 
@@ -81,9 +82,7 @@ public class GameController {
 
     private Personaggio inizializzaPersonaggio() {
 
-//        finestra input nome giocatore
-
-
+//        todo
         Personaggio giocatore = new Personaggio();
 
         return giocatore;
