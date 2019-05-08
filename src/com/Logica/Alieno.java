@@ -20,28 +20,31 @@ public class Alieno extends Nemico {
     private int posX;
     private int posY;
 
+    private Colpo colpo;
+
+    public Alieno() {
+        setVitaAlieno(1);
+        setVivo(true);
+    }
+
+
     public int getPosX() {
         return posX;
     }
+
 
     public void setPosX(int posX) {
         this.posX = posX;
     }
 
+
     public int getPosY() {
         return posY;
     }
 
+
     public void setPosY(int posY) {
         this.posY = posY;
-    }
-
-    private Colpo colpo;
-
-
-    protected Alieno() {
-        setVitaAlieno(1);
-        setVivo(true);
     }
 
 
@@ -49,13 +52,16 @@ public class Alieno extends Nemico {
         this.vitaAlieno = vitaAlieno;
     }
 
+
     public boolean isVivo() {
         return isVivo;
     }
 
+
     public void setVivo(boolean vivo) {
         isVivo = vivo;
     }
+
 
     @Override
     protected void setVelocita(int livello) {
@@ -64,6 +70,7 @@ public class Alieno extends Nemico {
             this.spostamentoY = spostamentoY * 2;
         }
     }
+
 
     @Override
     protected boolean decrementaVita() {
@@ -79,6 +86,7 @@ public class Alieno extends Nemico {
     protected void move(int posX, int posY, int spostamentoX, int spostamentoY) {
         super.move(posX, posY, spostamentoX, spostamentoY);
     }
+
 
     @Override
     protected void moveDown(int posX, int posY) {

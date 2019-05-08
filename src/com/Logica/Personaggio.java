@@ -33,45 +33,56 @@ public class Personaggio {
         setPosY(700);
     }
 
+
     public boolean isVivo() {
         return isVivo;
     }
+
 
     public void setVivo(boolean vivo) {
         isVivo = vivo;
     }
 
+
     public boolean isHasFired() {
         return hasFired;
     }
+
 
     public void setHasFired(boolean hasFired) {
         this.hasFired = hasFired;
     }
 
+
     protected void moveLeft(int posX, int posY){
         this.posX = posX + SINISTRA;
     }
+
 
     protected void moveRight(int posX, int posY){
         this.posX = posX + DESTRA;
     }
 
+
     public int getPosX() {
         return posX;
     }
+
 
     public int getPosY() {
         return posY;
     }
 
+
     public void setVita(int vita) {
         this.vita = vita;
     }
 
+
     public void setPosX(int posX) {
         this.posX = posX;
     }
+
 
     public void setPosY(int posY) {
         this.posY = posY;

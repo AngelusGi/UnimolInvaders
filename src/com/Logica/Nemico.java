@@ -29,6 +29,7 @@ public abstract class Nemico {
 
     protected abstract void setVelocita(int livello);
 
+
     protected abstract boolean decrementaVita();
 
 

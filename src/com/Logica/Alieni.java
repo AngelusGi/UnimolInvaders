@@ -17,7 +17,6 @@ public class Alieni extends Alieno {
 
     private Alieno[][] matrixAliens;
 
-
     public Alieni(int livello) {
         matrixAliens = new Alieno[AlieniX][AlieniY];
         this.livello = livello;
@@ -33,6 +32,7 @@ public class Alieni extends Alieno {
             }
         }
     }
+
 
     public Alieno[][] getMatrixAliens() {
         return matrixAliens;

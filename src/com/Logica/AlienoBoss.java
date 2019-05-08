@@ -12,7 +12,7 @@ package Logica;
 
 public class AlienoBoss extends Alieno {
 
-    private static int vitaAlienoBoss = 15;
+    private int vitaAlienoBoss = 15;
     private int spostamentoY = 5;
     private int spostamentoX = 5;
     private boolean isVivo;
@@ -20,42 +20,50 @@ public class AlienoBoss extends Alieno {
     private int posX;
     private int posY;
 
-    @Override
-    public int getPosX() {
-        return posX;
-    }
-
-    @Override
-    public void setPosX(int posX) {
-        this.posX = posX;
-    }
-
-    @Override
-    public int getPosY() {
-        return posY;
-    }
-
-    @Override
-    public void setPosY(int posY) {
-        this.posY = posY;
-    }
-
     private Colpo colpo;
 
-    protected AlienoBoss(){
+
+    protected AlienoBoss() {
         // posiziona il boss sempre in posizione (10, 10)
         this.posX = 10;
         this.posY = 10;
         setVivo(true);
     }
 
-    public static int getVitaAlienoBoss() {
+
+    @Override
+    public int getPosX() {
+        return posX;
+    }
+
+
+    @Override
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+
+    @Override
+    public int getPosY() {
+        return posY;
+    }
+
+
+    @Override
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
+
+    public int getVitaAlienoBoss() {
         return vitaAlienoBoss;
     }
 
-    public static void setVitaAlienoBoss(int vitaAlienoBoss) {
-        AlienoBoss.vitaAlienoBoss += vitaAlienoBoss;
+
+    public void setVitaAlienoBoss(int vitaAlienoBoss) {
+        this.vitaAlienoBoss += vitaAlienoBoss;
     }
+
 
     @Override
     protected boolean decrementaVita() {
@@ -70,6 +78,7 @@ public class AlienoBoss extends Alieno {
         return isVivo();
     }
 
+
     public boolean isVivo() {
         return isVivo;
     }
@@ -77,6 +86,7 @@ public class AlienoBoss extends Alieno {
     public void setVivo(boolean vivo) {
         isVivo = vivo;
     }
+
 
     @Override
     protected void setVelocita(int livello) {
