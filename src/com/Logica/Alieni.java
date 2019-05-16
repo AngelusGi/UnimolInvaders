@@ -11,19 +11,20 @@ package Logica;
 
 public class Alieni extends Alieno {
 
-    private int AlieniY = 4;
-    private int AlieniX = 4;
+    private int numAlieniY = 4;
+    private int numAlieniX = 4;
     private int livello;
 
+    private Alieno alieno;
     private Alieno[][] matrixAliens;
 
-    private Alieno alieno;
 
     public Alieni(int livello) {
-        matrixAliens = new Alieno[AlieniX][AlieniY];
+        matrixAliens = new Alieno[numAlieniX][numAlieniY];
         this.livello = livello;
 
     }
+
 
 //    protected void inizializzaAlieni(ArrayList<Alieno> alieni){
 //        for (int i = 0; i < 5; i++) {
@@ -32,6 +33,7 @@ public class Alieni extends Alieno {
 ////        //Lista provare a implementare come lista
 //
 //    }
+
 
     protected void inizializzaAlieni(Alieno[][] matrixAliens){
         for (int riga = 0; riga < matrixAliens.length; riga++) {
@@ -46,4 +48,6 @@ public class Alieni extends Alieno {
     public Alieno[][] getMatrixAliens() {
         return matrixAliens;
     }
+
+
 }

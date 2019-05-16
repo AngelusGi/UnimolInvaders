@@ -23,7 +23,6 @@ public class GameController {
 
     public GameController(){
 
-
         //all'avvio prompt per il nome del personaggio
         this.giocatore = inizializzaPersonaggio();
 
@@ -43,23 +42,6 @@ public class GameController {
         }
     }
 
-    protected int getNumLivello() {
-        return numLivello;
-    }
-
-    protected int getPunteggio() {
-        return punteggio;
-    }
-
-    private boolean isPari(int levelNumber) {
-
-        //se il livello è pari (0, 2,...) ritorna TRUE, altrimenti FALSE
-        return levelNumber % 2 == 0;
-    }
-
-    public void setNumLivello(int incremento) {
-        this.numLivello += incremento;
-    }
 
     private void vintoPerso() {
         //todo
@@ -88,13 +70,20 @@ public class GameController {
         return giocatore;
      }
 
-     private void memorizzaPunteggio(Personaggio giocatore){
+    private boolean isPari(int levelNumber) {
+        //se il livello è pari (0, 2,...) ritorna TRUE, altrimenti FALSE
+        return levelNumber % 2 == 0;
+    }
+
+
+    private void memorizzaPunteggio(Personaggio giocatore) {
 
 //        this.punteggio.toString();
 
         //todo
         //salva punteggio giocatore con data e punteggio
      }
+
 
 //     //testa la corretta inizializzazione dei livelli e la gestione dei livelli (pari/dispari)
 //    public void stampaLivello(){
@@ -132,6 +121,18 @@ public class GameController {
 //
 //    }
 
+
+    protected int getNumLivello() {
+        return numLivello;
+    }
+
+    public void setNumLivello(int incremento) {
+        this.numLivello += incremento;
+    }
+
+    protected int getPunteggio() {
+        return punteggio;
+    }
 
 
 }

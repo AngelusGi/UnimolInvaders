@@ -16,26 +16,83 @@ import java.awt.*;
 public class AlienoBoss extends Alieno {
 
     private int vitaAlienoBoss = 15;
-    private int spostamentoY = 5;
-    private int spostamentoX = 5;
     private boolean isVivo;
-
-    private static final int DIM_BOSS_X = 89;
-    private static final int DIM_BOSS_Y = 100;
-    private ImageIcon immagineBoss;
 
     private int posX;
     private int posY;
+    private int spostamentoY = 5;
+    private int spostamentoX = 5;
+
+    private ImageIcon immagineBoss;
+    private static final int DIM_BOSS_X = 89;
+    private static final int DIM_BOSS_Y = 100;
 
     private Colpo colpo;
 
 
     protected AlienoBoss() {
         // posiziona il boss sempre in posizione (10, 10)
-        this.posX = 10;
-        this.posY = 10;
+        setPosX(10);
+        setPosY(10);
+        setVitaAlienoBoss(vitaAlienoBoss);
         setVivo(true);
         immagineBoss = new ImageIcon(this.getClass().getResource("./Resources/alienoBoss.png"));
+    }
+
+    // todo inserire
+    // todo inserire sparo
+
+
+    @Override
+    protected boolean decrementaVita(Colpo colpo) {
+        //se la vita è maggiore di 1 la decrementa
+        if (getVitaAlienoBoss() > 1) {
+            setVitaAlienoBoss(colpo.getDanno());
+        } else {
+            //altrimenti lo setta come morto
+            setVivo(false);
+        }
+
+        return isVivo();
+    }
+
+
+    @Override
+    protected void move(int posX, int posY, int spostamentoX, int spostamentoY) {
+        super.move(posX, posY, spostamentoX, spostamentoY);
+    }
+
+
+    @Override
+    protected void moveDown(int posX, int posY) {
+        this.posY = posY + spostamentoY;
+    }
+
+
+    public void disegnaBoss(Graphics graphics) {
+        if (isVivo()) {
+            graphics.drawImage(immagineBoss.getImage(), getPosX(), getPosY(), DIM_BOSS_X, DIM_BOSS_Y, null);
+        }
+    }
+
+
+    @Override
+    public void disegnaAlieno(Graphics graphics) {
+        super.disegnaAlieno(graphics);
+    }
+
+
+    @Override
+    public void setVitaAlieno(int vitaAlieno) {
+        super.setVitaAlieno(vitaAlieno);
+    }
+
+
+    protected void setVelocita(int livello) {
+        if (livello > 1) {
+            this.spostamentoX = spostamentoX * 2;
+            this.spostamentoY = spostamentoY * 2;
+        }
     }
 
 
@@ -69,21 +126,7 @@ public class AlienoBoss extends Alieno {
 
 
     public void setVitaAlienoBoss(int vitaAlienoBoss) {
-        this.vitaAlienoBoss += vitaAlienoBoss;
-    }
-
-
-    @Override
-    protected boolean decrementaVita() {
-        //se la vita è maggiore di 1 la decrementa
-        if (getVitaAlienoBoss() > 1) {
-            setVitaAlienoBoss(-1);
-        } else {
-            //altrimenti lo setta come morto
-            setVivo(false);
-        }
-
-        return isVivo();
+        this.vitaAlienoBoss -= vitaAlienoBoss;
     }
 
 
@@ -91,38 +134,10 @@ public class AlienoBoss extends Alieno {
         return isVivo;
     }
 
+
     public void setVivo(boolean vivo) {
         isVivo = vivo;
     }
 
 
-    @Override
-    protected void setVelocita(int livello) {
-        if (livello>1){
-            this.spostamentoX = spostamentoX * 2;
-            this.spostamentoY = spostamentoY * 2;
-        }
-    }
-
-
-    @Override
-    protected void move(int posX, int posY, int spostamentoX, int spostamentoY) {
-        super.move(posX, posY, spostamentoX, spostamentoY);
-    }
-
-
-    @Override
-    protected void moveDown(int posX, int posY) {
-        this.posY = posY + spostamentoY;
-    }
-
-
-    public void disegnaBoss(Graphics graphics) {
-        if (isVivo()) {
-            graphics.drawImage(immagineBoss.getImage(), getPosX(), getPosY(), DIM_BOSS_X, DIM_BOSS_Y, null);
-        }
-    }
-
-    // todo inserire immagine
-    // todo inserire sparo
 }

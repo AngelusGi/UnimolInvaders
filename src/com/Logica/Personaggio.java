@@ -17,21 +17,19 @@ public class Personaggio {
 
     private final static int DESTRA = 1;
     private final static int SINISTRA = -1;
-
-    private int vita;
-
     private int posX;
     private int posY;
 
+    private int vita;
     boolean isVivo;
     boolean hasFired;
 
+    private ImageIcon immaginePersonaggio;
     private static final int DIM_NAVICELLA_X = 65;
     private static final int DIM_NAVICELLA_Y = 100;
 
-    private ImageIcon immaginePersonaggio;
-
     private Colpo colpo;
+
 
     public Personaggio() {
         setVita(10);
@@ -43,23 +41,16 @@ public class Personaggio {
     }
 
 
-    public boolean isVivo() {
-        return isVivo;
-    }
+    protected boolean decrementaVita(Colpo colpo) {
+        //se la vita è maggiore di 1 la decrementa
+        if (getVita() > 1) {
+            setVita(getVita() - colpo.getDanno());
+        } else {
+            //altrimenti lo setta come morto
+            setVivo(false);
+        }
 
-
-    public void setVivo(boolean vivo) {
-        isVivo = vivo;
-    }
-
-
-    public boolean isHasFired() {
-        return hasFired;
-    }
-
-
-    public void setHasFired(boolean hasFired) {
-        this.hasFired = hasFired;
+        return isVivo();
     }
 
 
@@ -70,6 +61,13 @@ public class Personaggio {
 
     protected void moveRight(int posX, int posY){
         this.posX = posX + DESTRA;
+    }
+
+
+    public void disegnaPersonaggio(Graphics graphics) {
+        if (isVivo()) {
+            graphics.drawImage(immaginePersonaggio.getImage(), getPosX(), getPosY(), DIM_NAVICELLA_X, DIM_NAVICELLA_Y, null);
+        }
     }
 
 
@@ -97,10 +95,30 @@ public class Personaggio {
         this.posY = posY;
     }
 
-    public void disegnaPersonaggio(Graphics graphics) {
-        if (isVivo()) {
-            graphics.drawImage(immaginePersonaggio.getImage(), getPosX(), getPosY(), DIM_NAVICELLA_X, DIM_NAVICELLA_Y, null);
-        }
+
+    public boolean isVivo() {
+        return isVivo;
     }
+
+
+    public void setVivo(boolean vivo) {
+        isVivo = vivo;
+    }
+
+
+    public boolean hasFired() {
+        return hasFired;
+    }
+
+
+    public void setHasFired(boolean hasFired) {
+        this.hasFired = hasFired;
+    }
+
+
+    public int getVita() {
+        return vita;
+    }
+
 
 }

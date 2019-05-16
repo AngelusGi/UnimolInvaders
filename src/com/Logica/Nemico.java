@@ -17,7 +17,6 @@ public abstract class Nemico {
 
     protected int posX;
     protected int posY;
-
     private int spostamentoX;
     private int spostamentoY;
 
@@ -27,10 +26,8 @@ public abstract class Nemico {
     private int tipo;
     private int vita;
 
-    protected abstract void setVelocita(int livello);
 
-
-    protected abstract boolean decrementaVita();
+    protected abstract boolean decrementaVita(Colpo colpo);
 
 
     protected void move(int posX, int posY, int spostamentoX, int spostamentoY) {
@@ -62,5 +59,9 @@ public abstract class Nemico {
 
 
     protected abstract void moveDown(int posX, int posY);
+
+
+    protected abstract void setVelocita(int livello);
+
 
 }

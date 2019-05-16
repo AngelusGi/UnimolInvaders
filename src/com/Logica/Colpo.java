@@ -14,16 +14,17 @@ import java.awt.*;
 
 public class Colpo {
 
-    private static final int SPOSTAMENTO = 5;
-    private boolean sparato;
+    private boolean isSparato;
+    private int danno;
 
+    private static final int SPOSTAMENTO = 5;
     private int posX;
     private int posY;
-    private int danno;
 
     private static final int DIM_COLPO_X = 20;
     private static final int DIM_COLPO_Y = 53;
     private ImageIcon immagineColpo;
+
 
     public Colpo(int posX, int posY) {
         setSparato(false);
@@ -33,37 +34,6 @@ public class Colpo {
         immagineColpo = new ImageIcon(this.getClass().getResource("./Resources/colpo.png"));
     }
 
-    public int getPosX() {
-        return posX;
-    }
-
-    private void setPosX(int posX) {
-        this.posX = posX;
-    }
-
-    public int getPosY() {
-        return posY;
-    }
-
-    private void setPosY(int posY) {
-        this.posY = posY;
-    }
-
-    public boolean isSparato() {
-        return !sparato;
-    }
-
-    public void setSparato(boolean sparato) {
-        this.sparato = sparato;
-    }
-
-    public int getDanno() {
-        return danno;
-    }
-
-    private void setDanno(int danno) {
-        this.danno = danno;
-    }
 
     private void muovi(int posX, int posY) {
         int traiettoria;
@@ -76,6 +46,7 @@ public class Colpo {
         return collisione(alienoBoss.getPosX(), alienoBoss.getPosY(), this.getPosX(), this.getPosY());
 
     }
+
 
     protected boolean isColpito(Alieni alieni) {
 
@@ -92,6 +63,7 @@ public class Colpo {
         return isColpito;
     }
 
+
     private boolean collisione(int personaggioPosX, int personaggioPosY, int colpoPosX, int colpoPosY) {
 
         //todo collisione nemico colpo
@@ -100,11 +72,19 @@ public class Colpo {
 
     }
 
-    protected boolean isColpito(Personaggio giocatore) {
 
-        return collisione(giocatore.getPosX(), giocatore.getPosY(), this.getPosX(), this.getPosY());
+    protected void spara(int posX, int posY) {
+//        //quando spara ritorna un booleano per sparare un solo colpo per volta
+
+        if (isSparato()) {
+            muovi(getPosX(), getPosX());
+        } else {
+            setSparato(true);
+//            todo colpo.muovi();
+        }
 
     }
+
 
     public void disegnaColpo(Graphics graphics) {
         if (isSparato()) {
@@ -113,18 +93,51 @@ public class Colpo {
     }
 
 
-    protected void spara(int posX, int posY) {
-//        //quando spara ritorna un booleano per sparare un solo colpo per volta
+    protected boolean isColpito(Personaggio giocatore) {
 
-
-        if (isSparato()) {
-
-
-        } else {
-            setSparato(true);
-//            todo colpo.muovi();
-        }
+        return collisione(giocatore.getPosX(), giocatore.getPosY(), this.getPosX(), this.getPosY());
 
     }
+
+
+    public int getPosX() {
+        return posX;
+    }
+
+
+    private void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+
+    public int getPosY() {
+        return posY;
+    }
+
+
+    private void setPosY(int posY) {
+        this.posY = posY;
+    }
+
+
+    public boolean isSparato() {
+        return !isSparato;
+    }
+
+
+    public void setSparato(boolean isSparato) {
+        this.isSparato = isSparato;
+    }
+
+
+    public int getDanno() {
+        return danno;
+    }
+
+
+    private void setDanno(int danno) {
+        this.danno = danno;
+    }
+
 
 }
