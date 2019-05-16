@@ -1,4 +1,8 @@
+import GUI.AlienoGUI;
+import Logica.Alieni;
 import Logica.GameController;
+
+import javax.swing.*;
 
 /********************************
  *
@@ -11,13 +15,25 @@ import Logica.GameController;
 
 public class UniMolInvaders {
 
+    private static Alieni alieni;
+
     public static void main(String[] args) {
 
+        alieni = new Alieni(0);
 
         GameController gameController = new GameController();
 
 //        //verifica la corretta inizializzazione degli oggetti
 //        gameController.stampaPersonaggi();
 //        gameController.stampaLivello();
+
+
+        JFrame frame = new JFrame("Arkanoid Demo");
+        AlienoGUI gamePanel = new AlienoGUI(alieni);
+        frame.add(gamePanel);
+        frame.setSize(700, 500);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
 }

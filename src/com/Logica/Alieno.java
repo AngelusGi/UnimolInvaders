@@ -1,5 +1,8 @@
 package Logica;
 
+import javax.swing.*;
+import java.awt.*;
+
 /********************************
  *
  *   user:      angel
@@ -17,6 +20,11 @@ public class Alieno extends Nemico {
     private int spostamentoX = 2;
     private boolean isVivo;
 
+    private static final int DIM_ALIENO_X = 50;
+    private static final int DIM_ALIENO_Y = 67;
+
+    private ImageIcon immagineAlieno;
+
     private int posX;
     private int posY;
 
@@ -25,6 +33,8 @@ public class Alieno extends Nemico {
     public Alieno() {
         setVitaAlieno(1);
         setVivo(true);
+        immagineAlieno = new ImageIcon(this.getClass().getResource("./Resources/alieno.png"));
+
     }
 
 
@@ -71,6 +81,12 @@ public class Alieno extends Nemico {
         }
     }
 
+    public void disegnaAlieno(Graphics graphics) {
+        if (isVivo()) {
+            graphics.drawImage(immagineAlieno.getImage(), getPosX(), getPosY(), DIM_ALIENO_X, DIM_ALIENO_Y, null);
+        }
+    }
+
 
     @Override
     protected boolean decrementaVita() {
@@ -95,5 +111,6 @@ public class Alieno extends Nemico {
 
     // todo inserire immagine
     // todo inserire sparo
+
 
 }

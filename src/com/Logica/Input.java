@@ -19,8 +19,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
-import java.util.TimeZone;
 
 
 // public class Input implements KeyListener {
@@ -76,8 +76,9 @@ public class Input extends JFrame {
                 BufferedWriter out = new BufferedWriter(stream);
 
 
-                Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
-                Date dataPartita = calendar.getTime();
+                Calendar dataOdierna = new GregorianCalendar(Locale.ITALY);
+//                Calendar dataOdierna = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
+                Date dataPartita = dataOdierna.getTime();
 
                 GameController gameController = new GameController();
 

@@ -17,12 +17,21 @@ public class Alieni extends Alieno {
 
     private Alieno[][] matrixAliens;
 
+    private Alieno alieno;
+
     public Alieni(int livello) {
         matrixAliens = new Alieno[AlieniX][AlieniY];
         this.livello = livello;
 
     }
 
+//    protected void inizializzaAlieni(ArrayList<Alieno> alieni){
+//        for (int i = 0; i < 5; i++) {
+//            alieni.add(i, alieno);
+//        }
+////        //Lista provare a implementare come lista
+//
+//    }
 
     protected void inizializzaAlieni(Alieno[][] matrixAliens){
         for (int riga = 0; riga < matrixAliens.length; riga++) {

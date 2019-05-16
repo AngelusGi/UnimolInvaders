@@ -1,5 +1,8 @@
 package Logica;
 
+import javax.swing.*;
+import java.awt.*;
+
 /********************************
  *
  *   user:      angel
@@ -18,11 +21,16 @@ public class Colpo {
     private int posY;
     private int danno;
 
+    private static final int DIM_COLPO_X = 20;
+    private static final int DIM_COLPO_Y = 53;
+    private ImageIcon immagineColpo;
+
     public Colpo(int posX, int posY) {
         setSparato(false);
         setDanno(1);
         setPosX(posX);
         setPosY(posY);
+        immagineColpo = new ImageIcon(this.getClass().getResource("./Resources/colpo.png"));
     }
 
     public int getPosX() {
@@ -96,6 +104,12 @@ public class Colpo {
 
         return collisione(giocatore.getPosX(), giocatore.getPosY(), this.getPosX(), this.getPosY());
 
+    }
+
+    public void disegnaColpo(Graphics graphics) {
+        if (isSparato()) {
+            graphics.drawImage(immagineColpo.getImage(), getPosX(), getPosY(), DIM_COLPO_X, DIM_COLPO_Y, null);
+        }
     }
 
 

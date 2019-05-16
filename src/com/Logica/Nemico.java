@@ -15,8 +15,8 @@ public abstract class Nemico {
     protected static final int ALIENO_BOSS = 1;
     protected static final int ALIENO_NORMALE = 0;
 
-    protected int posX = 0;
-    protected int posY = 0;
+    protected int posX;
+    protected int posY;
 
     private int spostamentoX;
     private int spostamentoY;
