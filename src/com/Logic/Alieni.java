@@ -1,3 +1,5 @@
+package Logic;
+
 import java.util.ArrayList;
 
 /********************************
@@ -11,10 +13,10 @@ import java.util.ArrayList;
 
 public class Alieni extends Alieno {
 
-    private int numAlieni = 8;
-    private int numAlieniY = 4;
-    private int numAlieniX = 4;
+    private static final int numAlieni = 14;
     private int livello;
+
+
 
     private Alieno alieno;
     private ArrayList<Alieno> listaAlieni;
@@ -22,7 +24,7 @@ public class Alieni extends Alieno {
 
     public Alieni(int livello) {
 
-        listaAlieni = new ArrayList<>();
+        listaAlieni = new ArrayList<Alieno>();
         inizializzaAlieni(listaAlieni);
 
         setLivello(livello);
@@ -57,6 +59,11 @@ public class Alieni extends Alieno {
 
     public void setLivello(int livello) {
         this.livello = livello;
+    }
+
+
+    public static int getNumAlieni() {
+        return numAlieni;
     }
 
 

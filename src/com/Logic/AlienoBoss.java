@@ -1,3 +1,5 @@
+package Logic;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -22,19 +24,19 @@ public class AlienoBoss extends Alieno {
     private int spostamentoX = 5;
 
     private Image immagineBoss;
-    private static final int DIM_BOSS_X = 89;
-    private static final int DIM_BOSS_Y = 100;
+    private final int DIM_BOSS_X = 89;
+    private final int DIM_BOSS_Y = 100;
 
     private Colpo colpo;
 
 
-    protected AlienoBoss() {
-        // posiziona il boss sempre in posizione (10, 10)
+    public AlienoBoss() {
+        // posiziona il boss sempre alle coordinate (10, 10) come pos iniziale
         setPosX(10);
         setPosY(10);
         setVitaAlienoBoss(vitaAlienoBoss);
         setVivo(true);
-        immagineBoss = new ImageIcon(this.getClass().getResource("alienoBoss.png"), "boss").getImage();
+        immagineBoss = new ImageIcon(this.getClass().getResource("bossAlieno.png")).getImage();
     }
 
     // todo inserire
@@ -67,16 +69,8 @@ public class AlienoBoss extends Alieno {
     }
 
 
-    public void disegnaBoss(Graphics graphics) {
-        if (isVivo()) {
-            graphics.drawImage(immagineBoss, getPosX(), getPosY(), DIM_BOSS_X, DIM_BOSS_Y, null);
-        }
-    }
-
-
-    @Override
-    public void disegnaAlieno(Graphics graphics) {
-        super.disegnaAlieno(graphics);
+    public Image getImmagineBoss() {
+        return immagineBoss;
     }
 
 
@@ -135,6 +129,16 @@ public class AlienoBoss extends Alieno {
 
     public void setVivo(boolean vivo) {
         isVivo = vivo;
+    }
+
+
+    public int getDimBossX() {
+        return DIM_BOSS_X;
+    }
+
+
+    public int getDimBossY() {
+        return DIM_BOSS_Y;
     }
 
 

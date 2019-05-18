@@ -1,3 +1,5 @@
+package Logic;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,9 +16,9 @@ import java.awt.*;
 public class Alieno extends Nemico {
 
 
-    private static final int DIM_ALIENO_X = 50;
-    private static final int DIM_ALIENO_Y = 67;
-    private static final int DISTANZA_ALIENI = 10;
+    private static final int DIM_ALIENO_X = 37;
+    private static final int DIM_ALIENO_Y = 50;
+    private static final int DISTANZA_ALIENI = 20;
     private static final int POS_X_INIZIALE_ALIENO = 10;
     private static final int POS_Y_INIZIALE_ALIENO = 10;
     private static final int POS_Y_INIZIALE_ALIENO_SECONDA_RIGA = POS_Y_INIZIALE_ALIENO + DIM_ALIENO_Y + DISTANZA_ALIENI;
@@ -43,6 +45,29 @@ public class Alieno extends Nemico {
         posizionaAlieno(alienoPrecedente, index);
     }
 
+    public static int getDimAlienoX() {
+        return DIM_ALIENO_X;
+    }
+
+    public Image getImmagineAlieno() {
+        return immagineAlieno;
+    }
+
+    public static int getDimAlienoY() {
+        return DIM_ALIENO_Y;
+    }
+
+    public static int getPosXInizialeAlieno() {
+        return POS_X_INIZIALE_ALIENO;
+    }
+
+    public static int getPosYInizialeAlieno() {
+        return POS_Y_INIZIALE_ALIENO;
+    }
+
+    public static int getPosYInizialeAlienoSecondaRiga() {
+        return POS_Y_INIZIALE_ALIENO_SECONDA_RIGA;
+    }
 
     public Alieno(int index) {
         inizializzazionePredefinita();
@@ -69,19 +94,19 @@ public class Alieno extends Nemico {
     public void posizionaAlieno(Alieno alienoPrecedente, int index) {
 
         //riempimeto prima riga
-        if (index < 5) {
-            this.setPosX(alienoPrecedente.getPosX() + DISTANZA_ALIENI);
-            this.setPosY(alienoPrecedente.getPosY() + DISTANZA_ALIENI);
+        if (index < Alieni.getNumAlieni()/2) {
+            this.setPosX(alienoPrecedente.getPosX() + DIM_ALIENO_X + DISTANZA_ALIENI);
+            this.setPosY(alienoPrecedente.getPosY());
 
             //primo alieno seconda riga (stessa X alieno della lista superiore)
-        } else if (index == 6) {
+        } else if (index == Alieni.getNumAlieni()/2) {
             this.setPosX(POS_X_INIZIALE_ALIENO);
             this.setPosY(POS_Y_INIZIALE_ALIENO_SECONDA_RIGA);
 
             //tutti gli altri alieni della seconda riga
         } else {
-            this.setPosX(alienoPrecedente.getPosX() + DISTANZA_ALIENI);
-            this.setPosY(alienoPrecedente.getPosY() + DISTANZA_ALIENI);
+            this.setPosX(alienoPrecedente.getPosX() + DIM_ALIENO_X + DISTANZA_ALIENI);
+            this.setPosY(alienoPrecedente.getPosY());
         }
     }
 

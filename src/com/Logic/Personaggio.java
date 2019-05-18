@@ -1,3 +1,5 @@
+package Logic;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -23,8 +25,8 @@ public class Personaggio {
     boolean hasFired;
 
     private Image immaginePersonaggio;
-    private static final int DIM_NAVICELLA_X = 65;
-    private static final int DIM_NAVICELLA_Y = 100;
+    private final int DIM_NAVICELLA_X = 39;
+    private final int DIM_NAVICELLA_Y = 60;
 
     private Colpo colpo;
 
@@ -34,8 +36,8 @@ public class Personaggio {
         setVivo(true);
         setHasFired(false);
         setPosX(350);
-        setPosY(700);
-        immaginePersonaggio = new ImageIcon(this.getClass().getResource("navicellaPersonaggio.png"), "giocatore").getImage();
+        setPosY(640);
+        immaginePersonaggio = new ImageIcon(this.getClass().getResource("navicellaPersonaggio.png")).getImage();
     }
 
 
@@ -116,6 +118,21 @@ public class Personaggio {
 
     public int getVita() {
         return vita;
+    }
+
+
+    public Image getImmaginePersonaggio() {
+        return immaginePersonaggio;
+    }
+
+
+    public int getDIM_NAVICELLA_X() {
+        return DIM_NAVICELLA_X;
+    }
+
+
+    public int getDIM_NAVICELLA_Y() {
+        return DIM_NAVICELLA_Y;
     }
 
 

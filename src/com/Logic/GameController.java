@@ -1,3 +1,5 @@
+package Logic;
+
 import java.util.ArrayList;
 
 /********************************
@@ -26,7 +28,7 @@ public class GameController {
         //all'avvio prompt per il nome del personaggio
         this.giocatore = inizializzaPersonaggio();
 
-        //se il livello è pari alieni normali, altrimenti BOSS
+        //se il livello è pari (0, 2,...) alieni normali, altrimenti BOSS
         if (isPari(numLivello)){
 
             //se il livello è 0, inizializza punteggio, altrimenti resta invariato
@@ -101,37 +103,37 @@ public class GameController {
     }
 
 
-    //testa la corretta inizializzazione dei livelli e la gestione dei livelli (pari/dispari)
-    public void stampaLivello() {
-        System.out.print("Livello: " + numLivello);
-        System.out.println(" è pari: " + isPari(numLivello));
-        if (numLivello <= 5) {
-            numLivello += 1;
-        } else {
-            System.exit(1);
-        }
-
-        stampaLivello();
-    }
-
-    public void stampaPersonaggi() {
-
-        this.alieni = new Alieni(getNumLivello());
-        this.alieni.inizializzaAlieni(this.alieni.getListaAlieni());
-        ArrayList<Alieno> listaAlieni = this.alieni.getListaAlieni();
-
-        for (int num = 0; num < listaAlieni.size(); num++) {
-            System.out.print("Alieno[" + num + "] > " + listaAlieni.get(num) + " \t ");
-            System.out.println("\n");
-        }
-
-        alienoBoss = inizializzaBoss();
-        System.out.println("\nBoss > " + alienoBoss + "\n");
-
-        giocatore = inizializzaPersonaggio();
-        System.out.println("giocatore > " + giocatore + "\n");
-
-    }
+//    //testa la corretta inizializzazione dei livelli e la gestione dei livelli (pari/dispari)
+//    public void stampaLivello() {
+//        System.out.print("Livello: " + numLivello);
+//        System.out.println(" è pari: " + isPari(numLivello));
+//        if (numLivello <= 5) {
+//            numLivello += 1;
+//        } else {
+//            System.exit(1);
+//        }
+//
+//        stampaLivello();
+//    }
+//
+//    public void stampaPersonaggi() {
+//
+//        this.alieni = new Alieni(getNumLivello());
+//        this.alieni.inizializzaAlieni(this.alieni.getListaAlieni());
+//        ArrayList<Alieno> listaAlieni = this.alieni.getListaAlieni();
+//
+//        for (int num = 0; num < listaAlieni.size(); num++) {
+//            System.out.print("Alieno[" + num + "] > " + listaAlieni.get(num) + " \t ");
+//            System.out.println("\n");
+//        }
+//
+//        alienoBoss = inizializzaBoss();
+//        System.out.println("\nBoss > " + alienoBoss + "\n");
+//
+//        giocatore = inizializzaPersonaggio();
+//        System.out.println("giocatore > " + giocatore + "\n");
+//
+//    }
 
 
 }
