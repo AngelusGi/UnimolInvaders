@@ -31,13 +31,13 @@ public class UniMolInvaders {
 
 
         JFrame finestra = new JFrame("UniMol Invader");
-//        AlienoGUI alieni = new AlienoGUI();
-//        AlienoBossGUI alienoBoss = new AlienoBossGUI();
+        AlienoGUI alieni = new AlienoGUI();
+        AlienoBossGUI alienoBoss = new AlienoBossGUI();
 //        finestra.add(alieni);
 //        finestra.add(alienoBoss);
         PersonaggioGUI personaggio = new PersonaggioGUI();
         finestra.add(personaggio);
-        finestra.setSize(1024, 768);
+        finestra.setSize(1000, 800);
         finestra.setResizable(false);
         finestra.setVisible(true);
         finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

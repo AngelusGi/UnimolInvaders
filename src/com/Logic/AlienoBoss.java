@@ -23,7 +23,7 @@ public class AlienoBoss extends Alieno {
     private int spostamentoY = 5;
     private int spostamentoX = 5;
 
-    private Image immagineBoss;
+//    private Image immagineBoss;
     private final int DIM_BOSS_X = 89;
     private final int DIM_BOSS_Y = 100;
 
@@ -36,7 +36,7 @@ public class AlienoBoss extends Alieno {
         setPosY(10);
         setVitaAlienoBoss(vitaAlienoBoss);
         setVivo(true);
-        immagineBoss = new ImageIcon(this.getClass().getResource("bossAlieno.png")).getImage();
+//        immagineBoss = new ImageIcon(this.getClass().getResource("bossAlieno.png")).getImage();
     }
 
     // todo inserire
@@ -69,9 +69,9 @@ public class AlienoBoss extends Alieno {
     }
 
 
-    public Image getImmagineBoss() {
-        return immagineBoss;
-    }
+//    public Image getImmagineBoss() {
+//        return immagineBoss;
+//    }
 
 
     @Override

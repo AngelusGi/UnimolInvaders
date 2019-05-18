@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 public class AlienoGUI extends JPanel implements Runnable {
 
+    private Image immagineAlieno;
     private ArrayList<Alieno> listaAlieni;
 
     private Alieni alieni;
@@ -26,6 +27,7 @@ public class AlienoGUI extends JPanel implements Runnable {
     public AlienoGUI(){
         alieni = new Alieni(0);
         listaAlieni = alieni.getListaAlieni();
+        immagineAlieno = new ImageIcon(this.getClass().getResource("alieno.png")).getImage();
     }
 
     @Override
@@ -40,6 +42,7 @@ public class AlienoGUI extends JPanel implements Runnable {
         super.paint(graphics);
 
         Color trasparente = new Color(1f,0f,0f,0f );
+//        graphics.setColor(Color.RED);
         graphics.setColor(trasparente);
 
 
@@ -47,7 +50,7 @@ public class AlienoGUI extends JPanel implements Runnable {
 
             //CREA UN RETTANGOLO DI DIM_ALIENIxDIM_ALIENI PER OGNI ALIENO NELLA MATRICE
             graphics.fillRect(listaAlieni.get(num).getPosX(), listaAlieni.get(num).getPosY(), Alieno.getDimAlienoX(), Alieno.getDimAlienoY());
-            graphics.drawImage(listaAlieni.get(num).getImmagineAlieno(), listaAlieni.get(num).getPosX(), listaAlieni.get(num).getPosY(), trasparente, null);
+            graphics.drawImage(this.immagineAlieno, listaAlieni.get(num).getPosX(), listaAlieni.get(num).getPosY(), trasparente, null);
 
         }
 

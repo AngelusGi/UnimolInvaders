@@ -24,7 +24,7 @@ public class Personaggio {
     boolean isVivo;
     boolean hasFired;
 
-    private Image immaginePersonaggio;
+//    private Image immaginePersonaggio;
     private final int DIM_NAVICELLA_X = 39;
     private final int DIM_NAVICELLA_Y = 60;
 
@@ -37,7 +37,7 @@ public class Personaggio {
         setHasFired(false);
         setPosX(350);
         setPosY(640);
-        immaginePersonaggio = new ImageIcon(this.getClass().getResource("navicellaPersonaggio.png")).getImage();
+//        immaginePersonaggio = new ImageIcon(this.getClass().getResource("navicellaPersonaggio.png")).getImage();
     }
 
 
@@ -64,11 +64,11 @@ public class Personaggio {
     }
 
 
-    public void disegnaPersonaggio(Graphics graphics) {
-        if (isVivo()) {
-            graphics.drawImage(immaginePersonaggio, getPosX(), getPosY(), DIM_NAVICELLA_X, DIM_NAVICELLA_Y, null);
-        }
-    }
+//    public void disegnaPersonaggio(Graphics graphics) {
+//        if (isVivo()) {
+//            graphics.drawImage(immaginePersonaggio, getPosX(), getPosY(), DIM_NAVICELLA_X, DIM_NAVICELLA_Y, null);
+//        }
+//    }
 
 
     public int getPosX() {
@@ -121,9 +121,9 @@ public class Personaggio {
     }
 
 
-    public Image getImmaginePersonaggio() {
-        return immaginePersonaggio;
-    }
+//    public Image getImmaginePersonaggio() {
+//        return immaginePersonaggio;
+//    }
 
 
     public int getDIM_NAVICELLA_X() {

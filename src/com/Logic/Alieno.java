@@ -45,29 +45,6 @@ public class Alieno extends Nemico {
         posizionaAlieno(alienoPrecedente, index);
     }
 
-    public static int getDimAlienoX() {
-        return DIM_ALIENO_X;
-    }
-
-    public Image getImmagineAlieno() {
-        return immagineAlieno;
-    }
-
-    public static int getDimAlienoY() {
-        return DIM_ALIENO_Y;
-    }
-
-    public static int getPosXInizialeAlieno() {
-        return POS_X_INIZIALE_ALIENO;
-    }
-
-    public static int getPosYInizialeAlieno() {
-        return POS_Y_INIZIALE_ALIENO;
-    }
-
-    public static int getPosYInizialeAlienoSecondaRiga() {
-        return POS_Y_INIZIALE_ALIENO_SECONDA_RIGA;
-    }
 
     public Alieno(int index) {
         inizializzazionePredefinita();
@@ -87,7 +64,7 @@ public class Alieno extends Nemico {
         //operazione fatta da tutti i costruttori (costruttore di base)
         setVitaAlieno(1);
         setVivo(true);
-        immagineAlieno = new ImageIcon(this.getClass().getResource("alieno.png"), "alieno").getImage();
+//        immagineAlieno = new ImageIcon(this.getClass().getResource("alieno.png")).getImage();
     }
 
 
@@ -111,11 +88,11 @@ public class Alieno extends Nemico {
     }
 
 
-    public void disegnaAlieno(Graphics graphics) {
-        if (isVivo()) {
-            graphics.drawImage(immagineAlieno, getPosX(), getPosY(), DIM_ALIENO_X, DIM_ALIENO_Y, null);
-        }
-    }
+//    public void disegnaAlieno(Graphics graphics) {
+//        if (isVivo()) {
+//            graphics.drawImage(immagineAlieno, getPosX(), getPosY(), DIM_ALIENO_X, DIM_ALIENO_Y, null);
+//        }
+//    }
 
     // todo inserire immagine
     // todo inserire sparo
@@ -184,6 +161,22 @@ public class Alieno extends Nemico {
             this.spostamentoY = spostamentoY * 2;
         }
     }
+
+
+    public static int getDimAlienoX() {
+        return DIM_ALIENO_X;
+    }
+
+
+    public Image getImmagineAlieno() {
+        return immagineAlieno;
+    }
+
+
+    public static int getDimAlienoY() {
+        return DIM_ALIENO_Y;
+    }
+
 
 
 }
