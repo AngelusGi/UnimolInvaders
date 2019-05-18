@@ -1,5 +1,6 @@
 import GUI.AlienoBossGUI;
 import GUI.AlienoGUI;
+import GUI.IntroGui;
 import GUI.PersonaggioGUI;
 import Logic.Alieni;
 import Logic.GameController;
@@ -36,7 +37,9 @@ public class UniMolInvaders {
 //        finestra.add(alieni);
 //        finestra.add(alienoBoss);
         PersonaggioGUI personaggio = new PersonaggioGUI();
-        finestra.add(personaggio);
+//        finestra.add(personaggio);
+        IntroGui introGui = new IntroGui();
+        finestra.add(introGui);
         finestra.setSize(1000, 800);
         finestra.setResizable(false);
         finestra.setVisible(true);

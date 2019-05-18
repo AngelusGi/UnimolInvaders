@@ -69,10 +69,6 @@ public class AlienoBoss extends Alieno {
     }
 
 
-//    public Image getImmagineBoss() {
-//        return immagineBoss;
-//    }
-
 
     @Override
     public void setVitaAlieno(int vitaAlieno) {

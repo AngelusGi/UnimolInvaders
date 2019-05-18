@@ -30,6 +30,8 @@ public class AlienoGUI extends JPanel implements Runnable {
         immagineAlieno = new ImageIcon(this.getClass().getResource("alieno.png")).getImage();
     }
 
+
+//    @todo stampare finché alieno è vivo
     @Override
     public void run() {
         while (true) {

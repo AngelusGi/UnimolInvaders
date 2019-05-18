@@ -22,7 +22,6 @@ public class AlienoBossGUI extends JPanel implements Runnable {
 
         Color trasparente = new Color(1f,0f,0f,0f );
         graphics.setColor(trasparente);
-//        graphics.setColor(Color.BLACK);
 
 
        //CREA UN RETTANGOLO DI DIM_ALIENIxDIM_ALIENI PER OGNI ALIENO NELLA MATRICE
@@ -35,14 +34,9 @@ public class AlienoBossGUI extends JPanel implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
+        while (alienoBoss.isVivo()) {
             repaint();
         }
-    }
-
-
-    public Image getImmagineBoss() {
-        return immagineBoss;
     }
 
 

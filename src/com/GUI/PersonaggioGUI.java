@@ -33,7 +33,7 @@ public class PersonaggioGUI extends JPanel implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
+        while (giocatore.isVivo()) {
             repaint();
         }
     }
