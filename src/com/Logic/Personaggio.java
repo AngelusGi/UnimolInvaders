@@ -1,8 +1,5 @@
 package Logic;
 
-import javax.swing.*;
-import java.awt.*;
-
 /********************************
  *
  *   user:      angel
@@ -24,9 +21,8 @@ public class Personaggio {
     boolean isVivo;
     boolean hasFired;
 
-//    private Image immaginePersonaggio;
-    private final int DIM_NAVICELLA_X = 39;
-    private final int DIM_NAVICELLA_Y = 60;
+    private final int DIM_GIOCATORE_X = 39;
+    private final int DIM_GIOCATORE_Y = 60;
 
     private Colpo colpo;
 
@@ -62,13 +58,6 @@ public class Personaggio {
     protected void moveRight(int posX, int posY){
         this.posX = posX + DESTRA;
     }
-
-
-//    public void disegnaPersonaggio(Graphics graphics) {
-//        if (isVivo()) {
-//            graphics.drawImage(immaginePersonaggio, getPosX(), getPosY(), DIM_NAVICELLA_X, DIM_NAVICELLA_Y, null);
-//        }
-//    }
 
 
     public int getPosX() {
@@ -126,13 +115,13 @@ public class Personaggio {
 //    }
 
 
-    public int getDIM_NAVICELLA_X() {
-        return DIM_NAVICELLA_X;
+    public int getDIM_GIOCATORE_X() {
+        return DIM_GIOCATORE_X;
     }
 
 
-    public int getDIM_NAVICELLA_Y() {
-        return DIM_NAVICELLA_Y;
+    public int getDIM_GIOCATORE_Y() {
+        return DIM_GIOCATORE_Y;
     }
 
 

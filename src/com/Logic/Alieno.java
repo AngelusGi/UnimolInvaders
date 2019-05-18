@@ -23,16 +23,8 @@ public class Alieno extends Nemico {
     private static final int POS_Y_INIZIALE_ALIENO = 10;
     private static final int POS_Y_INIZIALE_ALIENO_SECONDA_RIGA = POS_Y_INIZIALE_ALIENO + DIM_ALIENO_Y + DISTANZA_ALIENI;
 
-    private boolean isVivo;
-    private int vitaAlieno;
-
-    private int posX;
-    private int posY;
     private int spostamentoY = 2;
     private int spostamentoX = 2;
-
-    private Image immagineAlieno;
-    private Colpo colpo;
 
 
     public Alieno() {
@@ -62,8 +54,11 @@ public class Alieno extends Nemico {
 
     private void inizializzazionePredefinita() {
         //operazione fatta da tutti i costruttori (costruttore di base)
-        setVitaAlieno(1);
+        setVita(1);
         setVivo(true);
+        setSpostamentoX(spostamentoX);
+        setSpostamentoY(spostamentoY);
+
 //        immagineAlieno = new ImageIcon(this.getClass().getResource("alieno.png")).getImage();
     }
 
@@ -88,78 +83,96 @@ public class Alieno extends Nemico {
     }
 
 
-//    public void disegnaAlieno(Graphics graphics) {
-//        if (isVivo()) {
-//            graphics.drawImage(immagineAlieno, getPosX(), getPosY(), DIM_ALIENO_X, DIM_ALIENO_Y, null);
-//        }
-//    }
-
-    // todo inserire immagine
-    // todo inserire sparo
-
-
     @Override
     protected boolean decrementaVita(Colpo colpo) {
         //ammazza il singolo alieno
         setVivo(false);
-
         return isVivo();
     }
 
 
-    @Override
-    protected void move(int posX, int posY, int spostamentoX, int spostamentoY) {
-        super.move(posX, posY, spostamentoX, spostamentoY);
+    public void muovi(int posX, int posY){
+        move(getPosX(), getPosY(), getSpostamentoX(), getSpostamentoY(), DIM_ALIENO_X, DIM_ALIENO_Y, 800, 1000);
     }
-
 
     @Override
-    protected void moveDown(int posX, int posY) {
-        this.posY = posY + spostamentoY;
+    protected void spara(Colpo colpo) {
+        super.spara(colpo);
     }
 
-
-    public int getPosX() {
-        return posX;
+    @Override
+    protected void move(int posX, int posY, int spostamentoX, int spostamentoY, int xDimNemico, int yDimNemico, int larghezzaFinestra, int altezzaFinestra) {
+        super.move(posX, posY, spostamentoX, spostamentoY, xDimNemico, yDimNemico, larghezzaFinestra, altezzaFinestra);
     }
 
-
-    public void setPosX(int posX) {
-        this.posX = posX;
+    @Override
+    protected void moveDown(int posX, int posY, int spostamentoX, int spostamentoY, int larghezzaFinestra) {
+        super.moveDown(posX, posY, spostamentoX, spostamentoY, larghezzaFinestra);
     }
-
-
-    public int getPosY() {
-        return posY;
-    }
-
-
-    public void setPosY(int posY) {
-        this.posY = posY;
-    }
-
-
-    public void setVitaAlieno(int vitaAlieno) {
-        this.vitaAlieno = vitaAlieno;
-    }
-
-
-    public boolean isVivo() {
-        return isVivo;
-    }
-
-
-    public void setVivo(boolean vivo) {
-        isVivo = vivo;
-    }
-
 
     @Override
     protected void setVelocita(int livello) {
-        if (livello > 0) {
-            this.spostamentoX = spostamentoX * 2;
-            this.spostamentoY = spostamentoY * 2;
-        }
+        super.setVelocita(livello);
+    }
+
+    @Override
+    public int getPosX() {
+        return super.getPosX();
+    }
+
+    @Override
+    public void setPosX(int posX) {
+        super.setPosX(posX);
+    }
+
+    @Override
+    public int getPosY() {
+        return super.getPosY();
+    }
+
+    @Override
+    public void setPosY(int posY) {
+        super.setPosY(posY);
+    }
+
+    @Override
+    public int getSpostamentoX() {
+        return super.getSpostamentoX();
+    }
+
+    @Override
+    public void setSpostamentoX(int spostamentoX) {
+        super.setSpostamentoX(spostamentoX);
+    }
+
+    @Override
+    public int getSpostamentoY() {
+        return super.getSpostamentoY();
+    }
+
+    @Override
+    public void setSpostamentoY(int spostamentoY) {
+        super.setSpostamentoY(spostamentoY);
+    }
+
+    @Override
+    public int getVita() {
+        return super.getVita();
+    }
+
+    @Override
+    public void setVita(int vita) {
+        super.setVita(vita);
+    }
+
+    @Override
+    public boolean isVivo() {
+        return super.isVivo();
+    }
+
+    @Override
+    public void setVivo(boolean vivo) {
+        super.setVivo(vivo);
     }
 
 
@@ -167,16 +180,11 @@ public class Alieno extends Nemico {
         return DIM_ALIENO_X;
     }
 
-
-    public Image getImmagineAlieno() {
-        return immagineAlieno;
-    }
-
-
     public static int getDimAlienoY() {
         return DIM_ALIENO_Y;
     }
 
-
-
+    public static int getDistanzaAlieni() {
+        return DISTANZA_ALIENI;
+    }
 }

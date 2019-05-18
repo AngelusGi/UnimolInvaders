@@ -12,9 +12,6 @@ package Logic;
 
 public abstract class Nemico {
 
-    protected static final int ALIENO_BOSS = 1;
-    protected static final int ALIENO_NORMALE = 0;
-
     protected int posX;
     protected int posY;
     private int spostamentoX;
@@ -23,45 +20,111 @@ public abstract class Nemico {
     private static final int DESTRA = 1;
     private static final int SINISTRA = -1;
 
-    private int tipo;
     private int vita;
+    private boolean isVivo;
 
 
     protected abstract boolean decrementaVita(Colpo colpo);
 
 
-    protected void move(int posX, int posY, int spostamentoX, int spostamentoY) {
+
+    protected void move(int posX, int posY, int spostamentoX, int spostamentoY, int xDimNemico, int yDimNemico, int larghezzaFinestra, int altezzaFinestra) {
 
         //todo
         int DIM_ALIENO, pos_muri, LARGHEZZA_FIN;
 
         //BORDO SX
-        if (this.posX + spostamentoX < 0) {
+        if (posX + spostamentoX <= 0) {
+            posX = posX + spostamentoX;
             spostamentoX = DESTRA;
-            this.posX = posX + spostamentoX;
         }
 
         //BORDO DX
-//        if (this.posX + spostamentoX > LARGHEZZA_FIN - DIM_ALIENO - 20) {
-//            //sposta in basso
-//            moveDown();
-//
-//            spostamentoX = SINISTRA;
-//        }
-//
-//        //BORDO BASSO
-//        if (this.posY + spostamentoY > pos_muri - DIM_ALIENO - 20){
-//            //collider muretti?
-//
-//        }
+        if (posX + spostamentoX > larghezzaFinestra - xDimNemico - 10) {
+            //sposta a destra
+            moveDown(posX, posY, spostamentoX, spostamentoY, larghezzaFinestra);
+            spostamentoX = SINISTRA;
+        }
+
+        //BORDO BASSO
+        if (posY + spostamentoY > altezzaFinestra - 50){
+            //collider muretti?
+            if (posY + spostamentoY > altezzaFinestra - 50){
+                moveDown(posX, posY, spostamentoX, spostamentoY, larghezzaFinestra);
+            }
+
+        }
 
     }
 
+    protected void spara(Colpo colpo){
+        if (!colpo.isSparato()){
+            colpo.setSparato(true);
+            //todo spostamento alieno
+        }
+    }
 
-    protected abstract void moveDown(int posX, int posY);
+
+    protected void moveDown(int posX, int posY, int spostamentoX, int spostamentoY, int larghezzaFinestra){
+        //SPOSTAMENTO IN BASSO ARRIVATO AL BORDO
+        if ((posX + spostamentoX >= larghezzaFinestra) || (posX + spostamentoX <= 0)) {
+            //collider muretti?
+           setPosY(getPosY() + spostamentoY);
+        }
+    }
 
 
-    protected abstract void setVelocita(int livello);
+    protected void setVelocita(int livello){
+        setSpostamentoX(getSpostamentoX() * livello);
+        setSpostamentoY(getSpostamentoY() * livello);
+    };
 
 
+    public int getPosX() {
+        return posX;
+    }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
+    public int getSpostamentoX() {
+        return spostamentoX;
+    }
+
+    public void setSpostamentoX(int spostamentoX) {
+        this.spostamentoX = spostamentoX;
+    }
+
+    public int getSpostamentoY() {
+        return spostamentoY;
+    }
+
+    public void setSpostamentoY(int spostamentoY) {
+        this.spostamentoY = spostamentoY;
+    }
+
+    public int getVita() {
+        return vita;
+    }
+
+    public void setVita(int vita) {
+        this.vita = vita;
+    }
+
+    public boolean isVivo() {
+        return isVivo;
+    }
+
+    public void setVivo(boolean vivo) {
+        isVivo = vivo;
+    }
 }

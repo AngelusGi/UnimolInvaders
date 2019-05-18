@@ -12,7 +12,8 @@ public class PersonaggioGUI extends JPanel implements Runnable {
     
     public PersonaggioGUI(){
         giocatore = new Personaggio();
-        immaginePersonaggio = new ImageIcon(this.getClass().getResource("navicellaPersonaggio.png")).getImage();
+        //todo immagine png
+        immaginePersonaggio = new ImageIcon(this.getClass().getResource("personaggio.png")).getImage();
     }
     
     public void paint(Graphics graphics) {
@@ -24,7 +25,7 @@ public class PersonaggioGUI extends JPanel implements Runnable {
 
 
         //CREA UN RETTANGOLO DI DIM_ALIENIxDIM_ALIENI PER OGNI ALIENO NELLA MATRICE
-        graphics.fillRect(giocatore.getPosX(), giocatore.getPosY(), giocatore.getDIM_NAVICELLA_X(), giocatore.getDIM_NAVICELLA_Y());
+        graphics.fillRect(giocatore.getPosX(), giocatore.getPosY(), giocatore.getDIM_GIOCATORE_X(), giocatore.getDIM_GIOCATORE_Y());
         graphics.drawImage(this.getImmaginePersonaggio(), giocatore.getPosX(), giocatore.getPosY(), trasparente, null);
 
 
@@ -35,6 +36,7 @@ public class PersonaggioGUI extends JPanel implements Runnable {
     public void run() {
         while (giocatore.isVivo()) {
             repaint();
+
         }
     }
 

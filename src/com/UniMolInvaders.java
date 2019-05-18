@@ -1,8 +1,6 @@
-import GUI.AlienoBossGUI;
-import GUI.AlienoGUI;
-import GUI.IntroGui;
-import GUI.PersonaggioGUI;
+import GUI.*;
 import Logic.Alieni;
+import Logic.Colpo;
 import Logic.GameController;
 
 import javax.swing.*;
@@ -32,14 +30,25 @@ public class UniMolInvaders {
 
 
         JFrame finestra = new JFrame("UniMol Invader");
+
         AlienoGUI alieni = new AlienoGUI();
-        AlienoBossGUI alienoBoss = new AlienoBossGUI();
 //        finestra.add(alieni);
+
+        AlienoBossGUI alienoBoss = new AlienoBossGUI();
 //        finestra.add(alienoBoss);
+
         PersonaggioGUI personaggio = new PersonaggioGUI();
-//        finestra.add(personaggio);
+        finestra.add(personaggio);
+
         IntroGui introGui = new IntroGui();
-        finestra.add(introGui);
+//        finestra.add(introGui);
+
+        MenuGUI menu = new MenuGUI();
+//        finestra.add(menu);
+
+        ColpoGUI colpo = new ColpoGUI();
+//        finestra.add(colpo);
+
         finestra.setSize(1000, 800);
         finestra.setResizable(false);
         finestra.setVisible(true);

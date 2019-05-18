@@ -22,9 +22,8 @@ public class Colpo {
     private int posX;
     private int posY;
 
-    private static final int DIM_COLPO_X = 20;
-    private static final int DIM_COLPO_Y = 53;
-    private Image immagineColpo;
+    private final int DIM_COLPO_X = 11;
+    private final int DIM_COLPO_Y = 29;
 
 
     public Colpo(int posX, int posY) {
@@ -32,7 +31,6 @@ public class Colpo {
         setDanno(1);
         setPosX(posX);
         setPosY(posY);
-        immagineColpo = new ImageIcon(this.getClass().getResource("colpo.png")).getImage();
     }
 
 
@@ -86,12 +84,6 @@ public class Colpo {
     }
 
 
-    public void disegnaColpo(Graphics graphics) {
-        if (isSparato()) {
-            graphics.drawImage(immagineColpo, getPosX(), getPosY(), DIM_COLPO_X, DIM_COLPO_Y, null);
-        }
-    }
-
 
     protected boolean isColpito(Personaggio giocatore) {
 
@@ -140,4 +132,11 @@ public class Colpo {
     }
 
 
+    public int getDimColpoX() {
+        return DIM_COLPO_X;
+    }
+
+    public int getDimColpoY() {
+        return DIM_COLPO_Y;
+    }
 }

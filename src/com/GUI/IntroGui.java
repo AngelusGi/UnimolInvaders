@@ -28,7 +28,7 @@ public class IntroGui extends JPanel implements Runnable {
         graphics.setColor(Color.BLACK);
 
         graphics.drawString("introduzone", 50,20);
-        graphics.drawImage(this.intro1, 150, 150, Color.BLACK, null);
+        graphics.drawImage(this.intro3, 150, 150, Color.BLACK, null);
 
 
     }

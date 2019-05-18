@@ -13,7 +13,7 @@ public class AlienoBossGUI extends JPanel implements Runnable {
     public AlienoBossGUI() {
         alienoBoss = new AlienoBoss();
         //@todo capire perché non legge l'immagine, forse da ricostruire il png
-        immagineBoss = new ImageIcon(this.getClass().getResource("bossAlieno.png")).getImage();
+        immagineBoss = new ImageIcon(this.getClass().getResource("unimolBoss.png")).getImage();
     }
 
     @Override
@@ -23,6 +23,7 @@ public class AlienoBossGUI extends JPanel implements Runnable {
         Color trasparente = new Color(1f,0f,0f,0f );
         graphics.setColor(trasparente);
 
+//        graphics.setColor(Color.GREEN);
 
        //CREA UN RETTANGOLO DI DIM_ALIENIxDIM_ALIENI PER OGNI ALIENO NELLA MATRICE
         graphics.fillRect(alienoBoss.getPosX(), alienoBoss.getPosY(), alienoBoss.getDimBossX(), alienoBoss.getDimBossY());
@@ -35,6 +36,7 @@ public class AlienoBossGUI extends JPanel implements Runnable {
     @Override
     public void run() {
         while (alienoBoss.isVivo()) {
+            alienoBoss.muovi(alienoBoss.getPosX(), alienoBoss.getPosY());
             repaint();
         }
     }
