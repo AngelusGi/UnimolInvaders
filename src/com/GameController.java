@@ -1,4 +1,4 @@
-package Logica;
+import java.util.ArrayList;
 
 /********************************
  *
@@ -35,7 +35,7 @@ public class GameController {
             }
 
             this.alieni = new Alieni(getNumLivello());
-            this.alieni.inizializzaAlieni(alieni.getMatrixAliens());
+            this.alieni.inizializzaAlieni(alieni.getListaAlieni());
 
         } else {
             this.alienoBoss = inizializzaBoss();
@@ -85,53 +85,52 @@ public class GameController {
      }
 
 
-//     //testa la corretta inizializzazione dei livelli e la gestione dei livelli (pari/dispari)
-//    public void stampaLivello(){
-//        System.out.print("Livello: " + numLivello);
-//        System.out.println(" è pari: " + isPari(numLivello));
-//        if (numLivello<=5){
-//            numLivello+=1;
-//        } else{
-//            System.exit(1);
-//        }
-//
-//        stampaLivello();
-//    }
-//
-//    public void stampaPersonaggi(){
-//
-//        this.alieni = new Alieni(getNumLivello());
-//        this.alieni.inizializzaAlieni(this.alieni.getMatrixAliens());
-//        Alieno[][] matrixAliens =  this.alieni.getMatrixAliens();
-//
-//        for (int riga = 0; riga < matrixAliens.length; riga++) {
-//            System.out.print("NumRiga: \t" + riga + "\n");
-//            for (int colonna = 0; colonna < matrixAliens[riga].length; colonna++) {
-//                System.out.print("Alieno[" + riga + "][" + colonna + "] > " + matrixAliens[riga][colonna] + " \t ");
-//            }
-//            System.out.println("\n");
-//        }
-//
-//        alienoBoss = inizializzaBoss();
-//        System.out.println("\nBoss > " + alienoBoss + "\n");
-//
-//
-//        giocatore = inizializzaPersonaggio();
-//        System.out.println("giocatore > " + giocatore + "\n");
-//
-//    }
-
 
     protected int getNumLivello() {
         return numLivello;
     }
 
+
     public void setNumLivello(int incremento) {
         this.numLivello += incremento;
     }
 
+
     protected int getPunteggio() {
         return punteggio;
+    }
+
+
+    //testa la corretta inizializzazione dei livelli e la gestione dei livelli (pari/dispari)
+    public void stampaLivello() {
+        System.out.print("Livello: " + numLivello);
+        System.out.println(" è pari: " + isPari(numLivello));
+        if (numLivello <= 5) {
+            numLivello += 1;
+        } else {
+            System.exit(1);
+        }
+
+        stampaLivello();
+    }
+
+    public void stampaPersonaggi() {
+
+        this.alieni = new Alieni(getNumLivello());
+        this.alieni.inizializzaAlieni(this.alieni.getListaAlieni());
+        ArrayList<Alieno> listaAlieni = this.alieni.getListaAlieni();
+
+        for (int num = 0; num < listaAlieni.size(); num++) {
+            System.out.print("Alieno[" + num + "] > " + listaAlieni.get(num) + " \t ");
+            System.out.println("\n");
+        }
+
+        alienoBoss = inizializzaBoss();
+        System.out.println("\nBoss > " + alienoBoss + "\n");
+
+        giocatore = inizializzaPersonaggio();
+        System.out.println("giocatore > " + giocatore + "\n");
+
     }
 
 

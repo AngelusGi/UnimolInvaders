@@ -1,5 +1,3 @@
-package Logica;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -24,7 +22,7 @@ public class Personaggio {
     boolean isVivo;
     boolean hasFired;
 
-    private ImageIcon immaginePersonaggio;
+    private Image immaginePersonaggio;
     private static final int DIM_NAVICELLA_X = 65;
     private static final int DIM_NAVICELLA_Y = 100;
 
@@ -37,7 +35,7 @@ public class Personaggio {
         setHasFired(false);
         setPosX(350);
         setPosY(700);
-        immaginePersonaggio = new ImageIcon(this.getClass().getResource("./Resources/navicellaPersonaggio.png"));
+        immaginePersonaggio = new ImageIcon(this.getClass().getResource("navicellaPersonaggio.png"), "giocatore").getImage();
     }
 
 
@@ -66,7 +64,7 @@ public class Personaggio {
 
     public void disegnaPersonaggio(Graphics graphics) {
         if (isVivo()) {
-            graphics.drawImage(immaginePersonaggio.getImage(), getPosX(), getPosY(), DIM_NAVICELLA_X, DIM_NAVICELLA_Y, null);
+            graphics.drawImage(immaginePersonaggio, getPosX(), getPosY(), DIM_NAVICELLA_X, DIM_NAVICELLA_Y, null);
         }
     }
 

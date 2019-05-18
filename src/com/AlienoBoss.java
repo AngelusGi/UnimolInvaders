@@ -1,5 +1,3 @@
-package Logica;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -23,7 +21,7 @@ public class AlienoBoss extends Alieno {
     private int spostamentoY = 5;
     private int spostamentoX = 5;
 
-    private ImageIcon immagineBoss;
+    private Image immagineBoss;
     private static final int DIM_BOSS_X = 89;
     private static final int DIM_BOSS_Y = 100;
 
@@ -36,7 +34,7 @@ public class AlienoBoss extends Alieno {
         setPosY(10);
         setVitaAlienoBoss(vitaAlienoBoss);
         setVivo(true);
-        immagineBoss = new ImageIcon(this.getClass().getResource("./Resources/alienoBoss.png"));
+        immagineBoss = new ImageIcon(this.getClass().getResource("alienoBoss.png"), "boss").getImage();
     }
 
     // todo inserire
@@ -71,7 +69,7 @@ public class AlienoBoss extends Alieno {
 
     public void disegnaBoss(Graphics graphics) {
         if (isVivo()) {
-            graphics.drawImage(immagineBoss.getImage(), getPosX(), getPosY(), DIM_BOSS_X, DIM_BOSS_Y, null);
+            graphics.drawImage(immagineBoss, getPosX(), getPosY(), DIM_BOSS_X, DIM_BOSS_Y, null);
         }
     }
 

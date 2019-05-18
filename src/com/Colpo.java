@@ -1,7 +1,6 @@
-package Logica;
-
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /********************************
  *
@@ -23,7 +22,7 @@ public class Colpo {
 
     private static final int DIM_COLPO_X = 20;
     private static final int DIM_COLPO_Y = 53;
-    private ImageIcon immagineColpo;
+    private Image immagineColpo;
 
 
     public Colpo(int posX, int posY) {
@@ -31,7 +30,7 @@ public class Colpo {
         setDanno(1);
         setPosX(posX);
         setPosY(posY);
-        immagineColpo = new ImageIcon(this.getClass().getResource("./Resources/colpo.png"));
+        immagineColpo = new ImageIcon(this.getClass().getResource("colpo.png")).getImage();
     }
 
 
@@ -40,6 +39,7 @@ public class Colpo {
         traiettoria = getPosY() + SPOSTAMENTO;
         setPosY(traiettoria);
     }
+
 
     protected boolean isColpito(AlienoBoss alienoBoss) {
 
@@ -52,13 +52,11 @@ public class Colpo {
 
         boolean isColpito = false;
 
-        Alieno[][] matrixAliens = alieni.getMatrixAliens();
+        ArrayList<Alieno> listaAlieni = alieni.getListaAlieni();
 
-        for (int riga = 0; riga < matrixAliens.length; riga++) {
-            for (int colonna = 0; colonna < matrixAliens[riga].length; colonna++) {
-                return isColpito = collisione(matrixAliens[riga][colonna].getPosX(), matrixAliens[riga][colonna].getPosY(),
-                        this.getPosX(), this.getPosY());
-            }
+        for (int num = 0; num < listaAlieni.size(); num++) {
+            return isColpito = collisione(listaAlieni.get(num).getPosX(), listaAlieni.get(num).getPosY(),
+                    this.getPosX(), this.getPosY());
         }
         return isColpito;
     }
@@ -88,7 +86,7 @@ public class Colpo {
 
     public void disegnaColpo(Graphics graphics) {
         if (isSparato()) {
-            graphics.drawImage(immagineColpo.getImage(), getPosX(), getPosY(), DIM_COLPO_X, DIM_COLPO_Y, null);
+            graphics.drawImage(immagineColpo, getPosX(), getPosY(), DIM_COLPO_X, DIM_COLPO_Y, null);
         }
     }
 
