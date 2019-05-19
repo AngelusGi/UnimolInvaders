@@ -27,47 +27,41 @@ public class MenuGUI extends JPanel implements ActionListener {
     private final String bottoneIstruzioni = "Istruzioni";
 
 
-    public MenuGUI(){
+    public MenuGUI(int dimX, int dimY){
+
+        setLayout(null);
+        setSize(dimX,dimY);
+
         sfondo = new ImageIcon(this.getClass().getResource("menu2.png")).getImage();
 
         titolo = new JLabel("UniMol Invaders");
         titolo.setFont(new Font ("Segoe UI Light", 1, 50));
         titolo.setForeground(Color.WHITE);
-
+        titolo.setBounds(320, 20, 400, 50);
+        add(titolo);
 
         nuovaPartita = new JButton(bottoneNuovaPartita);
         nuovaPartita.setBorderPainted(false);
         nuovaPartita.setDefaultCapable(true);
         nuovaPartita.addActionListener(this);
-
+        nuovaPartita.setBounds(270, 100, DIM_PULSANTE_X, DIM_PULSANTE_Y);
+        add(nuovaPartita);
 
         esci = new JButton(bottoneEsci);
         esci.setBorderPainted(false);
         esci.addActionListener(this);
+        esci.setBounds(270+DIM_PULSANTE_X+30, 100, DIM_PULSANTE_X, DIM_PULSANTE_Y);
+        add(esci);
 
         crediti = new JButton(bottoneCrediti);
         crediti.setBorderPainted(false);
         crediti.addActionListener(this);
+        crediti.setBounds(270+DIM_PULSANTE_X+160, 100, DIM_PULSANTE_X, DIM_PULSANTE_Y);
+        add(crediti);
 
         istruzioni = new JButton(bottoneIstruzioni);
         istruzioni.setBorderPainted(false);
         istruzioni.addActionListener(this);
-
-        setLayout(null);
-        setSize(768,1024);
-
-        titolo.setBounds(320, 20, 400, 50);
-        add(titolo);
-
-        nuovaPartita.setBounds(270, 100, DIM_PULSANTE_X, DIM_PULSANTE_Y);
-        add(nuovaPartita);
-
-        esci.setBounds(270+DIM_PULSANTE_X+30, 100, DIM_PULSANTE_X, DIM_PULSANTE_Y);
-        add(esci);
-
-        crediti.setBounds(270+DIM_PULSANTE_X+160, 100, DIM_PULSANTE_X, DIM_PULSANTE_Y);
-        add(crediti);
-
         istruzioni.setBounds(270+DIM_PULSANTE_X+290, 100, DIM_PULSANTE_X, DIM_PULSANTE_Y);
         add(istruzioni);
 

@@ -15,11 +15,10 @@ import javax.swing.*;
 
 public class UniMolInvaders {
 
-    private static Alieni alieni;
     private final static String nomeFinestra = "UniMol Invaders";
-
     private final static int DIM_FINESTRA_X = 1024;
     private final static int DIM_FINESTRA_Y = 768;
+
 
     public static void main(String[] args) {
 
@@ -28,8 +27,9 @@ public class UniMolInvaders {
         finestra.setResizable(false);
         finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        MenuGUI menu = new MenuGUI();
+        MenuGUI menu = new MenuGUI(DIM_FINESTRA_X, DIM_FINESTRA_Y);
         finestra.add(menu);
         finestra.setVisible(true);
+
     }
 }
