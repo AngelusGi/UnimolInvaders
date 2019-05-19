@@ -16,15 +16,13 @@ public class Alieni extends Alieno {
     private static final int numAlieni = 14;
     private int livello;
 
-
-
     private Alieno alieno;
     private ArrayList<Alieno> listaAlieni;
 
 
     public Alieni(int livello) {
 
-        listaAlieni = new ArrayList<Alieno>();
+        listaAlieni = new ArrayList<>();
         inizializzaAlieni(listaAlieni);
 
         setLivello(livello);

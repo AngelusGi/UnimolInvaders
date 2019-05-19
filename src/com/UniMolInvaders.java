@@ -1,10 +1,8 @@
 import GUI.*;
 import Logic.Alieni;
 import Logic.FinePartita;
-import Logic.GameController;
 
 import javax.swing.*;
-import java.awt.*;
 
 /********************************
  *
@@ -18,19 +16,11 @@ import java.awt.*;
 public class UniMolInvaders {
 
     private static Alieni alieni;
+    private final static String nomeFinestra = "UniMol Invaders";
 
     public static void main(String[] args) {
 
-
-
-        GameController gameController = new GameController();
-
-        //verifica la corretta inizializzazione degli oggetti
-//        gameController.stampaPersonaggi();
-//        gameController.stampaLivello();
-
-
-//        JFrame finestra = new JFrame("UniMol Invader");
+        JFrame finestra = new JFrame(nomeFinestra);
 //
 //        AlienoGUI alieni = new AlienoGUI();
 //        finestra.add(alieni);
@@ -41,8 +31,7 @@ public class UniMolInvaders {
 //        PersonaggioGUI personaggio = new PersonaggioGUI();
 //        finestra.add(personaggio);
 //
-//        IntroGui introGui = new IntroGui();
-//        finestra.add(introGui);
+
 //
 //        MenuGUI menu = new MenuGUI();
 //        finestra.add(menu);
@@ -50,18 +39,41 @@ public class UniMolInvaders {
 //
 //        ColpoPersonaggio colpo = new ColpoPersonaggio();
 //        finestra.add(colpo);
-//
-//
-//        finestra.setSize(1024, 768);
-//        finestra.setResizable(false);
-//        finestra.setVisible(true);
-//        finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+        finestra.setSize(1024, 768);
+        finestra.setResizable(false);
+        finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //todo codice per fare animazione iniziale storia
+        try {
+            Intro1GUI intro1GUI = new Intro1GUI();
+            finestra.add(intro1GUI);
+            finestra.setVisible(true);
+            Thread.sleep(5000);
+
+            finestra.remove(intro1GUI);
+            Intro2GUI intro2GUI = new Intro2GUI();
+            finestra.add(intro2GUI);
+            finestra.setVisible(true);
+            Thread.sleep(5000);
+
+            finestra.remove(intro2GUI);
+            Intro3GUI intro3GUI = new Intro3GUI();
+            finestra.add(intro3GUI);
+            finestra.setVisible(true);
+
+        } catch (Exception e){
+
+        }
+
 
 //        FinePartita finePartita = new FinePartita();
 //        FinePartitaGUI finePartitaGUI = new FinePartitaGUI(finePartita);
 
 
-        CreditiGUI istruzioniGUI = new CreditiGUI();
+
+//        CreditiGUI istruzioniGUI = new CreditiGUI();
 
 
     }

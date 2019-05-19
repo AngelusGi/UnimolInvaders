@@ -2,6 +2,7 @@ package Logic;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /********************************
  *
@@ -16,15 +17,17 @@ import java.awt.*;
 public class Alieno extends Nemico {
 
 
-    private static final int DIM_ALIENO_X = 37;
-    private static final int DIM_ALIENO_Y = 50;
-    private static final int DISTANZA_ALIENI = 20;
-    private static final int POS_X_INIZIALE_ALIENO = 10;
-    private static final int POS_Y_INIZIALE_ALIENO = 10;
-    private static final int POS_Y_INIZIALE_ALIENO_SECONDA_RIGA = POS_Y_INIZIALE_ALIENO + DIM_ALIENO_Y + DISTANZA_ALIENI;
+    private final int DIM_ALIENO_X = 37;
+    private final int DIM_ALIENO_Y = 50;
+    private final int DISTANZA_ALIENI = 20;
+    private final int POS_X_INIZIALE_ALIENO = 10;
+    private final int POS_Y_INIZIALE_ALIENO = 10;
+    private final int POS_Y_INIZIALE_ALIENO_SECONDA_RIGA = POS_Y_INIZIALE_ALIENO + DIM_ALIENO_Y + DISTANZA_ALIENI;
 
     private int spostamentoY = 2;
     private int spostamentoX = 2;
+
+    private ArrayList<Colpo> colpi;
 
 
     public Alieno() {
@@ -56,10 +59,14 @@ public class Alieno extends Nemico {
         //operazione fatta da tutti i costruttori (costruttore di base)
         setVita(1);
         setVivo(true);
+
         setSpostamentoX(spostamentoX);
         setSpostamentoY(spostamentoY);
 
-//        immagineAlieno = new ImageIcon(this.getClass().getResource("alieno.png")).getImage();
+        setDIM_NEMICO_X(DIM_ALIENO_X);
+        setDIM_NEMICO_Y(DIM_ALIENO_Y);
+
+        colpi = new ArrayList<>();
     }
 
 
@@ -91,18 +98,14 @@ public class Alieno extends Nemico {
     }
 
 
-    public void muovi(int posX, int posY){
-        move(getPosX(), getPosY(), getSpostamentoX(), getSpostamentoY(), DIM_ALIENO_X, DIM_ALIENO_Y, 800, 1000);
-    }
-
     @Override
     protected void spara(Colpo colpo) {
         super.spara(colpo);
     }
 
     @Override
-    protected void move(int posX, int posY, int spostamentoX, int spostamentoY, int xDimNemico, int yDimNemico, int larghezzaFinestra, int altezzaFinestra) {
-        super.move(posX, posY, spostamentoX, spostamentoY, xDimNemico, yDimNemico, larghezzaFinestra, altezzaFinestra);
+    protected void move(Nemico nemico, int larghezzaFinestra, int altezzaFinestra) {
+        super.move(this, 768, 1024);
     }
 
     @Override
@@ -176,15 +179,28 @@ public class Alieno extends Nemico {
     }
 
 
-    public static int getDimAlienoX() {
-        return DIM_ALIENO_X;
+    @Override
+    public int getDIM_NEMICO_X() {
+        return super.getDIM_NEMICO_X();
     }
 
-    public static int getDimAlienoY() {
-        return DIM_ALIENO_Y;
+    @Override
+    public void setDIM_NEMICO_X(int DIM_NEMICO_X) {
+        super.setDIM_NEMICO_X(DIM_NEMICO_X);
     }
 
-    public static int getDistanzaAlieni() {
+    @Override
+    public int getDIM_NEMICO_Y() {
+        return super.getDIM_NEMICO_Y();
+    }
+
+    @Override
+    public void setDIM_NEMICO_Y(int DIM_NEMICO_Y) {
+        super.setDIM_NEMICO_Y(DIM_NEMICO_Y);
+    }
+
+    public int getDistanzaAlieni() {
         return DISTANZA_ALIENI;
     }
+
 }

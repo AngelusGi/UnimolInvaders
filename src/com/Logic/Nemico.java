@@ -17,8 +17,11 @@ public abstract class Nemico {
     private int spostamentoX;
     private int spostamentoY;
 
-    private static final int DESTRA = 1;
-    private static final int SINISTRA = -1;
+    private int DIM_NEMICO_X;
+    private int DIM_NEMICO_Y;
+
+    private final int DESTRA = 5;
+    private final int SINISTRA = -5;
 
     private int vita;
     private boolean isVivo;
@@ -28,29 +31,22 @@ public abstract class Nemico {
 
 
 
-    protected void move(int posX, int posY, int spostamentoX, int spostamentoY, int xDimNemico, int yDimNemico, int larghezzaFinestra, int altezzaFinestra) {
-
-        //todo
-        int DIM_ALIENO, pos_muri, LARGHEZZA_FIN;
+    protected void move(Nemico nemico, int larghezzaFinestra, int altezzaFinestra) {
 
         //BORDO SX
-        if (posX + spostamentoX <= 0) {
-            posX = posX + spostamentoX;
-            spostamentoX = DESTRA;
-        }
-
-        //BORDO DX
-        if (posX + spostamentoX > larghezzaFinestra - xDimNemico - 10) {
+        if (nemico.getPosX() + nemico.getSpostamentoX() <= 0) {
+            setPosX(getPosX() + getSpostamentoX());
+            setSpostamentoX(SINISTRA);
+        } else if (nemico.getPosX() + nemico.getSpostamentoX() <= larghezzaFinestra - nemico.getDIM_NEMICO_X() - 10) {
+            //BORDO DX
             //sposta a destra
-            moveDown(posX, posY, spostamentoX, spostamentoY, larghezzaFinestra);
-            spostamentoX = SINISTRA;
-        }
-
-        //BORDO BASSO
-        if (posY + spostamentoY > altezzaFinestra - 50){
+            moveDown(nemico.getPosX(), nemico.getPosY(), nemico.getSpostamentoX(), nemico.getSpostamentoY(), larghezzaFinestra);
+            setSpostamentoX(DESTRA);
+        } else if ((nemico.getPosY() + nemico.getSpostamentoY()  > altezzaFinestra - nemico.getDIM_NEMICO_X() - 10) || (nemico.getPosY() + nemico.getSpostamentoY() <= 0)){
+            //bordo basso
             //collider muretti?
             if (posY + spostamentoY > altezzaFinestra - 50){
-                moveDown(posX, posY, spostamentoX, spostamentoY, larghezzaFinestra);
+                moveDown(this.getPosX(), nemico.getPosY(), nemico.getSpostamentoX(), nemico.getSpostamentoY(), larghezzaFinestra);
             }
 
         }
@@ -126,5 +122,21 @@ public abstract class Nemico {
 
     public void setVivo(boolean vivo) {
         isVivo = vivo;
+    }
+
+    public int getDIM_NEMICO_X() {
+        return DIM_NEMICO_X;
+    }
+
+    public void setDIM_NEMICO_X(int DIM_NEMICO_X) {
+        this.DIM_NEMICO_X = DIM_NEMICO_X;
+    }
+
+    public int getDIM_NEMICO_Y() {
+        return DIM_NEMICO_Y;
+    }
+
+    public void setDIM_NEMICO_Y(int DIM_NEMICO_Y) {
+        this.DIM_NEMICO_Y = DIM_NEMICO_Y;
     }
 }

@@ -32,6 +32,8 @@ public class AlienoBoss extends Nemico {
         setPosY(10);
         setVita(vitaAlienoBoss);
         setVivo(true);
+        setDIM_NEMICO_X(DIM_BOSS_X);
+        setDIM_NEMICO_Y(DIM_BOSS_Y);
 //        setVelocita(livello);
     }
 
@@ -50,14 +52,29 @@ public class AlienoBoss extends Nemico {
     }
 
 
-    public void muovi(int posX, int posY){
-        move(posX, posY, getSpostamentoX(), getSpostamentoY(), getDimBossX(), getDimBossY(), 800, 1000);
+    @Override
+    public void move(Nemico nemico, int larghezzaFinestra, int altezzaFinestra) {
+        super.move(this, 768, 1024);
     }
 
+    @Override
+    public int getDIM_NEMICO_X() {
+        return super.getDIM_NEMICO_X();
+    }
 
     @Override
-    protected void move(int posX, int posY, int spostamentoX, int spostamentoY, int xDimNemico, int yDimNemico, int larghezzaFinestra, int altezzaFinestra) {
-        super.move(posX, posY, spostamentoX, spostamentoY, xDimNemico, yDimNemico, larghezzaFinestra, altezzaFinestra);
+    public void setDIM_NEMICO_X(int DIM_NEMICO_X) {
+        super.setDIM_NEMICO_X(DIM_NEMICO_X);
+    }
+
+    @Override
+    public int getDIM_NEMICO_Y() {
+        return super.getDIM_NEMICO_Y();
+    }
+
+    @Override
+    public void setDIM_NEMICO_Y(int DIM_NEMICO_Y) {
+        super.setDIM_NEMICO_Y(DIM_NEMICO_Y);
     }
 
     @Override

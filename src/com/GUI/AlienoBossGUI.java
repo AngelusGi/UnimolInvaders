@@ -36,7 +36,7 @@ public class AlienoBossGUI extends JPanel implements Runnable {
     @Override
     public void run() {
         while (alienoBoss.isVivo()) {
-            alienoBoss.muovi(alienoBoss.getPosX(), alienoBoss.getPosY());
+            alienoBoss.move(alienoBoss, 768, 1024);
             repaint();
         }
     }
