@@ -1,9 +1,10 @@
 import GUI.*;
 import Logic.Alieni;
-import Logic.Colpo;
+import Logic.FinePartita;
 import Logic.GameController;
 
 import javax.swing.*;
+import java.awt.*;
 
 /********************************
  *
@@ -29,30 +30,36 @@ public class UniMolInvaders {
 //        gameController.stampaLivello();
 
 
-        JFrame finestra = new JFrame("UniMol Invader");
-
-        AlienoGUI alieni = new AlienoGUI();
+//        JFrame finestra = new JFrame("UniMol Invader");
+//
+//        AlienoGUI alieni = new AlienoGUI();
 //        finestra.add(alieni);
-
-        AlienoBossGUI alienoBoss = new AlienoBossGUI();
+//
+//        AlienoBossGUI alienoBoss = new AlienoBossGUI();
 //        finestra.add(alienoBoss);
-
-        PersonaggioGUI personaggio = new PersonaggioGUI();
-        finestra.add(personaggio);
-
-        IntroGui introGui = new IntroGui();
+//
+//        PersonaggioGUI personaggio = new PersonaggioGUI();
+//        finestra.add(personaggio);
+//
+//        IntroGui introGui = new IntroGui();
 //        finestra.add(introGui);
-
-        MenuGUI menu = new MenuGUI();
+//
+//        MenuGUI menu = new MenuGUI();
 //        finestra.add(menu);
-
-        ColpoGUI colpo = new ColpoGUI();
+//
+//
+//        ColpoPersonaggio colpo = new ColpoPersonaggio();
 //        finestra.add(colpo);
+//
+//
+//        finestra.setSize(1024, 768);
+//        finestra.setResizable(false);
+//        finestra.setVisible(true);
+//        finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        finestra.setSize(1000, 800);
-        finestra.setResizable(false);
-        finestra.setVisible(true);
-        finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        FinePartita finePartita = new FinePartita();
+//        FinePartitaGUI finePartitaGUI = new FinePartitaGUI(finePartita);
 
+        MenuGUI menuGUI = new MenuGUI();
     }
 }
