@@ -21,40 +21,11 @@ public class UniMolInvaders {
     public static void main(String[] args) {
 
         JFrame finestra = new JFrame(nomeFinestra);
-//
-//        AlienoGUI alieni = new AlienoGUI();
-//        finestra.add(alieni);
-//
-//        AlienoBossGUI alienoBoss = new AlienoBossGUI();
-//        finestra.add(alienoBoss);
-//
-//        PersonaggioGUI personaggio = new PersonaggioGUI();
-//        finestra.add(personaggio);
-//
-
-//
-//        MenuGUI menu = new MenuGUI();
-//        finestra.add(menu);
-//
-//
-//        ColpoPersonaggio colpo = new ColpoPersonaggio();
-//        finestra.add(colpo);
-
-
         finestra.setSize(1024, 768);
         finestra.setResizable(false);
         finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        IntroGUI introGUI = new IntroGUI(finestra);
-
-
-        FinePartita finePartita = new FinePartita();
-        FinePartitaGUI finePartitaGUI = new FinePartitaGUI(finePartita);
-
-
-
-//        CreditiGUI istruzioniGUI = new CreditiGUI();
-
-
+        // CreditiGUI istruzioniGUI = new CreditiGUI();
+        MenuGUI menu = new MenuGUI();
     }
 }
