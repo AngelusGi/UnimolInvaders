@@ -57,8 +57,11 @@ public class UniMolInvaders {
 //        finestra.setVisible(true);
 //        finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        FinePartita finePartita = new FinePartita();
-        FinePartitaGUI finePartitaGUI = new FinePartitaGUI(finePartita);
+//        FinePartita finePartita = new FinePartita();
+//        FinePartitaGUI finePartitaGUI = new FinePartitaGUI(finePartita);
+
+
+        CreditiGUI istruzioniGUI = new CreditiGUI();
 
 
     }
