@@ -45,31 +45,11 @@ public class UniMolInvaders {
         finestra.setResizable(false);
         finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //todo codice per fare animazione iniziale storia
-        try {
-            Intro1GUI intro1GUI = new Intro1GUI();
-            finestra.add(intro1GUI);
-            finestra.setVisible(true);
-            Thread.sleep(5000);
-
-            finestra.remove(intro1GUI);
-            Intro2GUI intro2GUI = new Intro2GUI();
-            finestra.add(intro2GUI);
-            finestra.setVisible(true);
-            Thread.sleep(5000);
-
-            finestra.remove(intro2GUI);
-            Intro3GUI intro3GUI = new Intro3GUI();
-            finestra.add(intro3GUI);
-            finestra.setVisible(true);
-
-        } catch (Exception e){
-
-        }
+        IntroGUI introGUI = new IntroGUI(finestra);
 
 
-//        FinePartita finePartita = new FinePartita();
-//        FinePartitaGUI finePartitaGUI = new FinePartitaGUI(finePartita);
+        FinePartita finePartita = new FinePartita();
+        FinePartitaGUI finePartitaGUI = new FinePartitaGUI(finePartita);
 
 
 
