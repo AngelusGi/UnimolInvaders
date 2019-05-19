@@ -11,6 +11,7 @@ public class FinePartitaGUI  extends JPanel {
         finePartita = new FinePartita();
         finePartita.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         finePartita.setSize(300,150);
+        finePartita.setResizable(false);
         finePartita.setTitle("UniMol Invaders");
         finePartita.setVisible(true);
     }

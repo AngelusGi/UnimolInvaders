@@ -12,9 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -45,7 +43,7 @@ import java.util.logging.Logger;
 
 public class FinePartita extends JFrame {
 
-    private JLabel etichetta;
+    private JLabel finePartita;
     private JTextField campoNome;
     private JButton inserisciNome;
 
@@ -54,8 +52,10 @@ public class FinePartita extends JFrame {
     public FinePartita(){
 
         setLayout(new FlowLayout());
-        etichetta = new JLabel("Inserisci il tuo nome");
-        add(etichetta);
+
+        finePartita = new JLabel("Partita terminata!  Inserisci il tuo nome:");
+        add(finePartita);
+
 
         campoNome = new JTextField(20);
         add(campoNome);
@@ -78,18 +78,17 @@ public class FinePartita extends JFrame {
 
                 setNomeGiocatore(campoNome.getText());
 
-                FileWriter fileWriter = new FileWriter(".\\score.txt");
-                BufferedWriter outputFile = new BufferedWriter(fileWriter);
-
+                String file = ".\\score.txt";
+                PrintWriter outputFile = new PrintWriter(new FileOutputStream(file, true));
 
                 Calendar dataOdierna = new GregorianCalendar(Locale.ITALY);
-//                Calendar dataOdierna = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
                 Date dataPartita = dataOdierna.getTime();
 
                 GameController gameController = new GameController();
 
                 outputFile.write("Giocatore: " + getNomeGiocatore() + " \tData: " + dataPartita.toLocaleString()
-                        + " \tPunteggio: " + gameController.getPunteggio() + " \tLivello: " + gameController.getNumLivello());
+                        + " \tPunteggio: " + gameController.getPunteggio() + " \tLivello: " + gameController.getNumLivello() + "\n\n");
+
                 outputFile.close();
 
                 //finestra per riepilogo dati salvati
