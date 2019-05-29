@@ -93,7 +93,7 @@ public class MenuGUI extends JPanel implements ActionListener {
             System.exit(0);
         } else if (e.getActionCommand().equals(bottoneNuovaPartita)){
             //todo switch panel
-            IntroGUI intro = new IntroGUI(this.finestra);
+            finIntro = new IntroGUI(this.finestra);
         } else if (e.getActionCommand().equals(bottoneIstruzioni)){
             finIstruzioni = new IstruzioniGUI();
         } else if (e.getActionCommand().equals(bottoneCrediti)){

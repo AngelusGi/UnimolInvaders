@@ -22,6 +22,9 @@ public class UniMolInvaders {
 
     public static void main(String[] args) {
 
+        //todo
+        //metodo statico che estende la classe jframe che si occupa solo di disporre e cancellare i pannelli
+
         JFrame finestra = new JFrame(nomeFinestra);
         finestra.setSize(DIM_FINESTRA_X, DIM_FINESTRA_Y);
         finestra.setResizable(false);

@@ -9,7 +9,6 @@ public class Intro1GUI extends JPanel {
 
     public Intro1GUI(){
 
-        setSize(200,200);
         intro = new ImageIcon(this.getClass().getResource("intro1.png")).getImage();
 
     }
