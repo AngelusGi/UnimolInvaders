@@ -1,5 +1,8 @@
 package Logic;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 /********************************
  *
  *   user:      angel
@@ -10,12 +13,14 @@ package Logic;
  ********************************/
 
 
-public class Personaggio {
+public class Personaggio implements KeyListener {
 
-    private final static int DESTRA = 1;
-    private final static int SINISTRA = -1;
+    private final int DESTRA = 5;
+    private final int SINISTRA = -5;
+    private final int STOP = 0;
     private int posX;
     private int posY;
+    private int spostamentoX;
 
     private int vita;
     boolean isVivo;
@@ -37,7 +42,7 @@ public class Personaggio {
     }
 
 
-    protected boolean decrementaVita(Colpo colpo) {
+    protected boolean decrementaVita() {
         //se la vita è maggiore di 1 la decrementa
         if (getVita() > 1) {
             setVita(getVita() - colpo.getDanno());
@@ -110,11 +115,6 @@ public class Personaggio {
     }
 
 
-//    public Image getImmaginePersonaggio() {
-//        return immaginePersonaggio;
-//    }
-
-
     public int getDIM_GIOCATORE_X() {
         return DIM_GIOCATORE_X;
     }
@@ -124,5 +124,46 @@ public class Personaggio {
         return DIM_GIOCATORE_Y;
     }
 
+    public int getSpostamentoX() {
+        return spostamentoX;
+    }
 
+    public void setSpostamentoX(int spostamentoX) {
+        this.spostamentoX = spostamentoX;
+    }
+
+    private void spara(){
+        //todo
+
+        setHasFired(true);
+    }
+
+    public void keyPressed(KeyEvent tasto){
+        switch(tasto.getKeyCode()){
+            case KeyEvent.VK_LEFT:
+                setSpostamentoX(SINISTRA);
+                break;
+            case KeyEvent.VK_RIGHT:
+                setSpostamentoX(DESTRA);
+                break;
+            case KeyEvent.VK_SPACE:
+                spara();
+                break;
+        }
+    }
+
+    public void keyReleased(KeyEvent tasto){
+        switch(tasto.getKeyCode()){
+            case KeyEvent.VK_LEFT:
+
+            case KeyEvent.VK_RIGHT:
+                setSpostamentoX(STOP);
+                break;
+        }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
 }

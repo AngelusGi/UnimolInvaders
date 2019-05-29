@@ -8,7 +8,7 @@ public class IstruzioniGUI extends JPanel {
     
     public IstruzioniGUI(){
 
-        String istruzioni = "Ecco le istruzioni:"
+        String istruzioni = "ISTRUZIONI\n"
                 + "\nPer muoverti utilizza le freccette: < >"
                 + "\nPer attaccare utilizza la barra spaziatrice"
                 + "\nHai a disposizione solo 3 vite, fai attenzione!"

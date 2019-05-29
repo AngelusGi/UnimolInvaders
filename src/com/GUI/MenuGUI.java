@@ -21,18 +21,22 @@ public class MenuGUI extends JPanel implements ActionListener {
     private CreditiGUI finCrediti;
     private IntroGUI finIntro;
 
+    private JFrame finestra;
+
     private final String bottoneNuovaPartita = "Gioca";
     private final String bottoneEsci = "Esci";
     private final String bottoneCrediti = "Crediti";
     private final String bottoneIstruzioni = "Istruzioni";
 
 
-    public MenuGUI(int dimX, int dimY){
+    public MenuGUI(JFrame finestraIn){
+
+        this.finestra = finestraIn;
 
         setLayout(null);
-        setSize(dimX,dimY);
+        setSize(finestra.getWidth(),finestra.getHeight());
 
-        sfondo = new ImageIcon(this.getClass().getResource("menu2.png")).getImage();
+        sfondo = new ImageIcon(this.getClass().getResource("splash.png")).getImage();
 
         titolo = new JLabel("UniMol Invaders");
         titolo.setFont(new Font ("Segoe UI Light", 1, 50));
@@ -74,9 +78,12 @@ public class MenuGUI extends JPanel implements ActionListener {
     public void paint(Graphics graphics) {
 
         super.paint(graphics);
-        setBackground(Color.BLUE);
+//        setBackground(Color.BLUE);
+//        Color coloreCiano = new Color(26, 117, 255);
+        Color neroWindows = new Color(34, 34, 34);
+        setBackground(Color.BLACK);
 
-        graphics.drawImage(this.sfondo, 100,170 , Color.BLUE, null);
+        graphics.drawImage(this.sfondo, 100,170 , Color.BLACK, null);
 
     }
 
@@ -85,9 +92,8 @@ public class MenuGUI extends JPanel implements ActionListener {
         if (e.getActionCommand().equals(bottoneEsci)){
             System.exit(0);
         } else if (e.getActionCommand().equals(bottoneNuovaPartita)){
-
             //todo switch panel
-//            finIntro = new IntroGUI();
+            IntroGUI intro = new IntroGUI(this.finestra);
         } else if (e.getActionCommand().equals(bottoneIstruzioni)){
             finIstruzioni = new IstruzioniGUI();
         } else if (e.getActionCommand().equals(bottoneCrediti)){

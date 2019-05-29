@@ -28,9 +28,14 @@ public class AlienoGUI extends JPanel {
         alieni = new Alieni(0);
         listaAlieni = alieni.getListaAlieni();
         immagineAlieno = new ImageIcon(this.getClass().getResource("alieno.png")).getImage();
-
     }
 
+
+    public void muoviAlieni(){
+        for (Alieno alieno: listaAlieni){
+            alieno.move(alieno, 1024, 768);
+        }
+    }
 
     public void paint(Graphics graphics) {
 

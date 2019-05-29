@@ -8,7 +8,7 @@ public class CreditiGUI extends JPanel {
     
     public CreditiGUI(){
 
-        String crediti = "CREDITI:\n"
+        String crediti = "CREDITI\n\n"
                 + "Grazie per le risorse grafiche:\n"
                     + "\tUniMol - Università del Molise\n"
                     + "\tJermungandr (www.spriters-resource.com)\n"
@@ -21,7 +21,7 @@ public class CreditiGUI extends JPanel {
                 +"\n\nDISCLAIMER:\nTutti i marchi riportati appartengono ai legittimi proprietari; marchi di terzi,"
                     + "\nnomi di prodotti, nomi commerciali, nomi corporativi e società citati possono essere marchi di"
                     + "\nproprietà dei rispettivi titolari o marchi registrati d’altre società e sono stati utilizzati a puro"
-                    + "\nscopo esplicativo ed a beneficio del possessore, senza alcun fine di violazione dei diritti di Copyright vigenti.";
+                    + "\nscopo esplicativo ed a beneficio del possessore, senza alcun fine di violazione dei diritti di Copyright vigenti.\n";
 
 
         JOptionPane.showConfirmDialog(null, crediti, "UniMol Invaders", JOptionPane.DEFAULT_OPTION);

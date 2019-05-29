@@ -13,23 +13,30 @@ public class IntroGUI {
         //produce l'animazione iniziale della storia per 15 secondi (5 per schermata)
 
         try {
-            Intro1GUI intro1GUI = new Intro1GUI();
-            finestraIntro.add(intro1GUI);
+
+            finestraIntro.dispose();
+            finestraIntro.setFocusable(true);
+            intro1 = new Intro1GUI();
+            finestraIntro.add(intro1);
+            finestraIntro.add(intro1);
             finestraIntro.setVisible(true);
             Thread.sleep(5000);
 
-            finestraIntro.remove(intro1GUI);
-            Intro2GUI intro2GUI = new Intro2GUI();
-            finestraIntro.add(intro2GUI);
+            finestraIntro.remove(intro1);
+            intro2 = new Intro2GUI();
+            finestraIntro.add(intro2);
             finestraIntro.setVisible(true);
+
             Thread.sleep(5000);
 
-            finestraIntro.remove(intro2GUI);
-            Intro3GUI intro3GUI = new Intro3GUI();
-            finestraIntro.add(intro3GUI);
+            finestraIntro.remove(intro2);
+            intro3 = new Intro3GUI();
+            finestraIntro.add(intro3);
             finestraIntro.setVisible(true);
+
             Thread.sleep(5000);
             finestraIntro.setVisible(false);
+            finestraIntro.dispose();
 
         } catch (Exception e){
 

@@ -20,8 +20,8 @@ public class Alieno extends Nemico {
     private final int DIM_ALIENO_X = 37;
     private final int DIM_ALIENO_Y = 50;
     private final int DISTANZA_ALIENI = 20;
-    private final int POS_X_INIZIALE_ALIENO = 10;
-    private final int POS_Y_INIZIALE_ALIENO = 10;
+    private final int POS_X_INIZIALE_ALIENO = 20;
+    private final int POS_Y_INIZIALE_ALIENO = 20;
     private final int POS_Y_INIZIALE_ALIENO_SECONDA_RIGA = POS_Y_INIZIALE_ALIENO + DIM_ALIENO_Y + DISTANZA_ALIENI;
 
     private int spostamentoY = 2;
@@ -103,8 +103,47 @@ public class Alieno extends Nemico {
         super.spara(colpo);
     }
 
+
+    public void muovi() {
+
+            //BORDO SX
+        if (getPosX() <= DIM_ALIENO_X - 1){
+            muoviBasso();
+            setPosX(POS_X_INIZIALE_ALIENO);
+            cambiaDirezione();
+            muoviDestra();
+
+            //BORDO DX
+            //todo export dim finestra nel costruttore attualmente settata su 1024*768
+        } else if (getPosX() >= 1024 - DIM_ALIENO_X) {
+            muoviBasso();
+            setPosX(1024 - POS_X_INIZIALE_ALIENO);
+            muoviSinistra();
+        } else {
+            muoviDestra();
+        }
+
+    }
+
+    private void muoviBasso(){
+        setPosY(getPosY() + getSpostamentoY());
+    }
+
+    private void cambiaDirezione(){
+        setSpostamentoX( getSpostamentoX() * -1 );
+    }
+
+    private void muoviSinistra(){
+        cambiaDirezione();
+        setPosX(getPosX() + getSpostamentoX());
+    }
+
+    private void muoviDestra(){
+        setPosX(getPosX() + getSpostamentoX());
+    }
+
     @Override
-    protected void move(Nemico nemico, int larghezzaFinestra, int altezzaFinestra) {
+    public void move(Nemico nemico, int larghezzaFinestra, int altezzaFinestra) {
         super.move(this, 768, 1024);
     }
 
