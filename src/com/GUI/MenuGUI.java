@@ -41,7 +41,7 @@ public class MenuGUI extends JPanel implements ActionListener {
     private static final String CREDITI = "Crediti";
     private static final String ISTRUZIONI = "Aiuto";
 
-    private static final Color aracio = new Color(253,164,8);
+    private static final Color ARACIO = new Color(253,164,8);
 
     private static final int TEMPO_PAUSA_ANIMAZIONE = 5000;
 
@@ -67,7 +67,7 @@ public class MenuGUI extends JPanel implements ActionListener {
         nuovaPartita.setForeground(Color.BLACK);
         nuovaPartita.setDefaultCapable(true);
         nuovaPartita.addActionListener(this);
-        nuovaPartita.setBackground(aracio);
+        nuovaPartita.setBackground(ARACIO);
         nuovaPartita.setOpaque(true);
         nuovaPartita.setBounds(270, POS_PULSANTE_Y, DIM_PULSANTE_X, DIM_PULSANTE_Y);
         add(nuovaPartita);
@@ -77,7 +77,7 @@ public class MenuGUI extends JPanel implements ActionListener {
         esci.setFont(new Font(CARATTERE, Font.BOLD, DIM_CARATTERE ));
         esci.setForeground(Color.BLACK);
         esci.addActionListener(this);
-        esci.setBackground(aracio);
+        esci.setBackground(ARACIO);
         esci.setOpaque(true);
         esci.setBounds(270+DIM_PULSANTE_X+30, POS_PULSANTE_Y, DIM_PULSANTE_X, DIM_PULSANTE_Y);
         add(esci);
@@ -87,7 +87,7 @@ public class MenuGUI extends JPanel implements ActionListener {
         crediti.setFont(new Font(CARATTERE, Font.BOLD, DIM_CARATTERE ));
         crediti.setForeground(Color.BLACK);
         crediti.addActionListener(this);
-        crediti.setBackground(aracio);
+        crediti.setBackground(ARACIO);
         crediti.setOpaque(true);
         crediti.setBounds(270+DIM_PULSANTE_X+160, POS_PULSANTE_Y, DIM_PULSANTE_X, DIM_PULSANTE_Y);
         add(crediti);
@@ -97,7 +97,7 @@ public class MenuGUI extends JPanel implements ActionListener {
         istruzioni.setFont(new Font(CARATTERE, Font.BOLD, DIM_CARATTERE ));
         istruzioni.setForeground(Color.BLACK);
         istruzioni.addActionListener(this);
-        istruzioni.setBackground(aracio);
+        istruzioni.setBackground(ARACIO);
         istruzioni.setOpaque(true);
         istruzioni.setBounds(270+DIM_PULSANTE_X+290, POS_PULSANTE_Y, DIM_PULSANTE_X, DIM_PULSANTE_Y);
         add(istruzioni);
