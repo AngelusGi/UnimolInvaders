@@ -12,7 +12,6 @@ public class PersonaggioGUI extends JPanel implements Runnable {
     
     public PersonaggioGUI(){
         giocatore = new Personaggio();
-        //todo immagine png
         immaginePersonaggio = new ImageIcon(this.getClass().getResource("giocatore.png")).getImage();
     }
     
@@ -41,7 +40,7 @@ public class PersonaggioGUI extends JPanel implements Runnable {
     }
 
 
-    public Image getImmaginePersonaggio() {
+    private Image getImmaginePersonaggio() {
         return immaginePersonaggio;
     }
 }

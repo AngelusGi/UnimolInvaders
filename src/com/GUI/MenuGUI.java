@@ -28,18 +28,20 @@ public class MenuGUI extends JPanel implements ActionListener {
     private final String bottoneCrediti = "Crediti";
     private final String bottoneIstruzioni = "Istruzioni";
 
+    private final int tempoPausaAnimazione = 5000;
 
-    public MenuGUI(JFrame finestraIn){
 
-        this.finestra = finestraIn;
+    public MenuGUI(JFrame finestra){
+
+        this.finestra = finestra;
 
         setLayout(null);
-        setSize(finestra.getWidth(),finestra.getHeight());
+        setSize(this.finestra.getWidth(), this.finestra.getHeight());
 
         sfondo = new ImageIcon(this.getClass().getResource("splash.png")).getImage();
 
         titolo = new JLabel("UniMol Invaders");
-        titolo.setFont(new Font ("Segoe UI Light", 1, 50));
+        titolo.setFont(new Font ("Segoe UI Light", Font.BOLD, 50));
         titolo.setForeground(Color.WHITE);
         titolo.setBounds(320, 20, 400, 50);
         add(titolo);
@@ -78,9 +80,6 @@ public class MenuGUI extends JPanel implements ActionListener {
     public void paint(Graphics graphics) {
 
         super.paint(graphics);
-//        setBackground(Color.BLUE);
-//        Color coloreCiano = new Color(26, 117, 255);
-        Color neroWindows = new Color(34, 34, 34);
         setBackground(Color.BLACK);
 
         graphics.drawImage(this.sfondo, 100,170 , Color.BLACK, null);
@@ -89,15 +88,28 @@ public class MenuGUI extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals(bottoneEsci)){
-            System.exit(0);
-        } else if (e.getActionCommand().equals(bottoneNuovaPartita)){
-            //todo switch panel
-            finIntro = new IntroGUI(this.finestra);
-        } else if (e.getActionCommand().equals(bottoneIstruzioni)){
-            finIstruzioni = new IstruzioniGUI();
-        } else if (e.getActionCommand().equals(bottoneCrediti)){
-            finCrediti = new CreditiGUI();
+
+        switch (e.getActionCommand()){
+            case bottoneEsci:
+                System.exit(0);
+                break;
+
+            case bottoneNuovaPartita:
+                this.finestra.remove(this);
+                this.finestra.dispose();
+                finIntro = new IntroGUI(tempoPausaAnimazione, finestra);
+                finestra.add(finIntro);
+                finestra.setVisible(true);
+                break;
+
+            case bottoneIstruzioni:
+                finIstruzioni = new IstruzioniGUI();
+                break;
+
+            case bottoneCrediti:
+                finCrediti = new CreditiGUI();
+                break;
+
         }
     }
 

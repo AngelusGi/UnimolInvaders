@@ -3,8 +3,10 @@ package GUI;
 import Logic.GameController;
 
 import javax.swing.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class GamePanel extends JPanel {
+class GamePanel extends JPanel {
 
     private AlienoGUI alieni;
 
@@ -13,7 +15,7 @@ public class GamePanel extends JPanel {
 //        logicaGioco = new GameController();
 //        logicaGioco.setNumLivello(0);
 
-    public GamePanel(){
+    GamePanel(){
         alieni = new AlienoGUI();
 
         add(alieni);
@@ -23,8 +25,9 @@ public class GamePanel extends JPanel {
             Thread.sleep(500);
             alieni.muoviAlieni();
             alieni.repaint();
-        } catch (Exception e){
 
+        } catch (Exception e){
+            Logger.getLogger(this.getClass().getName()).log(Level.INFO, null, e);
         }
     }
 }
