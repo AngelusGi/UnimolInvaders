@@ -1,6 +1,4 @@
 import GUI.*;
-import Logic.Alieni;
-import Logic.FinePartita;
 
 import javax.swing.*;
 

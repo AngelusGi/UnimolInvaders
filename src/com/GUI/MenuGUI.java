@@ -7,8 +7,18 @@ import java.awt.event.ActionListener;
 
 public class MenuGUI extends JPanel implements ActionListener {
 
-    private final int DIM_PULSANTE_X = 100;
-    private final int DIM_PULSANTE_Y = 40;
+    private static final int DIM_PULSANTE_X = 100;
+    private static final int DIM_PULSANTE_Y = 40;
+    private static final int POS_PULSANTE_Y = 130;
+
+    private static final int POS_SFONDO_X = 100;
+    private static final int POS_SFONDO_Y = 170;
+
+    private static final int POS_TITOLO_X = 320;
+    private static final int POS_TITOLO_Y = 40;
+    private static final int DIM_TITOLO_X = 400;
+    private static final int DIM_TITOLO_Y = 50;
+
 
     private Image sfondo;
     private JButton nuovaPartita;
@@ -23,12 +33,17 @@ public class MenuGUI extends JPanel implements ActionListener {
 
     private JFrame finestra;
 
-    private final String bottoneNuovaPartita = "Gioca";
-    private final String bottoneEsci = "Esci";
-    private final String bottoneCrediti = "Crediti";
-    private final String bottoneIstruzioni = "Istruzioni";
+    private static final String CARATTERE = "Segoe UI";
+    private static final int DIM_CARATTERE = 18;
 
-    private final int tempoPausaAnimazione = 5000;
+    private static final String GIOCA = "Gioca";
+    private static final String ESCI = "Esci";
+    private static final String CREDITI = "Crediti";
+    private static final String ISTRUZIONI = "Aiuto";
+
+    private static final Color aracio = new Color(253,164,8);
+
+    private static final int TEMPO_PAUSA_ANIMAZIONE = 5000;
 
 
     public MenuGUI(JFrame finestra){
@@ -41,34 +56,50 @@ public class MenuGUI extends JPanel implements ActionListener {
         sfondo = new ImageIcon(this.getClass().getResource("splash.png")).getImage();
 
         titolo = new JLabel("UniMol Invaders");
-        titolo.setFont(new Font ("Segoe UI Light", Font.BOLD, 50));
+        titolo.setFont(new Font (CARATTERE, Font.BOLD, 50));
         titolo.setForeground(Color.WHITE);
-        titolo.setBounds(320, 20, 400, 50);
+        titolo.setBounds(POS_TITOLO_X, POS_TITOLO_Y, DIM_TITOLO_X, DIM_TITOLO_Y);
         add(titolo);
 
-        nuovaPartita = new JButton(bottoneNuovaPartita);
+        nuovaPartita = new JButton(GIOCA);
         nuovaPartita.setBorderPainted(false);
+        nuovaPartita.setFont(new Font(CARATTERE, Font.BOLD, DIM_CARATTERE ));
+        nuovaPartita.setForeground(Color.BLACK);
         nuovaPartita.setDefaultCapable(true);
         nuovaPartita.addActionListener(this);
-        nuovaPartita.setBounds(270, 100, DIM_PULSANTE_X, DIM_PULSANTE_Y);
+        nuovaPartita.setBackground(aracio);
+        nuovaPartita.setOpaque(true);
+        nuovaPartita.setBounds(270, POS_PULSANTE_Y, DIM_PULSANTE_X, DIM_PULSANTE_Y);
         add(nuovaPartita);
 
-        esci = new JButton(bottoneEsci);
+        esci = new JButton(ESCI);
         esci.setBorderPainted(false);
+        esci.setFont(new Font(CARATTERE, Font.BOLD, DIM_CARATTERE ));
+        esci.setForeground(Color.BLACK);
         esci.addActionListener(this);
-        esci.setBounds(270+DIM_PULSANTE_X+30, 100, DIM_PULSANTE_X, DIM_PULSANTE_Y);
+        esci.setBackground(aracio);
+        esci.setOpaque(true);
+        esci.setBounds(270+DIM_PULSANTE_X+30, POS_PULSANTE_Y, DIM_PULSANTE_X, DIM_PULSANTE_Y);
         add(esci);
 
-        crediti = new JButton(bottoneCrediti);
+        crediti = new JButton(CREDITI);
         crediti.setBorderPainted(false);
+        crediti.setFont(new Font(CARATTERE, Font.BOLD, DIM_CARATTERE ));
+        crediti.setForeground(Color.BLACK);
         crediti.addActionListener(this);
-        crediti.setBounds(270+DIM_PULSANTE_X+160, 100, DIM_PULSANTE_X, DIM_PULSANTE_Y);
+        crediti.setBackground(aracio);
+        crediti.setOpaque(true);
+        crediti.setBounds(270+DIM_PULSANTE_X+160, POS_PULSANTE_Y, DIM_PULSANTE_X, DIM_PULSANTE_Y);
         add(crediti);
 
-        istruzioni = new JButton(bottoneIstruzioni);
+        istruzioni = new JButton(ISTRUZIONI);
         istruzioni.setBorderPainted(false);
+        istruzioni.setFont(new Font(CARATTERE, Font.BOLD, DIM_CARATTERE ));
+        istruzioni.setForeground(Color.BLACK);
         istruzioni.addActionListener(this);
-        istruzioni.setBounds(270+DIM_PULSANTE_X+290, 100, DIM_PULSANTE_X, DIM_PULSANTE_Y);
+        istruzioni.setBackground(aracio);
+        istruzioni.setOpaque(true);
+        istruzioni.setBounds(270+DIM_PULSANTE_X+290, POS_PULSANTE_Y, DIM_PULSANTE_X, DIM_PULSANTE_Y);
         add(istruzioni);
 
         setVisible(true);
@@ -82,7 +113,7 @@ public class MenuGUI extends JPanel implements ActionListener {
         super.paint(graphics);
         setBackground(Color.BLACK);
 
-        graphics.drawImage(this.sfondo, 100,170 , Color.BLACK, null);
+        graphics.drawImage(this.sfondo, POS_SFONDO_X,POS_SFONDO_Y, Color.BLACK, null);
 
     }
 
@@ -90,24 +121,24 @@ public class MenuGUI extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         switch (e.getActionCommand()){
-            case bottoneEsci:
-                System.exit(0);
-                break;
-
-            case bottoneNuovaPartita:
+            case GIOCA:
                 this.finestra.remove(this);
                 this.finestra.dispose();
-                finIntro = new IntroGUI(tempoPausaAnimazione, finestra);
+                finIntro = new IntroGUI(TEMPO_PAUSA_ANIMAZIONE, finestra);
                 finestra.add(finIntro);
                 finestra.setVisible(true);
                 break;
 
-            case bottoneIstruzioni:
+            case ISTRUZIONI:
                 finIstruzioni = new IstruzioniGUI();
                 break;
 
-            case bottoneCrediti:
+            case CREDITI:
                 finCrediti = new CreditiGUI();
+                break;
+
+            case ESCI:
+                System.exit(0);
                 break;
 
         }
