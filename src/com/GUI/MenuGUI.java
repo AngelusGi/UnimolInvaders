@@ -33,7 +33,8 @@ public class MenuGUI extends JPanel implements ActionListener {
 
     private JFrame finestra;
 
-    private static final String CARATTERE = "Segoe UI";
+//    private static final String CARATTERE = "Segoe UI";
+    static final String CARATTERE = "Bauhaus 93";
     private static final int DIM_CARATTERE = 18;
 
     private static final String GIOCA = "Gioca";

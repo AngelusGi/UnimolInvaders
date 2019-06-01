@@ -2,34 +2,62 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class IntroGUI extends JPanel implements  Runnable{
     private Image[] immagini;
+    private ArrayList<String> testo;
     private final int immaginiTotali = 3;
-    private int immagineCorrente;
+    private int pos;
     private Thread runner;
     private int tempoPausa;
     private boolean isFinished;
     private JFrame finestra;
 
+    private static final String filePath = "./src/com/GUI/storia.txt";
+    private static final int DIM_CARATTERE = 33;
+
 
     private final int ancoraggioImmagineX = 100;
     private final int ancoraggioImmagineY = 100;
+
+    private final int ancoraggioTestoX = 30;
+    private final int ancoraggioTestoY = 550;
 
     IntroGUI(int tempoPausa, JFrame finestra) {
 
         this.isFinished = false;
         this.tempoPausa = tempoPausa;
         immagini = new Image[immaginiTotali];
-        immagineCorrente = 0;
+        pos = 0;
 
         this.finestra = finestra;
+        inizializzaTesto();
         inizializzaImmagini();
         avviaAnimazione();
-
     }
+
+    private void inizializzaTesto(){
+
+        testo = new ArrayList<>();
+        try {
+            Scanner scamFile = new Scanner(new File(filePath));
+            while (scamFile.hasNextLine()) {
+                testo.add(scamFile.nextLine());
+            }
+
+        }  catch (FileNotFoundException e){
+            System.out.println("Errore");
+
+        }
+    }
+
 
 
     private void inizializzaImmagini() {
@@ -44,6 +72,7 @@ public class IntroGUI extends JPanel implements  Runnable{
     }
 
 
+
     public void paint (Graphics graphics){
 
         super.paint(graphics);
@@ -51,8 +80,12 @@ public class IntroGUI extends JPanel implements  Runnable{
         Graphics2D screen2D = (Graphics2D) graphics;
         setBackground(Color.BLACK);
 
-        if (immagini[immagineCorrente] != null) {
-            screen2D.drawImage(immagini[immagineCorrente], ancoraggioImmagineX , ancoraggioImmagineY , this);
+        if (immagini[pos] != null) {
+            screen2D.drawImage(immagini[pos], ancoraggioImmagineX , ancoraggioImmagineY , this);
+            screen2D.setColor(Color.WHITE);
+            screen2D.setFont(new Font(MenuGUI.CARATTERE, Font.BOLD, DIM_CARATTERE));
+            screen2D.drawString(testo.get(pos),ancoraggioTestoX, ancoraggioTestoY);
+
         }
 
     }
@@ -75,8 +108,8 @@ public class IntroGUI extends JPanel implements  Runnable{
                 repaint();
                 Thread.sleep(tempoPausa);
 
-                if (immagineCorrente < immagini.length - 1){
-                    immagineCorrente++;
+                if (pos < immagini.length - 1){
+                    pos++;
                 } else {
 
                     stop();
