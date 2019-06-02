@@ -1,7 +1,11 @@
 package GUI;
 
+import AAA.GamePanel;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -10,7 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class IntroGUI extends JPanel implements  Runnable{
-    private Image[] immagini;
+
+    private ArrayList<Image> immagini;
     private ArrayList<String> testo;
     private final int immaginiTotali = 3;
     private int pos;
@@ -21,6 +26,8 @@ public class IntroGUI extends JPanel implements  Runnable{
 
     private static final String filePath = "./src/com/GUI/storia.txt";
     private static final int DIM_CARATTERE = 33;
+
+    private GamePanel gamePanel;
 
 
     private final int ancoraggioImmagineX = 100;
@@ -33,8 +40,8 @@ public class IntroGUI extends JPanel implements  Runnable{
 
         this.isFinished = false;
         this.tempoPausa = tempoPausa;
-        immagini = new Image[immaginiTotali];
-        pos = 0;
+        this.immagini = new ArrayList<>();
+        this.pos = 0;
 
         this.finestra = finestra;
         inizializzaTesto();
@@ -44,15 +51,15 @@ public class IntroGUI extends JPanel implements  Runnable{
 
     private void inizializzaTesto(){
 
-        testo = new ArrayList<>();
+        this.testo = new ArrayList<>();
         try {
             Scanner scamFile = new Scanner(new File(filePath));
             while (scamFile.hasNextLine()) {
-                testo.add(scamFile.nextLine());
+                this.testo.add(scamFile.nextLine());
             }
 
         }  catch (FileNotFoundException e){
-            System.out.println("Errore");
+            Logger.getLogger(this.getName()).log(Level.FINE, null, e);
 
         }
     }
@@ -61,11 +68,11 @@ public class IntroGUI extends JPanel implements  Runnable{
 
     private void inizializzaImmagini() {
 
-        for (int i = 0; i < immaginiTotali ; i++) {
+        for (int i = 0; i < this.immaginiTotali ; i++) {
 
             String nomeImmagine = "intro" + (i + 1) + ".png";
 
-            immagini[i] = new ImageIcon(this.getClass().getResource(nomeImmagine)).getImage();
+            this.immagini.add(i, new ImageIcon(this.getClass().getResource(nomeImmagine)).getImage());
 
         }
     }
@@ -79,8 +86,9 @@ public class IntroGUI extends JPanel implements  Runnable{
         Graphics2D screen2D = (Graphics2D) graphics;
         setBackground(Color.BLACK);
 
-        if (immagini[pos] != null) {
-            screen2D.drawImage(immagini[pos], ancoraggioImmagineX , ancoraggioImmagineY , this);
+
+        if (immagini.get(pos) != null) {
+            screen2D.drawImage(immagini.get(pos), ancoraggioImmagineX , ancoraggioImmagineY , this);
             screen2D.setColor(Color.WHITE);
             screen2D.setFont(new Font(MenuGUI.CARATTERE, Font.BOLD, DIM_CARATTERE));
             screen2D.drawString(testo.get(pos),ancoraggioTestoX, ancoraggioTestoY);
@@ -91,9 +99,9 @@ public class IntroGUI extends JPanel implements  Runnable{
 
 
     private void avviaAnimazione() {
-        if (runner == null) {
-            runner = new Thread(this);
-            runner.start();
+        if (this.runner == null) {
+            this.runner = new Thread(this);
+            this.runner.start();
         }
     }
 
@@ -101,14 +109,14 @@ public class IntroGUI extends JPanel implements  Runnable{
     public void run () {
         Thread thisThread = Thread.currentThread();
 
-        while (runner == thisThread) {
+        while (this.runner == thisThread) {
 
             try {
                 repaint();
                 Thread.sleep(tempoPausa);
 
-                if (pos < immagini.length - 1){
-                    pos++;
+                if (this.pos < this.immagini.size() - 1){
+                    this.pos++;
                 } else {
 
                     stop();
@@ -121,17 +129,41 @@ public class IntroGUI extends JPanel implements  Runnable{
     }
 
     private void stop() {
-        if (runner != null) {
-            runner = null;
+        if (this.runner != null) {
+            this.runner = null;
             this.isFinished = true;
             finestra.remove(this);
             finestra.dispose();
-            GamePanel gioco = new GamePanel();
-            finestra.add(gioco);
+            gamePanel = new GamePanel();
+            finestra.add(gamePanel);
+            finestra.setFocusable(true);
             finestra.setVisible(true);
+            finestra.addKeyListener(new MyListener());
+            gamePanel.run();
+//            GamePanel gioco = new GamePanel();
+//            finestra.add(gioco);
+//            finestra.setVisible(true);
         }
     }
 
+
+    private class MyListener extends KeyAdapter {
+
+        @Override
+        public void keyTyped(KeyEvent tasto) {
+        }
+
+        @Override
+        public void keyReleased(KeyEvent tasto) {
+            gamePanel.keyReleased(tasto);
+        }
+
+        @Override
+        public void keyPressed(KeyEvent tasto) {
+            gamePanel.keyPressed(tasto);
+        }
+
+    }
 }
 
 
