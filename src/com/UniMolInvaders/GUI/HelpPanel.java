@@ -3,10 +3,10 @@ package UniMolInvaders.GUI;
 import javax.swing.*;
 import java.awt.*;
 
-public class IstruzioniGUI extends JPanel {
+public class HelpPanel extends JPanel {
 
     
-    public IstruzioniGUI(){
+    public HelpPanel(){
 
         String istruzioni = "ISTRUZIONI\n"
                 + "\nPer muoverti utilizza le frecce: ◀ ▶"
@@ -15,7 +15,7 @@ public class IstruzioniGUI extends JPanel {
                 + "\nPer terminare anticipatamente la partita utilizza il tasto ESC"
                 + "\n\nBuon divertimento! ☺";
 
-        JOptionPane.showConfirmDialog(null, istruzioni, Start.NOME_GIOCO, JOptionPane.DEFAULT_OPTION);
+        JOptionPane.showConfirmDialog(null, istruzioni, ContentSwitch.TITLE, JOptionPane.DEFAULT_OPTION);
         
     }
 

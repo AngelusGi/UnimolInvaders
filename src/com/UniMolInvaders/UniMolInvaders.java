@@ -17,8 +17,8 @@ class UniMolInvaders {
 
     public static void main(String[] args) {
 
-        new Start();
+//        new ContentSwitch();
 
-
+        new EndPanel(ContentSwitch.getStats().getPoints(), 5);
     }
 }

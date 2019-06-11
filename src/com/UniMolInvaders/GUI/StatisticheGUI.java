@@ -5,24 +5,24 @@ import java.awt.*;
 
 public class StatisticheGUI extends JPanel {
 
-    private int punti;
-    private int punteggioAlto;
-    private int numVite;
-    private Image iconaVite;
+    private int points;
+    private int lifes;
+    private Image lifeIcon;
 
-    private static final int DISTANZA_ELEMENTI = 50;
-    private static final int DISTANZA_CUORE = DISTANZA_ELEMENTI * 3;
-    private static final int DIM_CUORE = 30;
-    private static final String testoPunti = "PUNTI ";
-    private static final String testoPunteggioMax = "PUNTEGGIO PIÙ ALTO: ";
-    private static final String testoPunteggioMaxGiocatore = " DI: ";
-    private static final String testoVite = "VITE: ";
-    private static final String testoLivello = "LIVELLO:: ";
+    private static final int DISTANCE = 50;
+    private static final int LIFE_DIM = 15;
+    private static final String POINT = "PUNTI ";
+    private static final String HIGH_SCORE = "PUNTEGGIO PIÙ ALTO: ";
+    private static final String PLAYER_HIGHT_SCORE = " DI: ";
+    private static final String LIFE = "VITE: ";
+    private static final String LEVEL = "LIVELLO:: ";
 
     public StatisticheGUI(){
 
         this.setBackground(Color.BLACK);
-        iconaVite = new ImageIcon(this.getClass().getResource("./Resources/cuore.png")).getImage();
+        lifeIcon = new ImageIcon(this.getClass().getResource("./Resources/cuore.png")).getImage();
+        lifes = ContentSwitch.getGame().getGiocatore().getLifePoints();
+        points = ContentSwitch.getStats().getPoints();
 
     }
 
@@ -32,15 +32,45 @@ public class StatisticheGUI extends JPanel {
 
         grafica.setColor(Color.WHITE);
 
-        grafica.setFont(MenuGUI.getFontGioco());
-        grafica.drawString(testoLivello + Start.getGioco().getNumLivello(), DISTANZA_ELEMENTI, DISTANZA_ELEMENTI);
-        grafica.drawString(testoPunti + Start.getGioco().getPunteggio(), DISTANZA_ELEMENTI * 6, DISTANZA_ELEMENTI);
+        grafica.setFont(MenuPanel.getGeneralFont());
+        grafica.drawString(LEVEL + ContentSwitch.getGame().getLevelNumber(), DISTANCE, DISTANCE);
+        grafica.drawString(POINT + points, DISTANCE * 6, DISTANCE);
 
-        grafica.drawString(testoVite + Start.getGioco().getGiocatore().getVita(), DISTANZA_ELEMENTI * 3, DISTANZA_ELEMENTI);
-        for (int i = 1; i <= Start.getGioco().getGiocatore().getVita(); i++) {
-            grafica.drawImage(iconaVite, DISTANZA_ELEMENTI * i, DISTANZA_ELEMENTI, 30, 30, null );
+        grafica.drawString(LIFE + lifes, DISTANCE * 3, DISTANCE);
+
+        for (int i = 1; i <= lifes; i++) {
+
+            grafica.drawImage(lifeIcon, DISTANCE * i, DISTANCE, LIFE_DIM, LIFE_DIM, null);
         }
 
-        grafica.drawString(testoPunti + Start.getGioco().getPunteggio(), DISTANZA_ELEMENTI * 6, DISTANZA_ELEMENTI);
+        grafica.drawString(POINT + getPoints(), DISTANCE * 6, DISTANCE);
+        grafica.drawString(HIGH_SCORE + getPunteggioMax(), DISTANCE * 6, DISTANCE);
+        grafica.drawString(PLAYER_HIGHT_SCORE + nomeGiocatoreMax(), DISTANCE * 6, DISTANCE);
+        grafica.drawString(POINT + getPoints(), DISTANCE * 6, DISTANCE);
+
     }
+
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setLifes(int lifes) {
+        this.lifes = lifes;
+    }
+
+    private String nomeGiocatoreMax(){
+        //todo
+        return ;
+    }
+
+    private String getPunteggioMax(){
+        //todo
+        return ;
+    }
+
 }

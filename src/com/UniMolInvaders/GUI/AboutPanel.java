@@ -3,12 +3,12 @@ package UniMolInvaders.GUI;
 import javax.swing.*;
 import java.awt.*;
 
-public class CreditiGUI extends JPanel {
+public class AboutPanel extends JPanel {
 
     
-    public CreditiGUI(){
+    public AboutPanel(){
 
-        String crediti = "CREDITI\n\n"
+        String credits = "CREDITI\n\n"
                 + "Grazie per le risorse grafiche:\n"
                     + "\tUniMol - Università del Molise\n"
                     + "\tJermungandr (www.spriters-resource.com)\n"
@@ -24,7 +24,7 @@ public class CreditiGUI extends JPanel {
                     + "\nscopo esplicativo ed a beneficio del possessore, senza alcun fine di violazione dei diritti di Copyright vigenti.\n";
 
 
-        JOptionPane.showConfirmDialog(null, crediti, "UniMol Invaders", JOptionPane.DEFAULT_OPTION);
+        JOptionPane.showConfirmDialog(null, credits, ContentSwitch.TITLE, JOptionPane.DEFAULT_OPTION);
         
     }
 

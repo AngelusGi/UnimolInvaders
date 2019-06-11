@@ -9,7 +9,7 @@ package UniMolInvaders.Logic;
  *
  ********************************/
 
-public class Colpo {
+public class Shot {
 
     private boolean isSparato;
     private int danno;
@@ -19,7 +19,7 @@ public class Colpo {
     private int posY;
 
 
-    public Colpo(int posX, int posY, int direzione) {
+    public Shot(int posX, int posY, int direzione) {
         setSparato(false);
         setDanno(1);
         setPosX(posX);
