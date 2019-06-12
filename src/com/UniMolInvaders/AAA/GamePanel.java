@@ -9,25 +9,21 @@ public class GamePanel extends JPanel implements Runnable {
 
     private static final int LARGHEZZA = 640;
     private static final int ALTEZZA = 480;
-
-    private Thread animazione;
     private static final int TEMPO_ANIMAZIONE = 50;
-
     private static final int numAlieni = 10;
+    private final static String punteggio = "Punteggio: ";
+    private Thread animazione;
     private Giocatore giocatore;
     private ArrayList<Alieno> alieni;
-
     private boolean gameStarted;
     private Dimension dimensioni;
-
     private int punti;
-    private final static String punteggio = "Punteggio: ";
 
 
-    public GamePanel(){
+    public GamePanel() {
 
         dimensioni = new Dimension(LARGHEZZA, ALTEZZA);
-        giocatore = new Giocatore(LARGHEZZA/2, ALTEZZA-70, 5);
+        giocatore = new Giocatore(LARGHEZZA / 2, ALTEZZA - 70, 5);
         alieni = new ArrayList<>();
 
         inizializzaAlieni();
@@ -41,10 +37,9 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
 
-
     public void keyReleased(KeyEvent tasto) {
 
-        if ( tasto.getKeyCode() == KeyEvent.VK_ESCAPE ){
+        if (tasto.getKeyCode() == KeyEvent.VK_ESCAPE) {
             //todo gameOver
             this.gameStarted = false;
             System.exit(0);
@@ -59,7 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
         giocatore.keyPressed(tasto);
     }
 
-    private void inizializzaAlieni(){
+    private void inizializzaAlieni() {
         int posX = 20;
         int posY = 20;
 
@@ -70,7 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
             alieni.add(i, alieno);
             posX += 40;
 
-            if (i == (numAlieni/2)-1){
+            if (i == (numAlieni / 2) - 1) {
                 posX = 20;
                 posY += 40;
             }
@@ -79,11 +74,11 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
 
-    private void muoviAlieni(){
+    private void muoviAlieni() {
 
         for (int i = 0; i < alieni.size(); i++) {
 
-            if (alieni.get(i).posX + alieni.get(i).velocita < 0){
+            if (alieni.get(i).posX + alieni.get(i).velocita < 0) {
 //                alieni.get(i).velocita = Alien.RIGHT;
 //                alieni.get(i).posY += 30;
                 for (int j = 0; j < alieni.size(); j++) {
@@ -137,7 +132,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         giocatore.paint(g);
 
-        for (Alieno alien: alieni){
+        for (Alieno alien : alieni) {
             alien.paint(g);
         }
 
@@ -146,7 +141,7 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     public void run() {
 
-        while (gameStarted){
+        while (gameStarted) {
 
             try {
 
@@ -155,7 +150,7 @@ public class GamePanel extends JPanel implements Runnable {
                 this.repaint();
 
                 Thread.sleep(TEMPO_ANIMAZIONE);
-            } catch (InterruptedException ex){
+            } catch (InterruptedException ex) {
 
                 System.out.println("ERRORE THREAD");
             }

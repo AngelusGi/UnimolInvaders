@@ -19,28 +19,23 @@ public abstract class Enemy {
     public static final int RIGHT = 1;
     public static final int LELFT = -1;
     private static final int SHOT_DIRECTION = 1;
-
+    protected Rectangle area;
     private int posX;
     private int posY;
     private int speedX;
     private int speedY;
-
     private int dimX;
     private int dimY;
-
     private boolean alive;
     private int lifePoints;
-
     private Shot shot;
-
-    protected Rectangle area;
 
     public Enemy(int posX, int posY, int speed) {
         setPosX(posX);
         setPosY(posY);
         setAlive(true);
         setSpeedX(speed);
-        area = new Rectangle(new Point(posX, posX), new Dimension(getDimX(), getDimY()));
+        area = new Rectangle(new Point(posX, posY), new Dimension(getDimX(), getDimY()));
     }
 
     protected boolean decrementLife() {

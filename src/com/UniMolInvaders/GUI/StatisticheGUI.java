@@ -5,10 +5,6 @@ import java.awt.*;
 
 public class StatisticheGUI extends JPanel {
 
-    private int points;
-    private int life;
-    private Image lifeIcon;
-
     private static final int DISTANCE = 30;
     private static final int LIFE_DIM = 15;
     private static final int WIN_HEIGHT = 50;
@@ -17,12 +13,19 @@ public class StatisticheGUI extends JPanel {
     private static final String PLAYER_HIGHT_SCORE = " DI: ";
     private static final String LIFE = "VITE: ";
     private static final String LEVEL = "LIVELLO: ";
+    private int points;
+    private int life;
+    private Image lifeIcon;
 
     public StatisticheGUI() {
 
         setSize(ContentSwitch.WIM_WIDTH, WIN_HEIGHT);
         lifeIcon = new ImageIcon(this.getClass().getResource("./Resources/cuore.png")).getImage();
 
+    }
+
+    public static int getWinHeight() {
+        return WIN_HEIGHT;
     }
 
     @Override
@@ -52,21 +55,16 @@ public class StatisticheGUI extends JPanel {
 
     }
 
+    public int getPoints() {
+        return points;
+    }
 
     public void setPoints(int points) {
         this.points = points;
     }
 
-    public int getPoints() {
-        return points;
-    }
-
     public void setLifePoints(int life) {
         this.life = life;
-    }
-
-    public static int getWinHeight() {
-        return WIN_HEIGHT;
     }
 
     //    private String getTopPlayer(){

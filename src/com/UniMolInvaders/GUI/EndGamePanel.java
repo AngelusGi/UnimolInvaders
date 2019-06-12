@@ -13,8 +13,6 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.logging.Logger;
 
-import com.opencsv.CSVWriter;
-
 public class EndGamePanel extends JPanel {
 
 
@@ -59,6 +57,13 @@ public class EndGamePanel extends JPanel {
         super.paint(graphics);
     }
 
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
 
     class saveDate implements ActionListener {
 
@@ -109,16 +114,6 @@ public class EndGamePanel extends JPanel {
             }
         }
 
-    }
-
-
-    public String getPlayerName() {
-        return playerName;
-    }
-
-
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
     }
 
 }

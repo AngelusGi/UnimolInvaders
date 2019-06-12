@@ -1,14 +1,14 @@
 package UniMolInvaders.AAA;
 
-public abstract class Personaggio {
+abstract class Personaggio {
 
     int posX;
     int posY;
     int velocita;
 
-    int vite;
+    private int vite;
 
-    public Personaggio(int posX, int posY, int velocita){
+    Personaggio(int posX, int posY, int velocita) {
 
         this.posX = posX;
         this.posY = posY;

@@ -8,25 +8,21 @@ import java.awt.event.KeyListener;
 
 public class ContentSwitch extends JFrame {
 
-    protected final static String TITLE = "UniMol Invaders";
     public final static int WIM_WIDTH = 1024;
     public final static int WIN_HEIGHT = 768;
     public final static int DISTANZA = 20;
-
     public final static int TEST_PAUSE = 500;
     public final static int PAUSE = 5000;
-
+    protected final static String TITLE = "UniMol Invaders";
+    protected static final int GAME = 2;
+    protected static final int INTRO = 1;
+    protected static final int MENU = 0;
+    private static final Point ORIGIN = new Point(0, 0);
+    private static final Point GAME_ANCHOR = new Point(0, 50);
     private static IntroPanel intro;
     private static GamePanel game;
     private static MenuPanel menu;
     private static StatisticheGUI stats;
-
-    protected static final int GAME = 2;
-    protected static final int INTRO = 1;
-    protected static final int MENU = 0;
-
-    private static final Point ORIGIN = new Point(0, 0);
-    private static final Point GAME_ANCHOR = new Point(0, 50);
 
     public ContentSwitch() {
 

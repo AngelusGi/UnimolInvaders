@@ -21,11 +21,11 @@ public class Giocatore extends Personaggio {
 
     }
 
-    protected void muovi(){
+    protected void muovi() {
 
         //BORDO
         if ((this.posX + this.velocita > 5) &&
-                (this.posX + this.velocita < Start.DIM_FINESTRA_LARGHEZZA - DIM_GIOCATORE - 20)){
+                (this.posX + this.velocita < Start.DIM_FINESTRA_LARGHEZZA - DIM_GIOCATORE - 20)) {
 
             this.posX += this.velocita;
         }
@@ -34,7 +34,7 @@ public class Giocatore extends Personaggio {
 
     public void keyPressed(KeyEvent tasto) {
 
-        switch (tasto.getKeyCode()){
+        switch (tasto.getKeyCode()) {
             case KeyEvent.VK_LEFT:
                 this.velocita = -2;
                 this.muovi();
@@ -49,7 +49,7 @@ public class Giocatore extends Personaggio {
     }
 
     public void keyReleased(KeyEvent tasto) {
-        switch (tasto.getKeyCode()){
+        switch (tasto.getKeyCode()) {
 
             case KeyEvent.VK_LEFT:
             case KeyEvent.VK_RIGHT:
@@ -64,7 +64,7 @@ public class Giocatore extends Personaggio {
 
     }
 
-    public Rectangle getDimesnione(){
+    public Rectangle getDimesnione() {
         return new Rectangle(posX, posY, DIM_GIOCATORE, DIM_GIOCATORE);
     }
 }

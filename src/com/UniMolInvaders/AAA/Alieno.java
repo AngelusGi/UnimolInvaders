@@ -4,16 +4,15 @@ import java.awt.*;
 
 public class Alieno extends Personaggio {
 
+    protected static final int DESTRA = 2;
+    protected static final int SINISTRA = -2;
+    static final int DIM_ALINEO = 25;
+    static final int DIREZIONE_COLPO = 1;
     boolean visible;
     boolean moveRight;
     boolean moveLeft;
-    static final int DIM_ALINEO = 25;
 
-    protected static final int DESTRA = 2;
-    protected static final int SINISTRA = -2;
-    static final int DIREZIONE_COLPO = 1;
-
-    public Alieno(int posX, int posY, int velocita){
+    public Alieno(int posX, int posY, int velocita) {
         super(posX, posY, velocita);
         this.moveLeft = false;
         this.moveRight = true;
@@ -35,10 +34,10 @@ public class Alieno extends Personaggio {
         return new Rectangle(posX, posY, DIM_ALINEO, DIM_ALINEO);
     }
 
-    protected void muovi(){
+    protected void muovi() {
 
         //BORDO SX
-        if (this.posX + velocita < 0){
+        if (this.posX + velocita < 0) {
             velocita = DESTRA;
             this.posY = posY + 67;
 
@@ -49,7 +48,7 @@ public class Alieno extends Personaggio {
 
         }
 
-            this.posX = posX + velocita;
+        this.posX = posX + velocita;
     }
 
 

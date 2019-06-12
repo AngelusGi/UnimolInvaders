@@ -1,18 +1,17 @@
 package UniMolInvaders.GUI;
 
+import UniMolInvaders.Logic.Enemy;
 import UniMolInvaders.Logic.Player;
 import UniMolInvaders.Logic.Shot;
-import UniMolInvaders.Logic.Enemy;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class ShotGraph extends Shot {
 
-    private Image image;
-
     private static final int PLAYER_DIRECTION = -1;
     private static final int ENEMY_DIRECTION = 1;
+    private Image image;
 
 
     public ShotGraph(Player player) {

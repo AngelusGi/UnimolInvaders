@@ -18,26 +18,21 @@ import java.awt.event.KeyListener;
 
 public class Player implements KeyListener {
 
+    public static final int DIM_X = 39;
+    public static final int DIM_Y = 60;
+    private static int LIFE_POINTS = 5;
     private final int RIGHT = 5;
     private final int LEFT = -5;
     private final int STOP = 0;
-
+    protected Rectangle area;
     private int posX;
     private int posY;
     private int speedX = 5;
-    private static int LIFE_POINTS = 5;
-
     private int lifePoints;
     private boolean alive;
     private boolean fired;
     private int points;
-
-    public static final int DIM_X = 39;
-    public static final int DIM_Y = 60;
-
     private Shot shot;
-
-    protected Rectangle area;
 
     public Player(int posX, int posY) {
         setPosX(posX);
@@ -46,7 +41,7 @@ public class Player implements KeyListener {
         setAlive(true);
         setFired(false);
         setSpeedX(STOP);
-        area = new Rectangle(new Point(posX, posX), new Dimension(getDimX(), getDimY()));
+        area = new Rectangle(new Point(posX, posY), new Dimension(getDimX(), getDimY()));
     }
 
     public void move() {
@@ -123,51 +118,41 @@ public class Player implements KeyListener {
         return posX;
     }
 
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
 
     public int getPosY() {
         return posY;
     }
 
-
-    public void setLifePoints(int lifePoints) {
-        this.lifePoints = lifePoints;
-    }
-
-
-    public void setPosX(int posX) {
-        this.posX = posX;
-    }
-
-
     public void setPosY(int posY) {
         this.posY = posY;
     }
-
 
     public boolean isAlive() {
         return alive;
     }
 
-
     public void setAlive(boolean alive) {
         this.alive = alive;
     }
-
 
     public boolean hasFired() {
         return fired;
     }
 
-
     public void setFired(boolean fired) {
         this.fired = fired;
     }
-
 
     public int getLifePoints() {
         return lifePoints;
     }
 
+    public void setLifePoints(int lifePoints) {
+        this.lifePoints = lifePoints;
+    }
 
     public int getDimX() {
         return DIM_X;

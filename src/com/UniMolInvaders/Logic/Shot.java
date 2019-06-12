@@ -13,17 +13,14 @@ import java.awt.*;
 
 public class Shot {
 
+    private static final int DIM_X = 11;
+    private static final int DIM_Y = 29;
+    protected Rectangle area;
     private boolean isSparato;
     private int danno;
-
     private int velocita = 5;
     private int posX;
     private int posY;
-
-    private static final int DIM_X = 11;
-    private static final int DIM_Y = 29;
-
-    protected Rectangle area;
 
     public Shot(int posX, int posY, int direzione) {
         setSparato(false);
@@ -31,7 +28,7 @@ public class Shot {
         setPosX(posX);
         setPosY(posY);
         setVelocita(direzione);
-        area = new Rectangle(new Point(posX, posX), new Dimension(getDimX(), getDimY()));
+        area = new Rectangle(new Point(posX, posY), new Dimension(getDimX(), getDimY()));
     }
 
 

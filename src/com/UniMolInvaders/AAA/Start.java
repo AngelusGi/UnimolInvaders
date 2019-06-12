@@ -7,14 +7,13 @@ import java.awt.event.KeyEvent;
 
 public class Start extends JFrame {
 
-    private final static String nome = "UniMol Invaders";
     public final static int DIM_FINESTRA_LARGHEZZA = 640;
     public final static int DIM_FINESTRA_ALTEZZA = 480;
     public final static int DISTANZA = 20;
-
+    private final static String nome = "UniMol Invaders";
     private GamePanel gamePanel;
 
-    public Start(){
+    public Start() {
         gamePanel = new GamePanel();
         add(gamePanel);
         setSize(DIM_FINESTRA_LARGHEZZA, DIM_FINESTRA_ALTEZZA);
@@ -27,6 +26,12 @@ public class Start extends JFrame {
         addKeyListener(new MyListener());
 
         gamePanel.run();
+
+    }
+
+    public static void main(String[] args) {
+
+        new Start();
 
     }
 
@@ -45,13 +50,6 @@ public class Start extends JFrame {
         public void keyPressed(KeyEvent tasto) {
             gamePanel.keyPressed(tasto);
         }
-
-    }
-
-
-    public static void main(String[] args) {
-
-        new Start();
 
     }
 

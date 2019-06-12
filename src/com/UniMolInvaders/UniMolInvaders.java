@@ -1,6 +1,6 @@
 package UniMolInvaders;
 
-import UniMolInvaders.GUI.*;
+import UniMolInvaders.GUI.ContentSwitch;
 
 
 /********************************

@@ -22,14 +22,12 @@ public class MenuPanel extends JPanel implements ActionListener {
 
     private static final String FONT = "Bauhaus 93";
     private static final int DIM_CARATTERE = 18;
-    private static Font GENERAL_FONT = new Font(FONT, Font.BOLD, DIM_CARATTERE);
     private static final Color ORANGE = new Color(253, 164, 8);
-
     private static final String GAME = "Gioca";
     private static final String EXIT = "Esci";
     private static final String CREDITS = "Crediti";
     private static final String HELP = "Aiuto";
-
+    private static Font GENERAL_FONT = new Font(FONT, Font.BOLD, DIM_CARATTERE);
     private Image background;
     private JButton newGame;
     private JButton exit;
@@ -99,6 +97,9 @@ public class MenuPanel extends JPanel implements ActionListener {
 
     }
 
+    public static Font getGeneralFont() {
+        return GENERAL_FONT;
+    }
 
     @Override
     public void paint(Graphics graphics) {
@@ -109,7 +110,6 @@ public class MenuPanel extends JPanel implements ActionListener {
         graphics.drawImage(this.background, BACKGROUND_X, BACKGROUND_Y, Color.BLACK, null);
 
     }
-
 
     @Override
     public void actionPerformed(ActionEvent click) {
@@ -132,10 +132,5 @@ public class MenuPanel extends JPanel implements ActionListener {
                 break;
 
         }
-    }
-
-
-    public static Font getGeneralFont() {
-        return GENERAL_FONT;
     }
 }
