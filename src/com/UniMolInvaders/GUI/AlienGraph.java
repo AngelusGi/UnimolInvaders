@@ -23,7 +23,7 @@ public class AlienGraph extends Alien {
 
     private Image image;
 
-    public AlienGraph(int posX, int posY, int speed){
+    public AlienGraph(int posX, int posY, int speed) {
         super(posX, posY, speed);
         setDimX(DIM_X);
         setDimY(DIM_Y);
@@ -35,10 +35,10 @@ public class AlienGraph extends Alien {
         //RENDE I BORDI DEI COMPONENTI 2D PIù SMUSSATI
 //        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        if (isAlive()){
+        if (isAlive()) {
 //            graphics.setColor(Color.RED);
 
-            Color trasparente = new Color(1f,0f,0f,0f );
+            Color trasparente = new Color(1f, 0f, 0f, 0f);
             graphics.setColor(trasparente);
 
             graphics.fillRect(this.getPosX(), this.getPosY(), this.getDimX(), this.getDimY());

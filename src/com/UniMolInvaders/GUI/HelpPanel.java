@@ -5,8 +5,8 @@ import java.awt.*;
 
 public class HelpPanel extends JPanel {
 
-    
-    public HelpPanel(){
+
+    public HelpPanel() {
 
         String istruzioni = "ISTRUZIONI\n"
                 + "\nPer muoverti utilizza le frecce: ◀ ▶"
@@ -16,7 +16,7 @@ public class HelpPanel extends JPanel {
                 + "\n\nBuon divertimento! ☺";
 
         JOptionPane.showConfirmDialog(null, istruzioni, ContentSwitch.TITLE + " - Aiuto", JOptionPane.DEFAULT_OPTION);
-        
+
     }
 
 

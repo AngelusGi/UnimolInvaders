@@ -9,7 +9,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class IntroPanel extends JPanel{
+public class IntroPanel extends JPanel {
 
     private static final String filePath = "./src/com/UniMolInvaders/GUI/Resources/storia.txt";
     private final Color textColor = Color.WHITE;
@@ -118,7 +118,7 @@ public class IntroPanel extends JPanel{
     }
 
 
-    private class AnimationThread implements Runnable{
+    private class AnimationThread implements Runnable {
         @Override
         public void run() {
 

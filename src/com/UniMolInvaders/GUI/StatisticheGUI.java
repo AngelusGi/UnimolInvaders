@@ -18,7 +18,7 @@ public class StatisticheGUI extends JPanel {
     private static final String LIFE = "VITE: ";
     private static final String LEVEL = "LIVELLO: ";
 
-    public StatisticheGUI(){
+    public StatisticheGUI() {
 
         setSize(ContentSwitch.WIM_WIDTH, WIN_HEIGHT);
         lifeIcon = new ImageIcon(this.getClass().getResource("./Resources/cuore.png")).getImage();

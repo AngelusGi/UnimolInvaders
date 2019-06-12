@@ -18,7 +18,7 @@ public class BossGraph extends Boss {
 
     public void paint(Graphics graphics) {
 
-        Color trasparent = new Color(1f,0f,0f,0f );
+        Color trasparent = new Color(1f, 0f, 0f, 0f);
 //        graphics.setColor(trasparent);
 
         graphics.setColor(Color.GREEN);

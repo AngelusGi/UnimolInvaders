@@ -28,12 +28,12 @@ public class EndGamePanel extends JPanel {
     private String playerName;
 
 
-    public EndGamePanel(int points, int level){
+    public EndGamePanel(int points, int level) {
 
         this.points = points;
         this.level = level;
 
-        setSize(300,150);
+        setSize(300, 150);
 
         endGame = new JLabel("Partita terminata!  Inserisci il tuo TITLE:");
         add(endGame);
@@ -52,7 +52,6 @@ public class EndGamePanel extends JPanel {
         setVisible(true);
 
 
-
     }
 
     @Override
@@ -67,7 +66,7 @@ public class EndGamePanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            try{
+            try {
 
                 setPlayerName(name.getText());
 
@@ -92,18 +91,18 @@ public class EndGamePanel extends JPanel {
                         "UniMol Invaders", JOptionPane.YES_NO_OPTION);
 
 
-                if (response == NEW_GAME){
+                if (response == NEW_GAME) {
                     //todo gestire nuova partita
                     ContentSwitch.switchPanel(ContentSwitch.INTRO);
                     ContentSwitch.getGame().resetPartita();
 
-                } else{
+                } else {
                     ContentSwitch.switchPanel(ContentSwitch.MENU);
 //                    System.exit(0);
                 }
 
 
-            } catch (IOException ioException){
+            } catch (IOException ioException) {
                 Logger.getLogger("Errore scrittura file:", ioException.toString());
                 JOptionPane.showMessageDialog(null, "Salvataggio non riuscito!");
 
@@ -113,12 +112,12 @@ public class EndGamePanel extends JPanel {
     }
 
 
-    public String getPlayerName(){
+    public String getPlayerName() {
         return playerName;
     }
 
 
-    public void setPlayerName(String playerName){
+    public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
 

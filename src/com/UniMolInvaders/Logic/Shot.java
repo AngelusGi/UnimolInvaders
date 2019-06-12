@@ -35,7 +35,6 @@ public class Shot {
     }
 
 
-
     public int getDimX() {
         return DIM_X;
     }

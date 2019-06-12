@@ -25,10 +25,10 @@ public class ContentSwitch extends JFrame {
     protected static final int INTRO = 1;
     protected static final int MENU = 0;
 
-    private static final Point ORIGIN = new Point(0,0);
-    private static final Point GAME_ANCHOR = new Point(0,50);
+    private static final Point ORIGIN = new Point(0, 0);
+    private static final Point GAME_ANCHOR = new Point(0, 50);
 
-    public ContentSwitch(){
+    public ContentSwitch() {
 
         setSize(WIM_WIDTH, WIN_HEIGHT);
         setResizable(false);
@@ -58,8 +58,8 @@ public class ContentSwitch extends JFrame {
 
     }
 
-    public static void switchPanel(int panel){
-        switch (panel){
+    public static void switchPanel(int panel) {
+        switch (panel) {
 
             case MENU:
                 intro.setVisible(false);

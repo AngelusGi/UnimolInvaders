@@ -23,7 +23,7 @@ public class MenuPanel extends JPanel implements ActionListener {
     private static final String FONT = "Bauhaus 93";
     private static final int DIM_CARATTERE = 18;
     private static Font GENERAL_FONT = new Font(FONT, Font.BOLD, DIM_CARATTERE);
-    private static final Color ORANGE = new Color(253,164,8);
+    private static final Color ORANGE = new Color(253, 164, 8);
 
     private static final String GAME = "Gioca";
     private static final String EXIT = "Esci";
@@ -41,8 +41,7 @@ public class MenuPanel extends JPanel implements ActionListener {
     private AboutPanel winAbout;
 
 
-
-    public MenuPanel(){
+    public MenuPanel() {
 
         setSize(ContentSwitch.WIM_WIDTH, ContentSwitch.WIN_HEIGHT);
         setLayout(null);
@@ -50,7 +49,7 @@ public class MenuPanel extends JPanel implements ActionListener {
         background = new ImageIcon(this.getClass().getResource("./Resources/splash.png")).getImage();
 
         title = new JLabel(ContentSwitch.TITLE);
-        title.setFont(new Font (FONT, Font.BOLD, 50));
+        title.setFont(new Font(FONT, Font.BOLD, 50));
         title.setForeground(Color.WHITE);
         title.setBounds(POS_TITLE_X, POS_TITLE_Y, TITLE_X, TITLE_Y);
         add(title);
@@ -115,7 +114,7 @@ public class MenuPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent click) {
 
-        switch (click.getActionCommand()){
+        switch (click.getActionCommand()) {
             case GAME:
                 ContentSwitch.switchPanel(ContentSwitch.INTRO);
                 break;

@@ -154,7 +154,7 @@ public class GamePanel extends JPanel implements Runnable {
 
                 this.repaint();
 
-                animazione.sleep(TEMPO_ANIMAZIONE);
+                Thread.sleep(TEMPO_ANIMAZIONE);
             } catch (InterruptedException ex){
 
                 System.out.println("ERRORE THREAD");

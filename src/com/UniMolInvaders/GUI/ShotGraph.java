@@ -15,19 +15,19 @@ public class ShotGraph extends Shot {
     private static final int ENEMY_DIRECTION = 1;
 
 
-    public ShotGraph(Player player){
+    public ShotGraph(Player player) {
         super(player.getPosX(), player.getPosY(), PLAYER_DIRECTION);
         image = new ImageIcon(this.getClass().getResource("./Resources/colpoUp.png")).getImage();
     }
 
-    public ShotGraph(Enemy enemy){
+    public ShotGraph(Enemy enemy) {
         super(enemy.getPosX(), enemy.getPosY(), ENEMY_DIRECTION);
         image = new ImageIcon(this.getClass().getResource("./Resources/colpoDown.png")).getImage();
     }
 
     public void paint(Graphics graphics) {
 
-        Color trasparent = new Color(1f,0f,0f,0f );
+        Color trasparent = new Color(1f, 0f, 0f, 0f);
         graphics.setColor(trasparent);
 
 //        graphics.setColor(Color.YELLOW);
@@ -37,9 +37,8 @@ public class ShotGraph extends Shot {
     }
 
 
-
     public void run() {
-        while (this.isSparato()){
+        while (this.isSparato()) {
             this.muovi(this.getPosY());
         }
     }

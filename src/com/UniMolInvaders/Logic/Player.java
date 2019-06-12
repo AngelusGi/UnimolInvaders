@@ -49,11 +49,11 @@ public class Player implements KeyListener {
         area = new Rectangle(new Point(posX, posX), new Dimension(getDimX(), getDimY()));
     }
 
-    public void move(){
+    public void move() {
 
         //BORDO
         if ((this.posX + this.speedX > 5) &&
-                (this.posX + this.speedX < ContentSwitch.WIM_WIDTH - DIM_X - 20)){
+                (this.posX + this.speedX < ContentSwitch.WIM_WIDTH - DIM_X - 20)) {
 
             this.posX += speedX;
         }
@@ -64,10 +64,10 @@ public class Player implements KeyListener {
     protected boolean decrementLife(Shot shot) {
         //se la lifePoints è maggiore di 1 la decrementa
 
-        if ( isDamaged(shot) && getLifePoints() > 1) {
+        if (isDamaged(shot) && getLifePoints() > 1) {
             setLifePoints(getLifePoints() - shot.getDanno());
 
-        } else if (isDamaged(shot)){
+        } else if (isDamaged(shot)) {
             //altrimenti lo setta come morto
             setAlive(false);
         }
@@ -75,16 +75,15 @@ public class Player implements KeyListener {
         return isAlive();
     }
 
-    private void shot(){
+    private void shot() {
         //todo
 
         setFired(true);
     }
 
 
-
-    public void keyPressed(KeyEvent keyEvent){
-        switch(keyEvent.getKeyCode()){
+    public void keyPressed(KeyEvent keyEvent) {
+        switch (keyEvent.getKeyCode()) {
             case KeyEvent.VK_LEFT:
                 setSpeedX(LEFT);
                 move();
@@ -101,8 +100,8 @@ public class Player implements KeyListener {
         }
     }
 
-    public void keyReleased(KeyEvent keyEvent){
-        switch(keyEvent.getKeyCode()){
+    public void keyReleased(KeyEvent keyEvent) {
+        switch (keyEvent.getKeyCode()) {
             case KeyEvent.VK_LEFT:
 
             case KeyEvent.VK_RIGHT:
@@ -111,7 +110,7 @@ public class Player implements KeyListener {
         }
     }
 
-    protected boolean isDamaged(Shot shot){
+    protected boolean isDamaged(Shot shot) {
         return this.area.intersects(shot.area);
     }
 

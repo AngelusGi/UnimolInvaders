@@ -14,28 +14,26 @@ public class GamePanel extends JPanel {
 
 
     private static final int numAlieni = 10;
+    private static final int ANIMATION_SLEEP = 200;
+    private final int POS_IN_ALIENO = 20;
     private PlayerGraph player;
     private ArrayList<AlienGraph> aliens;
     private BossGraph boss;
-
-    private final int POS_IN_ALIENO = 20;
     private boolean gameStarted;
     private int levelNumber;
-
     private Thread gameThread;
-    private static final int ANIMATION_SLEEP = 200;
 
 
     public GamePanel() {
 
-        setSize(ContentSwitch.WIM_WIDTH, ContentSwitch.WIN_HEIGHT - ContentSwitch.getStats().getWinHeight());
+        setSize(ContentSwitch.WIM_WIDTH, ContentSwitch.WIN_HEIGHT - StatisticheGUI.getWinHeight());
 
         setGameStarted(false);
 //        setLevelNumber(0);
 
     }
 
-    public void startGame(){
+    public void startGame() {
 
         initPlayer();
 
@@ -49,7 +47,7 @@ public class GamePanel extends JPanel {
             initBoss();
         }
 
-        ContentSwitch.getStats().setLifePoints( player.getLifePoints() );
+        ContentSwitch.getStats().setLifePoints(player.getLifePoints());
 
         setGameStarted(true);
         gameThread = new Thread(new GameThread());
@@ -58,7 +56,7 @@ public class GamePanel extends JPanel {
     }
 
 
-    private void muoviBoss(){
+    private void muoviBoss() {
 
         boss.move();
 
@@ -106,7 +104,7 @@ public class GamePanel extends JPanel {
         }
     }
 
-    private void gameOver(){
+    private void gameOver() {
         new EndGamePanel(ContentSwitch.getStats().getPoints(), getLevelNumber());
         ContentSwitch.switchPanel(ContentSwitch.MENU);
         resetPartita();
@@ -131,13 +129,11 @@ public class GamePanel extends JPanel {
                 boss.paint(graphics);
             }
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.INFO, null, ex);
         }
 
     }
-
-
 
 
 //    todo
@@ -150,18 +146,17 @@ public class GamePanel extends JPanel {
         //todo
 
         //IF vinto, livello incrementato di 1
-        if ((aliens != null && aliens.size() == 0) || (boss != null && !boss.isAlive() ) ){
-            setLevelNumber( getLevelNumber() + 1);
+        if ((aliens != null && aliens.size() == 0) || (boss != null && !boss.isAlive())) {
+            setLevelNumber(getLevelNumber() + 1);
             resetPartita();
         }
 
         //else
         //todo finestra inserimento TITLE e salvataggio su file
-        if (!player.isAlive()){
+        if (!player.isAlive()) {
 
             new EndGamePanel(ContentSwitch.getStats().getPoints(), getLevelNumber());
         }
-
 
 
     }
@@ -203,9 +198,6 @@ public class GamePanel extends JPanel {
     }
 
 
-
-
-
 //    //testa la corretta inizializzazione dei livelli e la gestione dei livelli (pari/dispari)
 //    public void stampaLivello() {
 //        System.out.print("Livello: " + levelNumber);
@@ -237,7 +229,7 @@ public class GamePanel extends JPanel {
 //    }
 
 
-    public void resetPartita(){
+    public void resetPartita() {
         setGameStarted(false);
         startGame();
     }
