@@ -23,7 +23,7 @@ public class GamePanel extends JPanel {
     private int levelNumber;
 
     private Thread gameThread;
-    private static final int TEMPO_ANIMAZIONE = 200;
+    private static final int ANIMATION_SLEEP = 200;
 
 
     public GamePanel() {
@@ -270,7 +270,7 @@ public class GamePanel extends JPanel {
             while (isGameStarted()) {
                 try {
 
-                    Thread.sleep(TEMPO_ANIMAZIONE);
+                    Thread.sleep(ANIMATION_SLEEP);
 
                     if (aliens != null) {
                         moveAliens();
