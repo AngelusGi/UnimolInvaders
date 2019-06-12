@@ -23,8 +23,8 @@ public class AlienGraph extends Alien {
 
     private Image image;
 
-    public AlienGraph(int posX, int posY, int velocita){
-        super(posX, posY, velocita);
+    public AlienGraph(int posX, int posY, int speed){
+        super(posX, posY, speed);
         setDimX(DIM_X);
         setDimY(DIM_Y);
         image = new ImageIcon(this.getClass().getResource("./Resources/alieno.png")).getImage();
@@ -36,10 +36,10 @@ public class AlienGraph extends Alien {
 //        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         if (isAlive()){
-            graphics.setColor(Color.RED);
+//            graphics.setColor(Color.RED);
 
-//            Color trasparente = new Color(1f,0f,0f,0f );
-//            graphics.setColor(trasparente);
+            Color trasparente = new Color(1f,0f,0f,0f );
+            graphics.setColor(trasparente);
 
             graphics.fillRect(this.getPosX(), this.getPosY(), this.getDimX(), this.getDimY());
             graphics.drawImage(this.image, this.getPosX(), this.getPosY(), null);
@@ -53,7 +53,7 @@ public class AlienGraph extends Alien {
     }
 
     public void run() {
-        while (isAlive()) {
+        if (isAlive()) {
             move();
         }
     }

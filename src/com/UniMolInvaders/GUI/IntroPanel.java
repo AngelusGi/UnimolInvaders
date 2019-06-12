@@ -34,6 +34,7 @@ public class IntroPanel extends JPanel{
 
     IntroPanel(int pause) {
 
+
         this.images = new ArrayList<>();
 
         this.pause = pause;
@@ -52,9 +53,9 @@ public class IntroPanel extends JPanel{
 
         this.text = new ArrayList<>();
         try {
-            Scanner scanFile = new Scanner(new File(filePath));
-            while (scanFile.hasNextLine()) {
-                this.text.add(scanFile.nextLine());
+            Scanner historyScan = new Scanner(new File(filePath));
+            while (historyScan.hasNextLine()) {
+                this.text.add(historyScan.nextLine());
             }
 
         } catch (FileNotFoundException ex) {
@@ -78,21 +79,22 @@ public class IntroPanel extends JPanel{
 
         super.paint(graphics);
 
-        Graphics2D screen2D = (Graphics2D) graphics;
-        screen2D.setColor(Color.BLACK);
-        screen2D.fillRect(0, 0, ContentSwitch.WIM_WIDTH, ContentSwitch.WIN_HEIGHT);
+//        Graphics2D screen2D = (Graphics2D) graphics;
+        graphics.setColor(Color.BLACK);
+        graphics.fillRect(0, 0, ContentSwitch.WIM_WIDTH, ContentSwitch.WIN_HEIGHT);
 
 
         if ((images.get(pos) != null) && (text.get(pos) != null)) {
-            screen2D.drawImage(images.get(pos), imageX, imageY, this);
-            screen2D.setColor(textColor);
-            screen2D.setFont(MenuPanel.getGeneralFont());
-            screen2D.drawString(text.get(pos), textX, textY);
+            graphics.drawImage(images.get(pos), imageX, imageY, this);
+            graphics.setColor(textColor);
+            graphics.setFont(MenuPanel.getGeneralFont());
+            graphics.drawString(text.get(pos), textX, textY);
 
         } else {
-            screen2D.setColor(textColor);
-            screen2D.setFont(MenuPanel.getGeneralFont());
-            screen2D.drawString("ERRORE CARICAMENTO CONTENUTO", textX, textY);
+            graphics.setColor(textColor);
+            graphics.setFont(MenuPanel.getGeneralFont());
+            graphics.drawString("ERRORE CARICAMENTO CONTENUTO", textX, textY);
+
         }
 
     }
@@ -107,8 +109,8 @@ public class IntroPanel extends JPanel{
 
     private void stop() {
 
-        this.animation = null;
         this.finish = true;
+        this.animation = null;
 
         ContentSwitch.switchPanel(ContentSwitch.GAME);
         repaint();
@@ -128,7 +130,9 @@ public class IntroPanel extends JPanel{
 
                     if (pos < images.size() - 1) {
                         pos++;
+
                     } else {
+
                         stop();
                     }
 

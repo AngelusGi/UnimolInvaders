@@ -2,6 +2,8 @@ package UniMolInvaders.GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 
 public class ContentSwitch extends JFrame {
@@ -27,28 +29,32 @@ public class ContentSwitch extends JFrame {
     private static final Point GAME_ANCHOR = new Point(0,50);
 
     public ContentSwitch(){
+
         setSize(WIM_WIDTH, WIN_HEIGHT);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+
+        addKeyListener(new PlayerListner());
         setFocusable(true);
 
         menu = new MenuPanel();
-        game = new GamePanel();
-        intro = new IntroPanel(TEST_PAUSE);
-        stats = new StatisticheGUI();
-
         menu.setLocation(ORIGIN);
-        stats.setLocation(ORIGIN);
-        game.setLocation(GAME_ANCHOR);
-        intro.setLocation(ORIGIN);
-
-
-        getContentPane().add(intro);
-        getContentPane().add(game);
         getContentPane().add(menu);
 
-//        addKeyListener(new MyListener());
+        intro = new IntroPanel(TEST_PAUSE);
+        intro.setLocation(ORIGIN);
+        getContentPane().add(intro);
+
+        game = new GamePanel();
+        game.setLocation(GAME_ANCHOR);
+        getContentPane().add(game);
+
+        stats = new StatisticheGUI();
+        stats.setLocation(ORIGIN);
+        getContentPane().add(stats);
+
+        setVisible(true);
 
     }
 
@@ -68,6 +74,7 @@ public class ContentSwitch extends JFrame {
                 stats.setVisible(false);
                 intro.setVisible(true);
                 intro.startAnimation();
+                break;
 
             case GAME:
                 intro.setVisible(false);
@@ -87,30 +94,30 @@ public class ContentSwitch extends JFrame {
         return stats;
     }
 
-    //    private class MyListener extends KeyAdapter {
-//
-//        @Override
-//        public void keyTyped(KeyEvent tasto) {
-//        }
-//
-//        @Override
-//        public void keyReleased(KeyEvent tasto) {
-//            menu.keyReleased(tasto);
-//        }
-//
-//        @Override
-//        public void keyPressed(KeyEvent tasto) {
-//            menu.keyPressed(tasto);
-//        }
-//
-//    }
-//
-//
-//    public static void main(String[] args) {
-//
-//        new ContentSwitch();
-//
-//    }
+    private class PlayerListner implements KeyListener {
+
+        public void keyTyped(KeyEvent key) {
+        }
+
+        @Override
+        public void keyReleased(KeyEvent key) {
+            if (key.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                //todo gameOver
+                getGame().setGameStarted(false);
+                getGame().winOrLoose();
+//                System.exit(1);
+            }
+
+            getGame().getPlayer().keyReleased(key);
+        }
+
+        @Override
+        public void keyPressed(KeyEvent key) {
+            System.out.println("press");
+            getGame().getPlayer().keyPressed(key);
+        }
+
+    }
 
 }
 

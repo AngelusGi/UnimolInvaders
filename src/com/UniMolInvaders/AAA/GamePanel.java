@@ -84,7 +84,7 @@ public class GamePanel extends JPanel implements Runnable {
         for (int i = 0; i < alieni.size(); i++) {
 
             if (alieni.get(i).posX + alieni.get(i).velocita < 0){
-//                alieni.get(i).velocita = Alien.DESTRA;
+//                alieni.get(i).velocita = Alien.RIGHT;
 //                alieni.get(i).posY += 30;
                 for (int j = 0; j < alieni.size(); j++) {
                     alieni.get(j).velocita = Alieno.DESTRA;
@@ -92,11 +92,9 @@ public class GamePanel extends JPanel implements Runnable {
 
                 }
 
-            } else
-
-            if (alieni.get(i).posX + alieni.get(i).velocita > Start.DIM_FINESTRA_LARGHEZZA - Alieno.DIM_ALINEO - 20) {
+            } else if (alieni.get(i).posX + alieni.get(i).velocita > Start.DIM_FINESTRA_LARGHEZZA - Alieno.DIM_ALINEO - 20) {
                 //BORDO DX
-//                alieni.get(i).velocita = Alien.SINISTRA;
+//                alieni.get(i).velocita = Alien.LELFT;
 //                alieni.get(i).posY += 30;
                 for (int j = 0; j < alieni.size(); j++) {
                     alieni.get(j).velocita = Alieno.SINISTRA;
@@ -113,14 +111,14 @@ public class GamePanel extends JPanel implements Runnable {
 //        for (Alien alieno : alieni){
 //            //BORDO SX
 //            if (alieno.posX + alieno.velocita < 0){
-//                alieno.velocita = Alien.DESTRA;
+//                alieno.velocita = Alien.RIGHT;
 //                alieno.posY += 67;
 //
 //            } else
 //
 //            if (alieno.posX + alieno.velocita > ContentSwitch.WIM_WIDTH - Alien.DIM_ALINEO - 20) {
 //                //BORDO DX
-//                alieno.velocita = Alien.SINISTRA;
+//                alieno.velocita = Alien.LELFT;
 //                alieno.posY +=  + 67;
 //                alieno.posX += alieno.velocita - 30;
 //

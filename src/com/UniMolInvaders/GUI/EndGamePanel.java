@@ -13,7 +13,9 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.logging.Logger;
 
-public class EndPanel extends JPanel {
+import com.opencsv.CSVWriter;
+
+public class EndGamePanel extends JPanel {
 
 
     private JLabel endGame;
@@ -26,7 +28,7 @@ public class EndPanel extends JPanel {
     private String playerName;
 
 
-    public EndPanel(int points, int level){
+    public EndGamePanel(int points, int level){
 
         this.points = points;
         this.level = level;

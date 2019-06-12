@@ -15,7 +15,7 @@ public class HelpPanel extends JPanel {
                 + "\nPer terminare anticipatamente la partita utilizza il tasto ESC"
                 + "\n\nBuon divertimento! ☺";
 
-        JOptionPane.showConfirmDialog(null, istruzioni, ContentSwitch.TITLE, JOptionPane.DEFAULT_OPTION);
+        JOptionPane.showConfirmDialog(null, istruzioni, ContentSwitch.TITLE + " - Aiuto", JOptionPane.DEFAULT_OPTION);
         
     }
 

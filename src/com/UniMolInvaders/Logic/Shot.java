@@ -1,5 +1,7 @@
 package UniMolInvaders.Logic;
 
+import java.awt.*;
+
 /********************************
  *
  *   user:      angel
@@ -18,6 +20,10 @@ public class Shot {
     private int posX;
     private int posY;
 
+    private static final int DIM_X = 11;
+    private static final int DIM_Y = 29;
+
+    protected Rectangle area;
 
     public Shot(int posX, int posY, int direzione) {
         setSparato(false);
@@ -25,8 +31,19 @@ public class Shot {
         setPosX(posX);
         setPosY(posY);
         setVelocita(direzione);
-
+        area = new Rectangle(new Point(posX, posX), new Dimension(getDimX(), getDimY()));
     }
+
+
+
+    public int getDimX() {
+        return DIM_X;
+    }
+
+    public int getDimY() {
+        return DIM_Y;
+    }
+
 
     public void setVelocita(int direzione) {
         this.velocita *= direzione;

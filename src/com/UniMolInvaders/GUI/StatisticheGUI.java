@@ -6,23 +6,22 @@ import java.awt.*;
 public class StatisticheGUI extends JPanel {
 
     private int points;
-    private int lifes;
+    private int life;
     private Image lifeIcon;
 
-    private static final int DISTANCE = 50;
+    private static final int DISTANCE = 30;
     private static final int LIFE_DIM = 15;
-    private static final String POINT = "PUNTI ";
-    private static final String HIGH_SCORE = "PUNTEGGIO PIÙ ALTO: ";
+    private static final int WIN_HEIGHT = 50;
+    private static final String POINT = "PUNTI: ";
+    private static final String HIGH_SCORE = "HIGHEST SCORE: ";
     private static final String PLAYER_HIGHT_SCORE = " DI: ";
     private static final String LIFE = "VITE: ";
-    private static final String LEVEL = "LIVELLO:: ";
+    private static final String LEVEL = "LIVELLO: ";
 
     public StatisticheGUI(){
 
-        this.setBackground(Color.BLACK);
+        setSize(ContentSwitch.WIM_WIDTH, WIN_HEIGHT);
         lifeIcon = new ImageIcon(this.getClass().getResource("./Resources/cuore.png")).getImage();
-        lifes = ContentSwitch.getGame().getGiocatore().getLifePoints();
-        points = ContentSwitch.getStats().getPoints();
 
     }
 
@@ -30,23 +29,26 @@ public class StatisticheGUI extends JPanel {
     public void paint(Graphics grafica) {
         super.paint(grafica);
 
-        grafica.setColor(Color.WHITE);
+        grafica.setColor(Color.BLACK);
 
         grafica.setFont(MenuPanel.getGeneralFont());
         grafica.drawString(LEVEL + ContentSwitch.getGame().getLevelNumber(), DISTANCE, DISTANCE);
-        grafica.drawString(POINT + points, DISTANCE * 6, DISTANCE);
+        grafica.drawString(POINT + points, DISTANCE * 5, DISTANCE);
 
-        grafica.drawString(LIFE + lifes, DISTANCE * 3, DISTANCE);
+//        grafica.drawString(LIFE + life, DISTANCE * 10, DISTANCE);
+        grafica.drawString(LIFE, DISTANCE * 10, DISTANCE);
 
-        for (int i = 1; i <= lifes; i++) {
+        for (int i = 1; i <= 3; i++) {
 
-            grafica.drawImage(lifeIcon, DISTANCE * i, DISTANCE, LIFE_DIM, LIFE_DIM, null);
+            grafica.drawImage(lifeIcon, (DISTANCE * 11) + DISTANCE * i, DISTANCE - 15, LIFE_DIM, LIFE_DIM, null);
         }
 
-        grafica.drawString(POINT + getPoints(), DISTANCE * 6, DISTANCE);
-        grafica.drawString(HIGH_SCORE + getPunteggioMax(), DISTANCE * 6, DISTANCE);
-        grafica.drawString(PLAYER_HIGHT_SCORE + nomeGiocatoreMax(), DISTANCE * 6, DISTANCE);
-        grafica.drawString(POINT + getPoints(), DISTANCE * 6, DISTANCE);
+
+//        grafica.drawString(HIGH_SCORE + getHighestScore(), DISTANCE * 6, DISTANCE);
+//        grafica.drawString(PLAYER_HIGHT_SCORE + getTopPlayer(), DISTANCE * 6, DISTANCE);
+//
+        grafica.drawString(HIGH_SCORE + 10000, DISTANCE * 19, DISTANCE);
+        grafica.drawString(PLAYER_HIGHT_SCORE + "Angelo", DISTANCE * 27, DISTANCE);
 
     }
 
@@ -59,18 +61,22 @@ public class StatisticheGUI extends JPanel {
         return points;
     }
 
-    public void setLifes(int lifes) {
-        this.lifes = lifes;
+    public void setLifePoints(int life) {
+        this.life = life;
     }
 
-    private String nomeGiocatoreMax(){
-        //todo
-        return ;
+    public static int getWinHeight() {
+        return WIN_HEIGHT;
     }
 
-    private String getPunteggioMax(){
-        //todo
-        return ;
-    }
+    //    private String getTopPlayer(){
+//        //todo
+//        return ;
+//    }
+//
+//    private String getHighestScore(){
+//        //todo
+//        return ;
+//    }
 
 }

@@ -2,6 +2,8 @@ package UniMolInvaders.Logic;
 
 import UniMolInvaders.GUI.ContentSwitch;
 
+import java.awt.*;
+
 /********************************
  *
  *   user:      angel
@@ -14,9 +16,9 @@ import UniMolInvaders.GUI.ContentSwitch;
 
 public abstract class Enemy {
 
-    public static final int DESTRA = 1;
-    public static final int SINISTRA = -1;
-    private static final int DIREZIONE_COLPO = 1;
+    public static final int RIGHT = 1;
+    public static final int LELFT = -1;
+    private static final int SHOT_DIRECTION = 1;
 
     private int posX;
     private int posY;
@@ -26,19 +28,19 @@ public abstract class Enemy {
     private int dimX;
     private int dimY;
 
-    public boolean alive;
+    private boolean alive;
     private int lifePoints;
 
     private Shot shot;
 
+    protected Rectangle area;
 
     public Enemy(int posX, int posY, int speed){
-
         setPosX(posX);
         setPosY(posY);
         setAlive(true);
-        setVelocita(speed);
-
+        setSpeedX(speed);
+        area = new Rectangle(new Point(posX, posX), new Dimension(getDimX(), getDimY()));
     }
 
     protected boolean decrementLife(){
@@ -58,13 +60,13 @@ public abstract class Enemy {
 
         //BORDO SX
         if (this.posX + getSpeedX()  < 0){
-            setSpeedX( getSpeedX() * DESTRA);
+            setSpeedX( getSpeedX() * RIGHT);
 //            this.posY = posY + 67;
             setSpeedY( getSpeedY() + 50);
 
         //BORDO DX
         } else if (this.posX + getSpeedX() > ContentSwitch.WIM_WIDTH - getDimX() - 20) {
-            setSpeedX(getSpeedX() * SINISTRA);
+            setSpeedX( getSpeedX() * LELFT);
             setSpeedY( getSpeedY() + 50);
 
         }
@@ -72,25 +74,18 @@ public abstract class Enemy {
         this.posX += getSpeedX();
     }
 
-    public void spara(){
+    protected boolean damage(Shot shot){
+        return this.area.intersects(shot.area);
+    }
+
+    public void shoot(){
 
         if (!shot.isSparato()){
-            shot = new Shot(this.getPosX(), this.getPosY(), DIREZIONE_COLPO);
+            shot = new Shot(this.getPosX(), this.getPosY(), SHOT_DIRECTION);
             shot.setSparato(true);
             shot.muovi(getPosY());
         }
 
-    }
-
-
-    public void setVelocita(int livello){
-
-        if ((livello <= 1)){
-            setSpeedX(10);
-//            setSpeedY(getSpeedY() * livello);
-        }
-        setSpeedX(getSpeedX() * livello);
-        setSpeedY(getSpeedY() * livello);
     }
 
 
@@ -114,8 +109,14 @@ public abstract class Enemy {
         return speedX;
     }
 
-    public void setSpeedX(int speedX) {
-        this.speedX = speedX;
+    public void setSpeedX(int levelNumber) {
+
+        if ((levelNumber < 2)){
+            this.speedX = 10;
+        } else {
+            this.speedX *= levelNumber;
+        }
+
     }
 
     private int getSpeedY() {
@@ -134,7 +135,7 @@ public abstract class Enemy {
         this.lifePoints = lifePoints;
     }
 
-    protected boolean isAlive() {
+    public boolean isAlive() {
         return alive;
     }
 

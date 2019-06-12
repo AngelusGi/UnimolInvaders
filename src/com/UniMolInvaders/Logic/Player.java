@@ -2,6 +2,7 @@ package UniMolInvaders.Logic;
 
 import UniMolInvaders.GUI.ContentSwitch;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -17,8 +18,8 @@ import java.awt.event.KeyListener;
 
 public class Player implements KeyListener {
 
-    private final int DESTRA = 5;
-    private final int SINISTRA = -5;
+    private final int RIGHT = 5;
+    private final int LEFT = -5;
     private final int STOP = 0;
 
     private int posX;
@@ -27,14 +28,16 @@ public class Player implements KeyListener {
     private static int LIFE_POINTS = 5;
 
     private int lifePoints;
-    boolean alive;
-    boolean fired;
+    private boolean alive;
+    private boolean fired;
+    private int points;
 
     public static final int DIM_X = 39;
     public static final int DIM_Y = 60;
 
     private Shot shot;
 
+    protected Rectangle area;
 
     public Player(int posX, int posY) {
         setPosX(posX);
@@ -42,7 +45,8 @@ public class Player implements KeyListener {
         setLifePoints(LIFE_POINTS);
         setAlive(true);
         setFired(false);
-
+        setSpeedX(STOP);
+        area = new Rectangle(new Point(posX, posX), new Dimension(getDimX(), getDimY()));
     }
 
     public void move(){
@@ -57,11 +61,13 @@ public class Player implements KeyListener {
     }
 
 
-    protected boolean decrementLife() {
+    protected boolean decrementLife(Shot shot) {
         //se la lifePoints è maggiore di 1 la decrementa
-        if (getLifePoints() > 1) {
+
+        if ( isDamaged(shot) && getLifePoints() > 1) {
             setLifePoints(getLifePoints() - shot.getDanno());
-        } else {
+
+        } else if (isDamaged(shot)){
             //altrimenti lo setta come morto
             setAlive(false);
         }
@@ -75,14 +81,20 @@ public class Player implements KeyListener {
         setFired(true);
     }
 
+
+
     public void keyPressed(KeyEvent keyEvent){
         switch(keyEvent.getKeyCode()){
             case KeyEvent.VK_LEFT:
-                setSpeedX(SINISTRA);
+                setSpeedX(LEFT);
+                move();
                 break;
+
             case KeyEvent.VK_RIGHT:
-                setSpeedX(DESTRA);
+                setSpeedX(RIGHT);
+                move();
                 break;
+
             case KeyEvent.VK_SPACE:
                 shot();
                 break;
@@ -97,6 +109,10 @@ public class Player implements KeyListener {
                 setSpeedX(STOP);
                 break;
         }
+    }
+
+    protected boolean isDamaged(Shot shot){
+        return this.area.intersects(shot.area);
     }
 
     @Override
@@ -154,12 +170,12 @@ public class Player implements KeyListener {
     }
 
 
-    public int getDIM_GIOCATORE_X() {
+    public int getDimX() {
         return DIM_X;
     }
 
 
-    public int getDIM_GIOCATORE_Y() {
+    public int getDimY() {
         return DIM_Y;
     }
 
@@ -170,6 +186,5 @@ public class Player implements KeyListener {
     public void setSpeedX(int speedX) {
         this.speedX = speedX;
     }
-
 
 }

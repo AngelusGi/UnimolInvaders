@@ -1,12 +1,11 @@
 package UniMolInvaders.GUI;
 
+
 import UniMolInvaders.Logic.Enemy;
 import UniMolInvaders.Logic.Player;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,55 +14,45 @@ public class GamePanel extends JPanel {
 
 
     private static final int numAlieni = 10;
-    private PlayerGraph giocatore;
+    private PlayerGraph player;
     private ArrayList<AlienGraph> aliens;
     private BossGraph boss;
 
-    private int levelNumber = 0;
     private final int POS_IN_ALIENO = 20;
     private boolean gameStarted;
+    private int levelNumber;
 
-
-    private Thread thre;
     private Thread gameThread;
-    private static final int TEMPO_ANIMAZIONE = 100;
+    private static final int TEMPO_ANIMAZIONE = 200;
 
 
     public GamePanel() {
 
-        setLevelNumber(0);
-        addKeyListener(new PlayerListner());
-        setFocusable(true);
-        setVisible(true);
+        setSize(ContentSwitch.WIM_WIDTH, ContentSwitch.WIN_HEIGHT - ContentSwitch.getStats().getWinHeight());
+
+        setGameStarted(false);
+//        setLevelNumber(0);
+
     }
-
-
-//    todo
-//    private boolean collision() {
-//        return this.giocatore.getDimesnione().intersects(getBounds());
-//    }
 
     public void startGame(){
 
         initPlayer();
 
-        if (isPari(levelNumber)) {
+        if (isEven(levelNumber)) {
 
             // se il livello è pari (0, 2,...) aliens normali, altrimenti BOSS
-            // se il livello è 0, inizializza punteggio, altrimenti resta invariato
-
             aliens = new ArrayList<>();
             initAliens();
-            moveAliens();
 
         } else {
-
             initBoss();
-            boss.move();
         }
 
+        ContentSwitch.getStats().setLifePoints( player.getLifePoints() );
+
         setGameStarted(true);
-        gameThread = new Thread(new ThreadGioco());
+        gameThread = new Thread(new GameThread());
         gameThread.start();
 
     }
@@ -73,10 +62,9 @@ public class GamePanel extends JPanel {
 
         boss.move();
 
-        if (boss.getPosY() + boss.getDimY() >= giocatore.getPosY()) {
+        if (boss.getPosY() + boss.getDimY() >= player.getPosY()) {
             //se raggiongoe il personaggio, game over
-
-            //todo GAME OVER
+            gameOver();
         }
     }
 
@@ -89,7 +77,7 @@ public class GamePanel extends JPanel {
                 //gestisce bordo SX e scende tutti gli aliens di 30px
 
                 for (int j = 0; j < aliens.size(); j++) {
-                    aliens.get(j).setSpeedX(Enemy.DESTRA);
+                    aliens.get(j).setSpeedX(Enemy.RIGHT);
                     aliens.get(j).setPosY(aliens.get(j).getPosY() + 30);
 
                 }
@@ -99,7 +87,7 @@ public class GamePanel extends JPanel {
                 //gestisce bordo SX e scende tutti gli aliens di 30px
 
                 for (int j = 0; j < aliens.size(); j++) {
-                    aliens.get(j).setSpeedX(Enemy.SINISTRA);
+                    aliens.get(j).setSpeedX(Enemy.LELFT);
                     aliens.get(j).setPosY(aliens.get(j).getPosY() + 30);
 
                 }
@@ -110,15 +98,18 @@ public class GamePanel extends JPanel {
                 aliens.get(i).setPosX(aliens.get(i).getPosX() + aliens.get(i).getSpeedX());
             }
 
-            if (aliens.get(i).getPosY() + aliens.get(i).getDimY() >= giocatore.getPosY()) {
+            if (aliens.get(i).getPosY() + aliens.get(i).getDimY() >= player.getPosY()) {
                 //se raggiongono il personaggio, game over
-                new EndPanel(ContentSwitch.getStats().getPoints(), getLevelNumber());
-                ContentSwitch.switchPanel(ContentSwitch.MENU);
-                resetPartita();
-                //todo GAME OVER
+                gameOver();
             }
 
         }
+    }
+
+    private void gameOver(){
+        new EndGamePanel(ContentSwitch.getStats().getPoints(), getLevelNumber());
+        ContentSwitch.switchPanel(ContentSwitch.MENU);
+        resetPartita();
     }
 
     @Override
@@ -126,21 +117,21 @@ public class GamePanel extends JPanel {
         super.paint(graphics);
 
         try {
-            if (giocatore.isAlive()) {
-                giocatore.paint(graphics);
+            if (player != null && player.isAlive()) {
+                player.paint(graphics);
             }
 
-            if (aliens.size() > 0) {
+            if (aliens != null && aliens.size() > 0) {
                 for (AlienGraph alien : aliens) {
                     alien.paint(graphics);
                 }
             }
 
-            if (boss.alive) {
+            if (boss != null && boss.isAlive()) {
                 boss.paint(graphics);
             }
 
-        } catch (NullPointerException ex){
+        } catch (Exception ex){
             Logger.getLogger(this.getClass().getName()).log(Level.INFO, null, ex);
         }
 
@@ -151,21 +142,26 @@ public class GamePanel extends JPanel {
 
 //    todo
 //    private boolean collision() {
-//        return this.giocatore.getDimesnione().intersects(getBounds());
+//        return this.player.getDimesnione().intersects(getBounds());
 //    }
 
 
-    private void vintoPerso() {
+    protected void winOrLoose() {
         //todo
 
         //IF vinto, livello incrementato di 1
-        setLevelNumber(getLevelNumber() + 1);
+        if ((aliens != null && aliens.size() == 0) || (boss != null && !boss.isAlive() ) ){
+            setLevelNumber( getLevelNumber() + 1);
+            resetPartita();
+        }
 
         //else
         //todo finestra inserimento TITLE e salvataggio su file
-        if (!giocatore.isAlive())
+        if (!player.isAlive()){
 
-            new EndPanel(ContentSwitch.getStats().getPoints(), getLevelNumber());
+            new EndGamePanel(ContentSwitch.getStats().getPoints(), getLevelNumber());
+        }
+
 
 
     }
@@ -198,11 +194,10 @@ public class GamePanel extends JPanel {
 
     private void initPlayer() {
 
-        this.giocatore = new PlayerGraph(ContentSwitch.WIM_WIDTH / 2, ContentSwitch.WIN_HEIGHT - Player.DIM_Y - 10);
-
+        this.player = new PlayerGraph(ContentSwitch.WIM_WIDTH / 2 - 40, ContentSwitch.getGame().getHeight() - Player.DIM_Y - 40);
     }
 
-    private boolean isPari(int levelNumber) {
+    private boolean isEven(int levelNumber) {
         //se il livello è pari (0, 2,...) ritorna TRUE, altrimenti FALSE
         return levelNumber % 2 == 0;
     }
@@ -214,7 +209,7 @@ public class GamePanel extends JPanel {
 //    //testa la corretta inizializzazione dei livelli e la gestione dei livelli (pari/dispari)
 //    public void stampaLivello() {
 //        System.out.print("Livello: " + levelNumber);
-//        System.out.println(" è pari: " + isPari(levelNumber));
+//        System.out.println(" è pari: " + isEven(levelNumber));
 //        if (levelNumber <= 5) {
 //            levelNumber += 1;
 //        } else {
@@ -237,20 +232,18 @@ public class GamePanel extends JPanel {
 //        System.out.println("\nBoss > " + boss + "\n");
 //
 //        initPlayer();
-//        System.out.println("giocatore > " + giocatore + "\n");
+//        System.out.println("player > " + player + "\n");
 //
 //    }
 
 
     public void resetPartita(){
-
         setGameStarted(false);
-        setLevelNumber(0);
         startGame();
     }
 
-    public PlayerGraph getGiocatore() {
-        return giocatore;
+    public PlayerGraph getPlayer() {
+        return player;
     }
 
     protected int getLevelNumber() {
@@ -270,31 +263,7 @@ public class GamePanel extends JPanel {
         this.gameStarted = gameStarted;
     }
 
-    private class PlayerListner extends KeyAdapter {
-
-        public void keyTyped(KeyEvent tasto) {
-        }
-
-        @Override
-        public void keyReleased(KeyEvent tasto) {
-            if (tasto.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                //todo gameOver
-                setGameStarted(false);
-                vintoPerso();
-            }
-
-            giocatore.keyReleased(tasto);
-
-        }
-
-        @Override
-        public void keyPressed(KeyEvent tasto) {
-            giocatore.keyPressed(tasto);
-        }
-
-    }
-
-    private class ThreadGioco implements Runnable {
+    private class GameThread implements Runnable {
 
         @Override
         public void run() {
@@ -308,14 +277,14 @@ public class GamePanel extends JPanel {
                     }
 
                     if (boss != null) {
-                        muoviBoss();
+//                        muoviBoss();
+                        boss.run();
                     }
 
-                    giocatore.move();
-
+                    player.move();
+                    winOrLoose();
                     repaint();
-
-                    vintoPerso();
+                    ContentSwitch.getStats().repaint();
 
                 } catch (Exception e) {
                     //eccezione generic perché possono andarci sia NullPointer, sia Interrupted

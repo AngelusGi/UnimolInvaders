@@ -24,7 +24,7 @@ public class AboutPanel extends JPanel {
                     + "\nscopo esplicativo ed a beneficio del possessore, senza alcun fine di violazione dei diritti di Copyright vigenti.\n";
 
 
-        JOptionPane.showConfirmDialog(null, credits, ContentSwitch.TITLE, JOptionPane.DEFAULT_OPTION);
+        JOptionPane.showConfirmDialog(null, credits, ContentSwitch.TITLE + " - Crediti", JOptionPane.DEFAULT_OPTION);
         
     }
 
