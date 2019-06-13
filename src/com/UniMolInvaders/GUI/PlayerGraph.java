@@ -16,14 +16,15 @@ public class PlayerGraph extends Player {
     }
 
 
-    public void paint(Graphics graphics) {
+    public void paint(Graphics2D graphics) {
 
         if (isAlive()) {
+
             Color trasparent = new Color(0f, 0f, 0f, 0f);
             graphics.setColor(trasparent);
 
             //CREA UN RETTANGOLO DI DIM_ALIENIxDIM_ALIENI PER OGNI ALIENO NELLA MATRICE
-            graphics.fillRect(this.getPosX(), this.getPosY(), this.getDimX(), this.getDimY());
+//            graphics.fillRect(this.getPosX(), this.getPosY(), this.getDimX(), this.getDimY());
             graphics.drawImage(this.getImage(), this.getPosX(), this.getPosY(), trasparent, null);
         }
     }

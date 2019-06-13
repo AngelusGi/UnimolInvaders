@@ -22,6 +22,7 @@ public class AlienGraph extends Alien {
     private final int DIM_Y = 50;
 
     private Image image;
+    private ShotGraph shot;
 
     public AlienGraph(int posX, int posY, int speed) {
         super(posX, posY, speed);
@@ -30,32 +31,32 @@ public class AlienGraph extends Alien {
         image = new ImageIcon(this.getClass().getResource("./Resources/alieno.png")).getImage();
     }
 
-    public void paint(Graphics graphics) {
+    public void paint(Graphics2D graphics) {
 
         //RENDE I BORDI DEI COMPONENTI 2D PIù SMUSSATI
-//        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         if (isAlive()) {
-//            graphics.setColor(Color.RED);
 
             Color trasparente = new Color(1f, 0f, 0f, 0f);
             graphics.setColor(trasparente);
 
-            graphics.fillRect(this.getPosX(), this.getPosY(), this.getDimX(), this.getDimY());
+//            graphics.fillRect(this.getPosX(), this.getPosY(), this.getDimX(), this.getDimY());
             graphics.drawImage(this.image, this.getPosX(), this.getPosY(), null);
         }
 
     }
 
-    public Rectangle getBounds() {
+    public void shoot() {
 
-        return new Rectangle(this.getPosX(), this.getPosY(), this.getDimX(), this.getDimY());
-    }
+        if (shot == null) {
 
-    public void run() {
-        if (isAlive()) {
-            move();
+            shot = new ShotGraph(this.getPosX() + this.DIM_X / 2, this.getPosY() + this.DIM_Y, ShotGraph.ENEMY_DIRECTION);
+            if (shot.isShooted()) {
+                shot.setShooted(false);
+            }
         }
+
     }
 
 }

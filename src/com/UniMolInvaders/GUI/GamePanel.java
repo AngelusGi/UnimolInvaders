@@ -7,29 +7,33 @@ import UniMolInvaders.Logic.Player;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GamePanel extends JPanel {
 
 
-    private static final int numAlieni = 10;
+    private static final int numAlieni = 14;
     private static final int ANIMATION_SLEEP = 200;
-    private final int POS_IN_ALIENO = 20;
+    private static int MAX_WAIT = 2000;
+    private final int INIT_POS_ALIEN = 10;
     private PlayerGraph player;
     private ArrayList<AlienGraph> aliens;
     private BossGraph boss;
     private boolean gameStarted;
     private int levelNumber;
     private Thread gameThread;
+    private Thread shooterThread;
+    private Image image;
 
 
     public GamePanel() {
 
-        setSize(ContentSwitch.WIM_WIDTH, ContentSwitch.WIN_HEIGHT - StatisticheGUI.getWinHeight());
-
+        setSize(ContentSwitch.WIN_WIDTH, ContentSwitch.WIN_HEIGHT - StatisticsPanel.getWinHeight());
+        image = new ImageIcon(this.getClass().getResource("./Resources/background.jpg")).getImage();
         setGameStarted(false);
-//        setLevelNumber(0);
+        setLevelNumber(1);
 
     }
 
@@ -40,11 +44,12 @@ public class GamePanel extends JPanel {
         if (isEven(levelNumber)) {
 
             // se il livello è pari (0, 2,...) aliens normali, altrimenti BOSS
-            aliens = new ArrayList<>();
             initAliens();
+            boss = null;
 
         } else {
             initBoss();
+            aliens = null;
         }
 
         ContentSwitch.getStats().setLifePoints(player.getLifePoints());
@@ -52,13 +57,15 @@ public class GamePanel extends JPanel {
         setGameStarted(true);
         gameThread = new Thread(new GameThread());
         gameThread.start();
+        shooterThread = new Thread(new ShooterThread());
+        shooterThread.start();
 
     }
 
 
     private void muoviBoss() {
 
-        boss.move();
+        boss.run();
 
         if (boss.getPosY() + boss.getDimY() >= player.getPosY()) {
             //se raggiongoe il personaggio, game over
@@ -75,17 +82,17 @@ public class GamePanel extends JPanel {
                 //gestisce bordo SX e scende tutti gli aliens di 30px
 
                 for (int j = 0; j < aliens.size(); j++) {
-                    aliens.get(j).setSpeedX(Enemy.RIGHT);
+                    aliens.get(j).changeDirection(Enemy.CHANGE_DIR);
                     aliens.get(j).setPosY(aliens.get(j).getPosY() + 30);
 
                 }
 
-            } else if (aliens.get(i).getPosX() + aliens.get(i).getSpeedX() > ContentSwitch.WIM_WIDTH - aliens.get(i).getDimX() - 20) {
+            } else if (aliens.get(i).getPosX() + aliens.get(i).getSpeedX() > ContentSwitch.WIN_WIDTH - aliens.get(i).getDimX() - 20) {
 
                 //gestisce bordo SX e scende tutti gli aliens di 30px
 
                 for (int j = 0; j < aliens.size(); j++) {
-                    aliens.get(j).setSpeedX(Enemy.LELFT);
+                    aliens.get(j).changeDirection(Enemy.CHANGE_DIR);
                     aliens.get(j).setPosY(aliens.get(j).getPosY() + 30);
 
                 }
@@ -104,29 +111,35 @@ public class GamePanel extends JPanel {
         }
     }
 
-    private void gameOver() {
-        new EndGamePanel(ContentSwitch.getStats().getPoints(), getLevelNumber());
-        ContentSwitch.switchPanel(ContentSwitch.MENU);
-        resetPartita();
+    protected void gameOver() {
+        this.reset();
+        ContentSwitch.getIntro().reset();
+        ContentSwitch.getEndGame().setPoints();
+        ContentSwitch.getEndGame().setLevel();
+        ContentSwitch.switchPanel(ContentSwitch.END);
     }
 
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
 
+        Graphics2D graphics2D = (Graphics2D) graphics;
+
+        graphics.drawImage(image, 0, 0, null);
+
         try {
             if (player != null && player.isAlive()) {
-                player.paint(graphics);
+                player.paint(graphics2D);
             }
 
             if (aliens != null && aliens.size() > 0) {
                 for (AlienGraph alien : aliens) {
-                    alien.paint(graphics);
+                    alien.paint(graphics2D);
                 }
             }
 
-            if (boss != null && boss.isAlive()) {
-                boss.paint(graphics);
+            if (boss != null) {
+                boss.paint(graphics2D);
             }
 
         } catch (Exception ex) {
@@ -148,14 +161,13 @@ public class GamePanel extends JPanel {
         //IF vinto, livello incrementato di 1
         if ((aliens != null && aliens.size() == 0) || (boss != null && !boss.isAlive())) {
             setLevelNumber(getLevelNumber() + 1);
-            resetPartita();
+            reset();
         }
 
         //else
         //todo finestra inserimento TITLE e salvataggio su file
         if (!player.isAlive()) {
-
-            new EndGamePanel(ContentSwitch.getStats().getPoints(), getLevelNumber());
+            gameOver();
         }
 
 
@@ -163,33 +175,36 @@ public class GamePanel extends JPanel {
 
 
     private void initAliens() {
-        int posX = POS_IN_ALIENO;
-        int posY = POS_IN_ALIENO;
+
+        int posX = INIT_POS_ALIEN;
+        int posY = INIT_POS_ALIEN;
+
+        this.aliens = new ArrayList<>();
 
         for (int i = 0; i < numAlieni; i++) {
 
             AlienGraph alieno = new AlienGraph(posX, posY, getLevelNumber());
 
             aliens.add(i, alieno);
-            posX += alieno.getDimX() + POS_IN_ALIENO;
+            posX += alieno.getDimX() + INIT_POS_ALIEN;
 
             if (i == (numAlieni / 2) - 1) {
-                posX = POS_IN_ALIENO;
-                posY += alieno.getDimY() + POS_IN_ALIENO;
+                posX = INIT_POS_ALIEN;
+                posY += alieno.getDimY() + INIT_POS_ALIEN;
             }
 
         }
     }
 
     private void initBoss() {
-
-        this.boss = new BossGraph(POS_IN_ALIENO, POS_IN_ALIENO, getLevelNumber());
+        this.boss = new BossGraph(INIT_POS_ALIEN, INIT_POS_ALIEN, getLevelNumber());
 
     }
 
     private void initPlayer() {
 
-        this.player = new PlayerGraph(ContentSwitch.WIM_WIDTH / 2 - 40, ContentSwitch.getGame().getHeight() - Player.DIM_Y - 40);
+        this.player = new PlayerGraph(ContentSwitch.WIN_WIDTH / 2 - 40, ContentSwitch.getGame().getHeight() - Player.DIM_Y - 50);
+
     }
 
     private boolean isEven(int levelNumber) {
@@ -229,9 +244,14 @@ public class GamePanel extends JPanel {
 //    }
 
 
-    public void resetPartita() {
+    public void reset() {
+        shooterThread = null;
+        gameThread = null;
+        aliens = null;
+        boss = null;
+        player = null;
+        setLevelNumber(0);
         setGameStarted(false);
-        startGame();
     }
 
     public PlayerGraph getPlayer() {
@@ -255,6 +275,37 @@ public class GamePanel extends JPanel {
         this.gameStarted = gameStarted;
     }
 
+    private class ShooterThread implements Runnable {
+
+        @Override
+        public void run() {
+            while (isGameStarted()) {
+                try {
+                    Random random = new Random();
+
+                    Thread.sleep(random.nextInt(MAX_WAIT));
+
+                    if (aliens != null) {
+                        aliens.get(random.nextInt(aliens.size())).shoot();
+                    }
+
+                    if (boss != null) {
+                        boss.run();
+                    }
+
+                    repaint();
+                    ContentSwitch.getStats().repaint();
+
+                } catch (Exception e) {
+                    //eccezione generic perché possono andarci sia NullPointer, sia Interrupted
+                    Logger.getLogger(this.getClass().getName()).log(Level.INFO, null, e);
+                }
+
+            }
+
+        }
+    }
+
     private class GameThread implements Runnable {
 
         @Override
@@ -269,8 +320,7 @@ public class GamePanel extends JPanel {
                     }
 
                     if (boss != null) {
-//                        muoviBoss();
-                        boss.run();
+                        muoviBoss();
                     }
 
                     player.move();

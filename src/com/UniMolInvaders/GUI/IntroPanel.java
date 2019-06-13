@@ -41,11 +41,19 @@ public class IntroPanel extends JPanel {
         this.finish = false;
         this.pos = 0;
 
-        setSize(ContentSwitch.WIM_WIDTH, ContentSwitch.WIN_HEIGHT);
+        setSize(ContentSwitch.WIN_WIDTH, ContentSwitch.WIN_HEIGHT);
 
         initText();
         initImages();
 
+    }
+
+    protected void reset() {
+        this.finish = false;
+        this.pos = 0;
+//        initText();
+//        initImages();
+        startAnimation();
     }
 
 
@@ -81,7 +89,7 @@ public class IntroPanel extends JPanel {
 
 //        Graphics2D screen2D = (Graphics2D) graphics;
         graphics.setColor(Color.BLACK);
-        graphics.fillRect(0, 0, ContentSwitch.WIM_WIDTH, ContentSwitch.WIN_HEIGHT);
+        graphics.fillRect(0, 0, ContentSwitch.WIN_WIDTH, ContentSwitch.WIN_HEIGHT);
 
 
         if ((images.get(pos) != null) && (text.get(pos) != null)) {

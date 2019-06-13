@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 
 public class MenuPanel extends JPanel implements ActionListener {
 
-    private static final int BOTTON_X = 100;
-    private static final int BOTTON_Y = 40;
-    private static final int POS_BOT_X = 270;
-    private static final int POS_BOT_Y = 130;
+    private static final int BUTTON_X = 100;
+    private static final int BUTTON_Y = 40;
+    private static final int POS_BUT_X = 270;
+    private static final int POS_BUT_Y = 130;
 
     private static final int BACKGROUND_X = 100;
     private static final int BACKGROUND_Y = 170;
@@ -21,13 +21,14 @@ public class MenuPanel extends JPanel implements ActionListener {
     private static final int POS_TITLE_Y = 40;
 
     private static final String FONT = "Bauhaus 93";
-    private static final int DIM_CARATTERE = 18;
+    private static final int DIM_FONT_NORMAL = 18;
     private static final Color ORANGE = new Color(253, 164, 8);
     private static final String GAME = "Gioca";
     private static final String EXIT = "Esci";
     private static final String CREDITS = "Crediti";
     private static final String HELP = "Aiuto";
-    private static Font GENERAL_FONT = new Font(FONT, Font.BOLD, DIM_CARATTERE);
+    private static Font GENERAL_FONT = new Font(FONT, Font.BOLD, DIM_FONT_NORMAL);
+    private static Font TITLE_FONT = new Font(FONT, Font.BOLD, 50);
     private Image background;
     private JButton newGame;
     private JButton exit;
@@ -41,13 +42,13 @@ public class MenuPanel extends JPanel implements ActionListener {
 
     public MenuPanel() {
 
-        setSize(ContentSwitch.WIM_WIDTH, ContentSwitch.WIN_HEIGHT);
+        setSize(ContentSwitch.WIN_WIDTH, ContentSwitch.WIN_HEIGHT);
         setLayout(null);
 
         background = new ImageIcon(this.getClass().getResource("./Resources/splash.png")).getImage();
 
         title = new JLabel(ContentSwitch.TITLE);
-        title.setFont(new Font(FONT, Font.BOLD, 50));
+        title.setFont(TITLE_FONT);
         title.setForeground(Color.WHITE);
         title.setBounds(POS_TITLE_X, POS_TITLE_Y, TITLE_X, TITLE_Y);
         add(title);
@@ -60,7 +61,7 @@ public class MenuPanel extends JPanel implements ActionListener {
         newGame.addActionListener(this);
         newGame.setBackground(ORANGE);
         newGame.setOpaque(true);
-        newGame.setBounds(POS_BOT_X, POS_BOT_Y, BOTTON_X, BOTTON_Y);
+        newGame.setBounds(POS_BUT_X, POS_BUT_Y, BUTTON_X, BUTTON_Y);
         add(newGame);
 
         exit = new JButton(EXIT);
@@ -70,7 +71,7 @@ public class MenuPanel extends JPanel implements ActionListener {
         exit.addActionListener(this);
         exit.setBackground(ORANGE);
         exit.setOpaque(true);
-        exit.setBounds(POS_BOT_X + BOTTON_X + 30, POS_BOT_Y, BOTTON_X, BOTTON_Y);
+        exit.setBounds(POS_BUT_X + BUTTON_X + 30, POS_BUT_Y, BUTTON_X, BUTTON_Y);
         add(exit);
 
         credits = new JButton(CREDITS);
@@ -80,7 +81,7 @@ public class MenuPanel extends JPanel implements ActionListener {
         credits.addActionListener(this);
         credits.setBackground(ORANGE);
         credits.setOpaque(true);
-        credits.setBounds(POS_BOT_X + BOTTON_X + 160, POS_BOT_Y, BOTTON_X, BOTTON_Y);
+        credits.setBounds(POS_BUT_X + BUTTON_X + 160, POS_BUT_Y, BUTTON_X, BUTTON_Y);
         add(credits);
 
         help = new JButton(HELP);
@@ -90,18 +91,26 @@ public class MenuPanel extends JPanel implements ActionListener {
         help.addActionListener(this);
         help.setBackground(ORANGE);
         help.setOpaque(true);
-        help.setBounds(POS_BOT_X + BOTTON_X + 290, POS_BOT_Y, BOTTON_X, BOTTON_Y);
+        help.setBounds(POS_BUT_X + BUTTON_X + 290, POS_BUT_Y, BUTTON_X, BUTTON_Y);
         add(help);
 
         setVisible(true);
 
     }
 
+    public static Font getTitleFont() {
+        return TITLE_FONT;
+    }
+
     public static Font getGeneralFont() {
         return GENERAL_FONT;
     }
 
-    @Override
+    public static Color getButtonColor() {
+        return ORANGE;
+    }
+
+
     public void paint(Graphics graphics) {
 
         super.paint(graphics);

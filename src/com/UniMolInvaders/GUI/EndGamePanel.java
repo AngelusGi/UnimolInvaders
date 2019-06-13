@@ -15,44 +15,75 @@ import java.util.logging.Logger;
 
 public class EndGamePanel extends JPanel {
 
-
     private JLabel endGame;
     private JTextField name;
-    private JButton insertName;
+    private static final int BUTTON_X = 250;
 
     private int points;
     private int level;
 
     private String playerName;
+    private static final int BUTTON_Y = 40;
+    private static final int POS_BUT_X = 270;
+    private static final int POS_BUT_Y = 130;
+    private static final int TITLE_X = 400;
+    private static final int TITLE_Y = 50;
+    private static final int POS_TITLE_X = 320;
+    private static final int POS_TITLE_Y = 40;
+    private static final String SAVE_BUTTON = "Salva punteggio";
+    private JButton save;
+    private Image background;
+    private JLabel title;
 
+    public EndGamePanel() {
 
-    public EndGamePanel(int points, int level) {
+        setSize(ContentSwitch.WIN_WIDTH, ContentSwitch.WIN_HEIGHT);
+        setBackground(Color.BLACK);
+
+        background = new ImageIcon(this.getClass().getResource("./Resources/splash.png")).getImage();
+
+        title = new JLabel(ContentSwitch.TITLE);
+        title.setFont(MenuPanel.getTitleFont());
+        title.setForeground(Color.WHITE);
+        title.setBounds(POS_TITLE_X, POS_TITLE_Y, TITLE_X, TITLE_Y);
+        add(title);
 
         this.points = points;
         this.level = level;
 
-        setSize(300, 150);
-
-        endGame = new JLabel("Partita terminata!  Inserisci il tuo TITLE:");
+        endGame = new JLabel("Partita terminata!  Inserisci il tuo nome:");
+        endGame.setFont(MenuPanel.getGeneralFont());
+        endGame.setForeground(Color.BLACK);
+        endGame.setBackground(MenuPanel.getButtonColor());
+        endGame.setOpaque(true);
+        endGame.setBounds(POS_BUT_X, POS_BUT_Y + 100, BUTTON_X, BUTTON_Y);
         add(endGame);
 
         name = new JTextField(20);
+        name.setFont(MenuPanel.getGeneralFont());
+        name.setForeground(Color.BLACK);
+        name.setBackground(MenuPanel.getButtonColor());
+        name.setOpaque(true);
+        name.setBounds(POS_BUT_X, POS_BUT_Y + 200, BUTTON_X, BUTTON_Y);
+        name.setVisible(false);
         add(name);
 
-        insertName = new JButton("Salva punteggio");
-        add(insertName);
-
-        saveDate saveDate = new saveDate();
-        insertName.addActionListener(saveDate);
+        save = new JButton(SAVE_BUTTON);
+        save.setBorderPainted(false);
+        save.setFont(MenuPanel.getGeneralFont());
+        save.setForeground(Color.BLACK);
+        save.addActionListener(new SaveData());
+        save.setBackground(MenuPanel.getButtonColor());
+        save.setOpaque(true);
+        save.setBounds(POS_BUT_X, POS_BUT_Y, BUTTON_X, BUTTON_Y);
+        add(save);
 
         setLayout(null);
-//        setLayout(new FlowLayout());
         setVisible(true);
-
 
     }
 
-    @Override
+
     public void paint(Graphics graphics) {
         super.paint(graphics);
     }
@@ -65,53 +96,61 @@ public class EndGamePanel extends JPanel {
         this.playerName = playerName;
     }
 
-    class saveDate implements ActionListener {
+    public void setPoints() {
+        this.points = ContentSwitch.getStats().getPoints();
+    }
+
+    public void setLevel() {
+        this.level = ContentSwitch.getGame().getLevelNumber();
+    }
+
+    class SaveData implements ActionListener {
 
         private final int NEW_GAME = 0;
+        private int response;
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
+        public void actionPerformed(ActionEvent click) {
 
-                setPlayerName(name.getText());
+            if (click.getActionCommand().equals(SAVE_BUTTON)) {
+                try {
 
-                String hightScore = ".\\score.txt";
-                PrintWriter outputFile = new PrintWriter(new FileOutputStream(hightScore, true));
+                    setPlayerName(name.getText());
 
-                Calendar today = new GregorianCalendar(Locale.ITALY);
-                Date dateGame = today.getTime();
+                    String hightScore = ".\\score.txt";
+                    PrintWriter outputFile = new PrintWriter(new FileOutputStream(hightScore, true));
 
-                outputFile.write("Giocatore: " + getPlayerName() + " \tData: " + dateGame.toLocaleString()
-                        + " \tPunteggio: " + points + " \tLivello: " + level + "\n\n");
+                    Calendar today = new GregorianCalendar(Locale.ITALY);
+                    Date dateGame = today.getTime();
 
-                outputFile.close();
+                    outputFile.write("Giocatore: " + getPlayerName() + " \tData: " + dateGame.toLocaleString()
+                            + " \tPunteggio: " + points + " \tLivello: " + level + "\n\n");
 
-                //finestra per riepilogo dati salvati
-                JOptionPane.showMessageDialog(null, "Salvataggio effettutato con successo!"
-                        + "\nIl tuo TITLE: " + getPlayerName() + "\nPunteggio totalizzato: " + points
-                        + "\nLivello raggiunto: " + level);
+                    outputFile.close();
+
+                    //finestra per riepilogo dati salvati
+                    response = JOptionPane.showConfirmDialog(null, "Salvataggio effettutato con successo!"
+                            + "\nIl tuo TITLE: " + getPlayerName() + "\nPunteggio totalizzato: " + points
+                            + "\nLivello raggiunto: " + level, ContentSwitch.TITLE, JOptionPane.OK_OPTION);
+
+//                        if (response == 6) {
+//                            //todo gestire nuova partita
+//                            ContentSwitch.switchPanel(ContentSwitch.INTRO);
+//                            ContentSwitch.getGame().reset();
+//
+//                        } else {
+//                            ContentSwitch.switchPanel(ContentSwitch.MENU);
+////                    System.exit(0);
+//                        }
 
 
-                int response = JOptionPane.showConfirmDialog(null, "Vuoi giocare ancora?",
-                        "UniMol Invaders", JOptionPane.YES_NO_OPTION);
+                } catch (IOException ioException) {
+                    Logger.getLogger("Errore scrittura file:", ioException.toString());
+                    JOptionPane.showMessageDialog(null, "Salvataggio non riuscito!");
 
-
-                if (response == NEW_GAME) {
-                    //todo gestire nuova partita
-                    ContentSwitch.switchPanel(ContentSwitch.INTRO);
-                    ContentSwitch.getGame().resetPartita();
-
-                } else {
-                    ContentSwitch.switchPanel(ContentSwitch.MENU);
-//                    System.exit(0);
                 }
-
-
-            } catch (IOException ioException) {
-                Logger.getLogger("Errore scrittura file:", ioException.toString());
-                JOptionPane.showMessageDialog(null, "Salvataggio non riuscito!");
-
             }
+
         }
 
     }

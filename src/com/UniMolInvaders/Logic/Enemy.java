@@ -1,6 +1,7 @@
 package UniMolInvaders.Logic;
 
 import UniMolInvaders.GUI.ContentSwitch;
+import UniMolInvaders.GUI.ShotGraph;
 
 import java.awt.*;
 
@@ -17,7 +18,7 @@ import java.awt.*;
 public abstract class Enemy {
 
     public static final int RIGHT = 1;
-    public static final int LELFT = -1;
+    public static final int CHANGE_DIR = -1;
     private static final int SHOT_DIRECTION = 1;
     protected Rectangle area;
     private int posX;
@@ -28,7 +29,7 @@ public abstract class Enemy {
     private int dimY;
     private boolean alive;
     private int lifePoints;
-    private Shot shot;
+    private ShotGraph shot;
 
     public Enemy(int posX, int posY, int speed) {
         setPosX(posX);
@@ -53,36 +54,46 @@ public abstract class Enemy {
 
     public void move() {
 
-        //BORDO SX
-        if (this.posX + getSpeedX() < 0) {
-            setSpeedX(getSpeedX() * RIGHT);
-//            this.posY = posY + 67;
-            setSpeedY(getSpeedY() + 50);
+        if (this.getPosX() + this.getSpeedX() < 0) {
+            //gestisce bordo SX e scende tutti gli aliens di 30px
+            this.changeDirection(CHANGE_DIR);
+            this.setPosY(this.getPosY() + this.getSpeedY());
 
-            //BORDO DX
-        } else if (this.posX + getSpeedX() > ContentSwitch.WIM_WIDTH - getDimX() - 20) {
-            setSpeedX(getSpeedX() * LELFT);
-            setSpeedY(getSpeedY() + 50);
 
+        } else if (this.getPosX() + this.getSpeedX() > ContentSwitch.WIN_WIDTH - this.getDimX() - 10) {
+
+            //gestisce bordo SX e scende tutti gli aliens di 30px
+            this.changeDirection(CHANGE_DIR);
+            this.setPosY(this.getPosY() + this.getSpeedY());
+
+        } else {
+
+            //sposta gli aliens lungo l'assse X
+            this.setPosX(this.getPosX() + this.getSpeedX());
         }
 
-        this.posX += getSpeedX();
     }
 
-    protected boolean damage(Shot shot) {
-        return this.area.intersects(shot.area);
+    public void moveShoot() {
+        if (shot != null) {
+            if (shot.isShooted())
+                shot.run();
+        }
     }
 
     public void shoot() {
 
-        if (!shot.isSparato()) {
-            shot = new Shot(this.getPosX(), this.getPosY(), SHOT_DIRECTION);
-            shot.setSparato(true);
-            shot.muovi(getPosY());
+        if (shot == null) {
+
+            shot = new ShotGraph(this.getPosX() + this.dimX / 2, this.getPosY() + this.dimY, ShotGraph.ENEMY_DIRECTION);
+            if (shot.isShooted()) {
+                shot.setShooted(false);
+            } else {
+
+            }
         }
 
     }
-
 
     public int getPosX() {
         return posX;
@@ -111,7 +122,10 @@ public abstract class Enemy {
         } else {
             this.speedX *= levelNumber;
         }
+    }
 
+    public void changeDirection(int change) {
+        this.speedX *= change;
     }
 
     private int getSpeedY() {

@@ -8,12 +8,12 @@ import java.awt.event.KeyListener;
 
 public class ContentSwitch extends JFrame {
 
-    public final static int WIM_WIDTH = 1024;
+    public final static int WIN_WIDTH = 1024;
     public final static int WIN_HEIGHT = 768;
-    public final static int DISTANZA = 20;
     public final static int TEST_PAUSE = 500;
     public final static int PAUSE = 5000;
     protected final static String TITLE = "UniMol Invaders";
+    protected static final int END = 3;
     protected static final int GAME = 2;
     protected static final int INTRO = 1;
     protected static final int MENU = 0;
@@ -22,11 +22,12 @@ public class ContentSwitch extends JFrame {
     private static IntroPanel intro;
     private static GamePanel game;
     private static MenuPanel menu;
-    private static StatisticheGUI stats;
+    private static StatisticsPanel stats;
+    private static EndGamePanel endGame;
 
     public ContentSwitch() {
 
-        setSize(WIM_WIDTH, WIN_HEIGHT);
+        setSize(WIN_WIDTH, WIN_HEIGHT);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -46,9 +47,13 @@ public class ContentSwitch extends JFrame {
         game.setLocation(GAME_ANCHOR);
         getContentPane().add(game);
 
-        stats = new StatisticheGUI();
+        stats = new StatisticsPanel();
         stats.setLocation(ORIGIN);
         getContentPane().add(stats);
+
+        endGame = new EndGamePanel();
+        endGame.setLocation(ORIGIN);
+        getContentPane().add(endGame);
 
         setVisible(true);
 
@@ -61,6 +66,7 @@ public class ContentSwitch extends JFrame {
                 intro.setVisible(false);
                 game.setVisible(false);
                 stats.setVisible(false);
+                endGame.setVisible(false);
                 menu.setVisible(true);
                 break;
 
@@ -68,6 +74,7 @@ public class ContentSwitch extends JFrame {
                 game.setVisible(false);
                 menu.setVisible(false);
                 stats.setVisible(false);
+                endGame.setVisible(false);
                 intro.setVisible(true);
                 intro.startAnimation();
                 break;
@@ -75,9 +82,18 @@ public class ContentSwitch extends JFrame {
             case GAME:
                 intro.setVisible(false);
                 menu.setVisible(false);
+                endGame.setVisible(false);
                 stats.setVisible(true);
                 game.setVisible(true);
                 game.startGame();
+                break;
+
+            case END:
+                intro.setVisible(false);
+                menu.setVisible(false);
+                stats.setVisible(false);
+                game.setVisible(false);
+                endGame.setVisible(true);
                 break;
         }
     }
@@ -86,8 +102,20 @@ public class ContentSwitch extends JFrame {
         return game;
     }
 
-    public static StatisticheGUI getStats() {
+    public static StatisticsPanel getStats() {
         return stats;
+    }
+
+    public static IntroPanel getIntro() {
+        return intro;
+    }
+
+    public static MenuPanel getMenu() {
+        return menu;
+    }
+
+    public static EndGamePanel getEndGame() {
+        return endGame;
     }
 
     private class PlayerListner implements KeyListener {
@@ -99,8 +127,7 @@ public class ContentSwitch extends JFrame {
         public void keyReleased(KeyEvent key) {
             if (key.getKeyCode() == KeyEvent.VK_ESCAPE) {
                 //todo gameOver
-                getGame().setGameStarted(false);
-                getGame().winOrLoose();
+                getGame().gameOver();
 //                System.exit(1);
             }
 

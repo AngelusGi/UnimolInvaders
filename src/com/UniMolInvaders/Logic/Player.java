@@ -1,6 +1,7 @@
 package UniMolInvaders.Logic;
 
 import UniMolInvaders.GUI.ContentSwitch;
+import UniMolInvaders.GUI.ShotGraph;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -31,8 +32,6 @@ public class Player implements KeyListener {
     private int lifePoints;
     private boolean alive;
     private boolean fired;
-    private int points;
-    private Shot shot;
 
     public Player(int posX, int posY) {
         setPosX(posX);
@@ -48,7 +47,7 @@ public class Player implements KeyListener {
 
         //BORDO
         if ((this.posX + this.speedX > 5) &&
-                (this.posX + this.speedX < ContentSwitch.WIM_WIDTH - DIM_X - 20)) {
+                (this.posX + this.speedX < ContentSwitch.WIN_WIDTH - DIM_X - 20)) {
 
             this.posX += speedX;
         }
@@ -56,23 +55,8 @@ public class Player implements KeyListener {
     }
 
 
-    protected boolean decrementLife(Shot shot) {
-        //se la lifePoints è maggiore di 1 la decrementa
-
-        if (isDamaged(shot) && getLifePoints() > 1) {
-            setLifePoints(getLifePoints() - shot.getDanno());
-
-        } else if (isDamaged(shot)) {
-            //altrimenti lo setta come morto
-            setAlive(false);
-        }
-
-        return isAlive();
-    }
-
     private void shot() {
         //todo
-
         setFired(true);
     }
 
@@ -105,8 +89,8 @@ public class Player implements KeyListener {
         }
     }
 
-    protected boolean isDamaged(Shot shot) {
-        return this.area.intersects(shot.area);
+    protected boolean isDamaged(ShotGraph shot) {
+        return this.area.intersects(shot.getArea());
     }
 
     @Override
