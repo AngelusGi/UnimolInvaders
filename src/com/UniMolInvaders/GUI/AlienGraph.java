@@ -18,14 +18,15 @@ import java.awt.*;
 
 public class AlienGraph extends Alien {
 
-    private final int DIM_X = 37;
-    private final int DIM_Y = 50;
+    private static final int DIM_X = 37;
+    private static final int DIM_Y = 50;
 
     private Image image;
-    private ShotGraph shot;
+    private ShootGraph shot;
 
-    public AlienGraph(int posX, int posY, int speed) {
-        super(posX, posY, speed);
+
+    public AlienGraph(int posX, int posY, int level) {
+        super(posX, posY, level);
         setDimX(DIM_X);
         setDimY(DIM_Y);
         image = new ImageIcon(this.getClass().getResource("./Resources/alieno.png")).getImage();
@@ -43,18 +44,6 @@ public class AlienGraph extends Alien {
 
 //            graphics.fillRect(this.getPosX(), this.getPosY(), this.getDimX(), this.getDimY());
             graphics.drawImage(this.image, this.getPosX(), this.getPosY(), null);
-        }
-
-    }
-
-    public void shoot() {
-
-        if (shot == null) {
-
-            shot = new ShotGraph(this.getPosX() + this.DIM_X / 2, this.getPosY() + this.DIM_Y, ShotGraph.ENEMY_DIRECTION);
-            if (shot.isShooted()) {
-                shot.setShooted(false);
-            }
         }
 
     }

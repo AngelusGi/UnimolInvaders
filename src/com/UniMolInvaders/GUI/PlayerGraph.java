@@ -26,9 +26,9 @@ public class PlayerGraph extends Player {
             //CREA UN RETTANGOLO DI DIM_ALIENIxDIM_ALIENI PER OGNI ALIENO NELLA MATRICE
 //            graphics.fillRect(this.getPosX(), this.getPosY(), this.getDimX(), this.getDimY());
             graphics.drawImage(this.getImage(), this.getPosX(), this.getPosY(), trasparent, null);
+
         }
     }
-
 
     private Image getImage() {
         return image;

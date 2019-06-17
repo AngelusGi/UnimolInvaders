@@ -27,6 +27,7 @@ public class ContentSwitch extends JFrame {
 
     public ContentSwitch() {
 
+        setTitle(TITLE);
         setSize(WIN_WIDTH, WIN_HEIGHT);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,6 +46,7 @@ public class ContentSwitch extends JFrame {
 
         game = new GamePanel();
         game.setLocation(GAME_ANCHOR);
+        game.setDoubleBuffered(true);
         getContentPane().add(game);
 
         stats = new StatisticsPanel();
@@ -125,19 +127,20 @@ public class ContentSwitch extends JFrame {
 
         @Override
         public void keyReleased(KeyEvent key) {
+
+            game.keyReleased(key);
+
+
             if (key.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                //todo gameOver
-                getGame().gameOver();
-//                System.exit(1);
+                game.gameOver();
             }
 
-            getGame().getPlayer().keyReleased(key);
         }
 
         @Override
         public void keyPressed(KeyEvent key) {
-            System.out.println("press");
-            getGame().getPlayer().keyPressed(key);
+
+            game.keyPressed(key);
         }
 
     }

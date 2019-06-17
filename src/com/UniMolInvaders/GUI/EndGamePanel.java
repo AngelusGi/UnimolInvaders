@@ -48,9 +48,6 @@ public class EndGamePanel extends JPanel {
         title.setBounds(POS_TITLE_X, POS_TITLE_Y, TITLE_X, TITLE_Y);
         add(title);
 
-        this.points = points;
-        this.level = level;
-
         endGame = new JLabel("Partita terminata!  Inserisci il tuo nome:");
         endGame.setFont(MenuPanel.getGeneralFont());
         endGame.setForeground(Color.BLACK);
@@ -106,9 +103,6 @@ public class EndGamePanel extends JPanel {
 
     class SaveData implements ActionListener {
 
-        private final int NEW_GAME = 0;
-        private int response;
-
         @Override
         public void actionPerformed(ActionEvent click) {
 
@@ -129,19 +123,16 @@ public class EndGamePanel extends JPanel {
                     outputFile.close();
 
                     //finestra per riepilogo dati salvati
-                    response = JOptionPane.showConfirmDialog(null, "Salvataggio effettutato con successo!"
+                    JOptionPane.showInputDialog(null, "Salvataggio effettutato con successo!"
                             + "\nIl tuo TITLE: " + getPlayerName() + "\nPunteggio totalizzato: " + points
                             + "\nLivello raggiunto: " + level, ContentSwitch.TITLE, JOptionPane.OK_OPTION);
+//                    JOptionPane.showConfirmDialog(null, "Salvataggio effettutato con successo!"
+//                            + "\nIl tuo TITLE: " + getPlayerName() + "\nPunteggio totalizzato: " + points
+//                            + "\nLivello raggiunto: " + level, ContentSwitch.TITLE, JOptionPane.OK_OPTION);
 
-//                        if (response == 6) {
-//                            //todo gestire nuova partita
-//                            ContentSwitch.switchPanel(ContentSwitch.INTRO);
-//                            ContentSwitch.getGame().reset();
-//
-//                        } else {
-//                            ContentSwitch.switchPanel(ContentSwitch.MENU);
-////                    System.exit(0);
-//                        }
+                    //todo gestire nuova partita
+                    ContentSwitch.switchPanel(ContentSwitch.INTRO);
+                    ContentSwitch.getGame().reset();
 
 
                 } catch (IOException ioException) {

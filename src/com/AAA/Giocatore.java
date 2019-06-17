@@ -1,4 +1,4 @@
-package UniMolInvaders.AAA;
+package AAA;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -10,7 +10,7 @@ public class Giocatore extends Personaggio {
 
 
     public Giocatore(int posX, int posY, int velocita) {
-        super(posX, posY, velocita);
+        super(posX, posY, velocita, DIM_GIOCATORE, DIM_GIOCATORE);
         this.velocita = 0;
     }
 
@@ -44,6 +44,7 @@ public class Giocatore extends Personaggio {
                 this.velocita = 2;
                 this.muovi();
                 break;
+
         }
 
     }
@@ -57,14 +58,11 @@ public class Giocatore extends Personaggio {
                 break;
 
             case KeyEvent.VK_SPACE:
-                //todo sparo
+                tryToFire(true);
                 break;
 
         }
 
     }
 
-    public Rectangle getDimesnione() {
-        return new Rectangle(posX, posY, DIM_GIOCATORE, DIM_GIOCATORE);
-    }
 }

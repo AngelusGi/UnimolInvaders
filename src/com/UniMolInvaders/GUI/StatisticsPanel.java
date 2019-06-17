@@ -62,8 +62,8 @@ public class StatisticsPanel extends JPanel {
         return points;
     }
 
-    public void setPoints(int points) {
-        this.points = points;
+    public void raisePoints() {
+        this.points += 20;
     }
 
     public void setLifePoints(int life) {

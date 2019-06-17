@@ -1,4 +1,4 @@
-package UniMolInvaders.AAA;
+package AAA;
 
 import java.awt.*;
 
@@ -13,7 +13,7 @@ public class Alieno extends Personaggio {
     boolean moveLeft;
 
     public Alieno(int posX, int posY, int velocita) {
-        super(posX, posY, velocita);
+        super(posX, posY, velocita, DIM_ALINEO, DIM_ALINEO);
         this.moveLeft = false;
         this.moveRight = true;
         this.visible = true;
@@ -30,9 +30,6 @@ public class Alieno extends Personaggio {
 
     }
 
-    public Rectangle getBounds() {
-        return new Rectangle(posX, posY, DIM_ALINEO, DIM_ALINEO);
-    }
 
     protected void muovi() {
 

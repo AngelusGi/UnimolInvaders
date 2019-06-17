@@ -10,17 +10,15 @@ package UniMolInvaders.Logic;
  ********************************/
 
 
-public class Boss extends Enemy {
+public abstract class Boss extends Enemy {
 
-    private int lifePoints = 15;
-    private int speedY = 30;
+    private static final int LIFE_POINTS = 15;
+    private static final int SPEED_Y = 30;
 
-    public Boss(int posX, int posY, int speedX) {
-        super(posX, posY, speedX);
-        setLifePoints(lifePoints);
-        setSpeedY(speedY);
-
+    protected Boss(int posX, int posY, int level) {
+        super(posX, posY, level);
+        setSpeedY(SPEED_Y);
+        setLifePoints(LIFE_POINTS);
     }
-
 
 }

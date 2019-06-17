@@ -1,4 +1,4 @@
-package UniMolInvaders.AAA;
+package AAA;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;

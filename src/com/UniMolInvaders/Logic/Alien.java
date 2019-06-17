@@ -1,7 +1,7 @@
 package UniMolInvaders.Logic;
 
 
-public class Alien extends Enemy {
+public abstract class Alien extends Enemy {
 
     /********************************
      *
@@ -13,14 +13,14 @@ public class Alien extends Enemy {
      ********************************/
 
 
-    private static final int lifePoints = 1;
-    private static final int speedY = 10;
+    private static final int LIFE_POINTS = 1;
+    private static final int SPEED_Y = 10;
 
 
-    public Alien(int posX, int posY, int speedX) {
-        super(posX, posY, speedX);
-        setLifePoints(lifePoints);
-        setSpeedY(speedY);
+    protected Alien(int posX, int posY, int level) {
+        super(posX, posY, level);
+        setLifePoints(LIFE_POINTS);
+        setSpeedY(SPEED_Y);
     }
 
 }

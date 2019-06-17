@@ -3,9 +3,11 @@ package UniMolInvaders.GUI;
 
 import UniMolInvaders.Logic.Enemy;
 import UniMolInvaders.Logic.Player;
+import UniMolInvaders.Logic.Shot;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
@@ -14,9 +16,10 @@ import java.util.logging.Logger;
 public class GamePanel extends JPanel {
 
 
-    private static final int numAlieni = 14;
+    private static final int NUM_ALIENS = 8;
     private static final int ANIMATION_SLEEP = 200;
-    private static int MAX_WAIT = 2000;
+    private static final int REPAINT_SLEEP = 100;
+    private static int MAX_WAIT = 5000;
     private final int INIT_POS_ALIEN = 10;
     private PlayerGraph player;
     private ArrayList<AlienGraph> aliens;
@@ -25,7 +28,9 @@ public class GamePanel extends JPanel {
     private int levelNumber;
     private Thread gameThread;
     private Thread shooterThread;
+    private Thread paintThread;
     private Image image;
+    private ArrayList<ShootGraph> shoot;
 
 
     public GamePanel() {
@@ -33,11 +38,14 @@ public class GamePanel extends JPanel {
         setSize(ContentSwitch.WIN_WIDTH, ContentSwitch.WIN_HEIGHT - StatisticsPanel.getWinHeight());
         image = new ImageIcon(this.getClass().getResource("./Resources/background.jpg")).getImage();
         setGameStarted(false);
-        setLevelNumber(1);
+
+        //setLevelNumber(1);
 
     }
 
     public void startGame() {
+
+        shoot = new ArrayList<>();
 
         initPlayer();
 
@@ -59,6 +67,9 @@ public class GamePanel extends JPanel {
         gameThread.start();
         shooterThread = new Thread(new ShooterThread());
         shooterThread.start();
+        paintThread = new Thread(new PaintThread());
+        paintThread.start();
+
 
     }
 
@@ -68,9 +79,10 @@ public class GamePanel extends JPanel {
         boss.run();
 
         if (boss.getPosY() + boss.getDimY() >= player.getPosY()) {
-            //se raggiongoe il personaggio, game over
+            //se raggiunge il personaggio, game over
             gameOver();
         }
+
     }
 
 
@@ -133,13 +145,23 @@ public class GamePanel extends JPanel {
             }
 
             if (aliens != null && aliens.size() > 0) {
-                for (AlienGraph alien : aliens) {
-                    alien.paint(graphics2D);
-                }
+
+                aliens.forEach((alien -> {
+                    if (alien.isAlive())
+                        alien.paint(graphics2D);
+                }));
             }
 
             if (boss != null) {
                 boss.paint(graphics2D);
+            }
+
+            if (shoot != null && shoot.size() > 0) {
+                shoot.forEach((shot -> {
+                    if (shot.isAlive()) {
+                        shot.draw(graphics);
+                    }
+                }));
             }
 
         } catch (Exception ex) {
@@ -147,12 +169,6 @@ public class GamePanel extends JPanel {
         }
 
     }
-
-
-//    todo
-//    private boolean collision() {
-//        return this.player.getDimesnione().intersects(getBounds());
-//    }
 
 
     protected void winOrLoose() {
@@ -173,7 +189,6 @@ public class GamePanel extends JPanel {
 
     }
 
-
     private void initAliens() {
 
         int posX = INIT_POS_ALIEN;
@@ -181,14 +196,14 @@ public class GamePanel extends JPanel {
 
         this.aliens = new ArrayList<>();
 
-        for (int i = 0; i < numAlieni; i++) {
+        for (int i = 0; i < NUM_ALIENS; i++) {
 
             AlienGraph alieno = new AlienGraph(posX, posY, getLevelNumber());
 
             aliens.add(i, alieno);
             posX += alieno.getDimX() + INIT_POS_ALIEN;
 
-            if (i == (numAlieni / 2) - 1) {
+            if (i == (NUM_ALIENS / 2) - 1) {
                 posX = INIT_POS_ALIEN;
                 posY += alieno.getDimY() + INIT_POS_ALIEN;
             }
@@ -212,59 +227,113 @@ public class GamePanel extends JPanel {
         return levelNumber % 2 == 0;
     }
 
-
-//    //testa la corretta inizializzazione dei livelli e la gestione dei livelli (pari/dispari)
-//    public void stampaLivello() {
-//        System.out.print("Livello: " + levelNumber);
-//        System.out.println(" è pari: " + isEven(levelNumber));
-//        if (levelNumber <= 5) {
-//            levelNumber += 1;
-//        } else {
-//            System.exit(1);
-//        }
-//
-//        stampaLivello();
-//    }
-
-//    public void stampaPersonaggi() {
-//
-//        initAliens();
-//
-//        for (int num = 0; num < aliens.size(); num++) {
-//            System.out.print("Alien[" + num + "] > " + aliens.get(num) + " \t ");
-//            System.out.println("\n");
-//        }
-//
-//        initBoss();
-//        System.out.println("\nBoss > " + boss + "\n");
-//
-//        initPlayer();
-//        System.out.println("player > " + player + "\n");
-//
-//    }
-
-
     public void reset() {
+        setLevelNumber(0);
+        setGameStarted(false);
+        paintThread = null;
         shooterThread = null;
         gameThread = null;
         aliens = null;
         boss = null;
         player = null;
-        setLevelNumber(0);
-        setGameStarted(false);
+        shoot = null;
     }
+
+    private void kill() {
+
+        if (isEven(getLevelNumber())) {
+
+            shoot.forEach(shot -> {
+                //player colpito da colpo alieno
+                if (shot.isAlive() && shot.getBounds().intersects(player.getBounds()) && (shot.isDirection() != Shot.getPlayerDirection())) {
+                    shot.setAlive(false);
+                    player.decrementLife();
+                    System.out.println("player colpito");
+
+                }
+
+                aliens.forEach((alien -> {
+                    //alieno colpito da colpo player
+                    if (alien.isAlive() && shot.getBounds().intersects(alien.getBounds()) && shot.isAlive() && (shot.isDirection() == Shot.getPlayerDirection())) {
+                        shot.setAlive(false);
+                        alien.decrementLife();
+                        ContentSwitch.getStats().raisePoints();
+                    }
+                }));
+
+            });
+
+        } else {
+            shoot.forEach(shot -> {
+                //boss colpisce player
+                if (shot.isAlive() && shot.getBounds().intersects(player.getBounds()) && (shot.isDirection() != Shot.getPlayerDirection())) {
+                    shot.setAlive(false);
+                    player.decrementLife();
+                }
+
+                //player colpisce boss
+                if (boss.isAlive() && shot.getBounds().intersects(boss.getBounds()) && shot.isAlive() && (shot.isDirection() == Shot.getPlayerDirection())) {
+                    shot.setAlive(false);
+                    boss.decrementLife();
+                    ContentSwitch.getStats().raisePoints();
+                }
+            });
+        }
+
+        shoot.removeIf(shot -> (!shot.isAlive()));
+        aliens.removeIf(alien -> (!alien.isAlive()));
+    }
+
 
     public PlayerGraph getPlayer() {
         return player;
+    }
+
+    public void keyReleased(KeyEvent key) {
+
+        switch (key.getKeyCode()) {
+
+            case KeyEvent.VK_ESCAPE:
+                gameOver();
+                break;
+
+            case KeyEvent.VK_LEFT:
+
+            case KeyEvent.VK_RIGHT:
+                player.setSpeedX(player.STOP);
+                break;
+
+            case KeyEvent.VK_SPACE:
+                player.tryToFire();
+                break;
+        }
+    }
+
+
+    public void keyPressed(KeyEvent key) {
+        switch (key.getKeyCode()) {
+            case KeyEvent.VK_LEFT:
+                player.setSpeedX(player.LEFT);
+                player.move();
+                break;
+
+            case KeyEvent.VK_RIGHT:
+                player.setSpeedX(player.RIGHT);
+                player.move();
+                break;
+        }
     }
 
     protected int getLevelNumber() {
         return levelNumber;
     }
 
-
     public void setLevelNumber(int livello) {
         this.levelNumber = livello;
+    }
+
+    public ArrayList<ShootGraph> getShoot() {
+        return shoot;
     }
 
     public boolean isGameStarted() {
@@ -280,21 +349,22 @@ public class GamePanel extends JPanel {
         @Override
         public void run() {
             while (isGameStarted()) {
+
                 try {
                     Random random = new Random();
 
                     Thread.sleep(random.nextInt(MAX_WAIT));
 
                     if (aliens != null) {
-                        aliens.get(random.nextInt(aliens.size())).shoot();
+                        int whichAlien = random.nextInt(aliens.size());
+                        aliens.get(whichAlien).tryToFire();
                     }
+
 
                     if (boss != null) {
-                        boss.run();
+                        boss.tryToFire();
                     }
 
-                    repaint();
-                    ContentSwitch.getStats().repaint();
 
                 } catch (Exception e) {
                     //eccezione generic perché possono andarci sia NullPointer, sia Interrupted
@@ -320,13 +390,32 @@ public class GamePanel extends JPanel {
                     }
 
                     if (boss != null) {
-                        muoviBoss();
+//                        muoviBoss();
                     }
 
-                    player.move();
                     winOrLoose();
+
+                } catch (Exception e) {
+                    //eccezione generic perché possono andarci sia NullPointer, sia Interrupted
+                    Logger.getLogger(this.getClass().getName()).log(Level.INFO, null, e);
+                }
+
+            }
+
+        }
+    }
+
+    private class PaintThread implements Runnable {
+
+        @Override
+        public void run() {
+            while (isGameStarted()) {
+                try {
+
+                    Thread.sleep(REPAINT_SLEEP);
                     repaint();
                     ContentSwitch.getStats().repaint();
+                    kill();
 
                 } catch (Exception e) {
                     //eccezione generic perché possono andarci sia NullPointer, sia Interrupted
