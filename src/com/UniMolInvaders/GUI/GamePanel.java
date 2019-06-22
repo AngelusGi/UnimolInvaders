@@ -125,10 +125,11 @@ public class GamePanel extends JPanel {
 
     protected void gameOver() {
         this.reset();
+        setLevelNumber(0);
         ContentSwitch.getIntro().reset();
-        ContentSwitch.getEndGame().setPoints();
-        ContentSwitch.getEndGame().setLevel();
         ContentSwitch.switchPanel(ContentSwitch.END);
+        ContentSwitch.getEndGame().setLevel(levelNumber);
+        ContentSwitch.getEndGame().setPoints(ContentSwitch.getStats().getPoints());
     }
 
     @Override
@@ -178,6 +179,7 @@ public class GamePanel extends JPanel {
         if ((aliens != null && aliens.size() == 0) || (boss != null && !boss.isAlive())) {
             setLevelNumber(getLevelNumber() + 1);
             reset();
+            startGame();
         }
 
         //else
@@ -228,7 +230,6 @@ public class GamePanel extends JPanel {
     }
 
     public void reset() {
-        setLevelNumber(0);
         setGameStarted(false);
         paintThread = null;
         shooterThread = null;
@@ -248,7 +249,6 @@ public class GamePanel extends JPanel {
                 if (shot.isAlive() && shot.getBounds().intersects(player.getBounds()) && (shot.isDirection() != Shot.getPlayerDirection())) {
                     shot.setAlive(false);
                     player.decrementLife();
-                    System.out.println("player colpito");
 
                 }
 
@@ -390,7 +390,7 @@ public class GamePanel extends JPanel {
                     }
 
                     if (boss != null) {
-//                        muoviBoss();
+                        muoviBoss();
                     }
 
                     winOrLoose();

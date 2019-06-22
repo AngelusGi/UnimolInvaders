@@ -7,28 +7,26 @@ import java.awt.event.ActionListener;
 
 public class MenuPanel extends JPanel implements ActionListener {
 
-    private static final int BUTTON_X = 100;
-    private static final int BUTTON_Y = 40;
-    private static final int POS_BUT_X = 270;
-    private static final int POS_BUT_Y = 130;
-
-    private static final int BACKGROUND_X = 100;
-    private static final int BACKGROUND_Y = 170;
-
-    private static final int TITLE_X = 400;
-    private static final int TITLE_Y = 50;
-    private static final int POS_TITLE_X = 320;
-    private static final int POS_TITLE_Y = 40;
+    protected static final int BUTTON_Y = 40;
+    protected static final int POS_BUT_X = 100;
+    protected static final int POS_BUT_Y = 130;
+    protected static final int BACKGROUND_X = 100;
+    protected static final int BACKGROUND_Y = 170;
+    protected static final int TITLE_X = 400;
+    protected static final int TITLE_Y = 50;
+    protected static final int POS_TITLE_X = 320;
+    protected static final int POS_TITLE_Y = 20;
+    protected static final Color ORANGE_UNIMOL = new Color(253, 164, 8);
 
     private static final String FONT = "Bauhaus 93";
     private static final int DIM_FONT_NORMAL = 18;
-    private static final Color ORANGE = new Color(253, 164, 8);
+    private static final int BUTTON_X = 150;
     private static final String GAME = "Gioca";
     private static final String EXIT = "Esci";
     private static final String CREDITS = "Crediti";
     private static final String HELP = "Aiuto";
-    private static Font GENERAL_FONT = new Font(FONT, Font.BOLD, DIM_FONT_NORMAL);
-    private static Font TITLE_FONT = new Font(FONT, Font.BOLD, 50);
+    protected static Font GENERAL_FONT = new Font(FONT, Font.BOLD, DIM_FONT_NORMAL);
+    protected static Font TITLE_FONT = new Font(FONT, Font.BOLD, 50);
     private Image background;
     private JButton newGame;
     private JButton exit;
@@ -59,7 +57,7 @@ public class MenuPanel extends JPanel implements ActionListener {
         newGame.setForeground(Color.BLACK);
         newGame.setDefaultCapable(true);
         newGame.addActionListener(this);
-        newGame.setBackground(ORANGE);
+        newGame.setBackground(ORANGE_UNIMOL);
         newGame.setOpaque(true);
         newGame.setBounds(POS_BUT_X, POS_BUT_Y, BUTTON_X, BUTTON_Y);
         add(newGame);
@@ -69,9 +67,9 @@ public class MenuPanel extends JPanel implements ActionListener {
         exit.setFont(GENERAL_FONT);
         exit.setForeground(Color.BLACK);
         exit.addActionListener(this);
-        exit.setBackground(ORANGE);
+        exit.setBackground(ORANGE_UNIMOL);
         exit.setOpaque(true);
-        exit.setBounds(POS_BUT_X + BUTTON_X + 30, POS_BUT_Y, BUTTON_X, BUTTON_Y);
+        exit.setBounds(POS_BUT_X + BUTTON_X + 70, POS_BUT_Y, BUTTON_X, BUTTON_Y);
         add(exit);
 
         credits = new JButton(CREDITS);
@@ -79,9 +77,9 @@ public class MenuPanel extends JPanel implements ActionListener {
         credits.setFont(GENERAL_FONT);
         credits.setForeground(Color.BLACK);
         credits.addActionListener(this);
-        credits.setBackground(ORANGE);
+        credits.setBackground(ORANGE_UNIMOL);
         credits.setOpaque(true);
-        credits.setBounds(POS_BUT_X + BUTTON_X + 160, POS_BUT_Y, BUTTON_X, BUTTON_Y);
+        credits.setBounds(POS_BUT_X + BUTTON_X + 280, POS_BUT_Y, BUTTON_X, BUTTON_Y);
         add(credits);
 
         help = new JButton(HELP);
@@ -89,13 +87,21 @@ public class MenuPanel extends JPanel implements ActionListener {
         help.setFont(GENERAL_FONT);
         help.setForeground(Color.BLACK);
         help.addActionListener(this);
-        help.setBackground(ORANGE);
+        help.setBackground(ORANGE_UNIMOL);
         help.setOpaque(true);
-        help.setBounds(POS_BUT_X + BUTTON_X + 290, POS_BUT_Y, BUTTON_X, BUTTON_Y);
+        help.setBounds(POS_BUT_X + BUTTON_X + 500, POS_BUT_Y, BUTTON_X, BUTTON_Y);
         add(help);
 
         setVisible(true);
 
+    }
+
+    public static Color getButtonColor() {
+        return ORANGE_UNIMOL;
+    }
+
+    public Image getImageBackground() {
+        return background;
     }
 
     public static Font getTitleFont() {
@@ -106,8 +112,8 @@ public class MenuPanel extends JPanel implements ActionListener {
         return GENERAL_FONT;
     }
 
-    public static Color getButtonColor() {
-        return ORANGE;
+    public JLabel getTitle() {
+        return title;
     }
 
 

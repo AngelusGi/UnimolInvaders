@@ -23,7 +23,7 @@ public class ContentSwitch extends JFrame {
     private static GamePanel game;
     private static MenuPanel menu;
     private static StatisticsPanel stats;
-    private static EndGamePanel endGame;
+    private static EndPanel endGame;
 
     public ContentSwitch() {
 
@@ -40,7 +40,7 @@ public class ContentSwitch extends JFrame {
         menu.setLocation(ORIGIN);
         getContentPane().add(menu);
 
-        intro = new IntroPanel(TEST_PAUSE);
+        intro = new IntroPanel(PAUSE);
         intro.setLocation(ORIGIN);
         getContentPane().add(intro);
 
@@ -53,7 +53,7 @@ public class ContentSwitch extends JFrame {
         stats.setLocation(ORIGIN);
         getContentPane().add(stats);
 
-        endGame = new EndGamePanel();
+        endGame = new EndPanel();
         endGame.setLocation(ORIGIN);
         getContentPane().add(endGame);
 
@@ -69,6 +69,7 @@ public class ContentSwitch extends JFrame {
                 game.setVisible(false);
                 stats.setVisible(false);
                 endGame.setVisible(false);
+                endGame.hidePanel();
                 menu.setVisible(true);
                 break;
 
@@ -96,6 +97,7 @@ public class ContentSwitch extends JFrame {
                 stats.setVisible(false);
                 game.setVisible(false);
                 endGame.setVisible(true);
+                endGame.initPanel();
                 break;
         }
     }
@@ -116,7 +118,7 @@ public class ContentSwitch extends JFrame {
         return menu;
     }
 
-    public static EndGamePanel getEndGame() {
+    public static EndPanel getEndGame() {
         return endGame;
     }
 

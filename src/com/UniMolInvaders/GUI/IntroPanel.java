@@ -51,8 +51,6 @@ public class IntroPanel extends JPanel {
     protected void reset() {
         this.finish = false;
         this.pos = 0;
-//        initText();
-//        initImages();
         startAnimation();
     }
 
@@ -87,7 +85,6 @@ public class IntroPanel extends JPanel {
 
         super.paint(graphics);
 
-//        Graphics2D screen2D = (Graphics2D) graphics;
         graphics.setColor(Color.BLACK);
         graphics.fillRect(0, 0, ContentSwitch.WIN_WIDTH, ContentSwitch.WIN_HEIGHT);
 

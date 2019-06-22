@@ -53,7 +53,7 @@ public abstract class Enemy extends Character {
         if (levelNumber < 2) {
             super.setSpeedX(INITIAL_SPEED_X);
         } else {
-            super.setSpeedX(getSpeedX() * levelNumber);
+            super.setSpeedX(INITIAL_SPEED_X * levelNumber);
         }
     }
 

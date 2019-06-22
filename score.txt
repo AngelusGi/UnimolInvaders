@@ -12,13 +12,7 @@ Giocatore: ciao 	Data: 19 mag 2019, 13:29:36 	Punteggio: 0 	Livello: 0
 
 Giocatore:  	Data: 13 giu 2019, 10:52:54 	Punteggio: 0 	Livello: 0
 
-Giocatore:  	Data: 13 giu 2019, 10:53:54 	Punteggio: 0 	Livello: 0
+Giocatore: Inserisci il tuo nome 	Data: 21 giu 2019, 22:04:37 	Punteggio: 0 	Livello: 0
 
-Giocatore:  	Data: 13 giu 2019, 10:54:34 	Punteggio: 0 	Livello: 0
-
-Giocatore:  	Data: 16 giu 2019, 00:38:59 	Punteggio: 0 	Livello: 0
-
-Giocatore:  	Data: 16 giu 2019, 12:44:47 	Punteggio: 0 	Livello: 0
-
-Giocatore:  	Data: 17 giu 2019, 22:40:41 	Punteggio: 0 	Livello: 0
+Giocatore: agv 	Data: 22 giu 2019, 07:02:54 	Punteggio: 0 	Livello: 0
 

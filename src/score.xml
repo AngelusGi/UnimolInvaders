@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scores>
+    <Score>
+        <id>1</id>
+        <playerName>Angelo</playerName>
+        <playDate>19 mag 2019, 13:23:30</playDate>
+        <points>40</points>
+        <level>0</level>
+    </Score>
+    <Score>
+        <id>2</id>
+        <playerName>AgV</playerName>
+        <playDate>13 giu 2019, 22:52:54</playDate>
+        <points>0</points>
+        <level>0</level>
+    </Score>
+    <Score>
+        <id>3</id>
+        <playerName>Giusy</playerName>
+        <playDate>17 giu 2019, 10:53:54</playDate>
+        <points>150</points>
+        <level>1</level>
+    </Score>
+</Scores>
