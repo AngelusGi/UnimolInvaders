@@ -92,7 +92,7 @@ public class IntroPanel extends JPanel {
         if ((images.get(pos) != null) && (text.get(pos) != null)) {
             graphics.drawImage(images.get(pos), imageX, imageY, this);
             graphics.setColor(textColor);
-            graphics.setFont(MenuPanel.getGeneralFont());
+            graphics.setFont(new Font(MenuPanel.FONT, Font.PLAIN, 28));
             graphics.drawString(text.get(pos), textX, textY);
 
         } else {

@@ -18,7 +18,7 @@ public class MenuPanel extends JPanel implements ActionListener {
     protected static final int POS_TITLE_Y = 20;
     protected static final Color ORANGE_UNIMOL = new Color(253, 164, 8);
 
-    private static final String FONT = "Bauhaus 93";
+    protected static final String FONT = "Bauhaus 93";
     private static final int DIM_FONT_NORMAL = 18;
     private static final int BUTTON_X = 150;
     private static final String GAME = "Gioca";
@@ -96,24 +96,12 @@ public class MenuPanel extends JPanel implements ActionListener {
 
     }
 
-    public static Color getButtonColor() {
-        return ORANGE_UNIMOL;
-    }
-
     public Image getImageBackground() {
         return background;
     }
 
-    public static Font getTitleFont() {
-        return TITLE_FONT;
-    }
-
     public static Font getGeneralFont() {
         return GENERAL_FONT;
-    }
-
-    public JLabel getTitle() {
-        return title;
     }
 
 

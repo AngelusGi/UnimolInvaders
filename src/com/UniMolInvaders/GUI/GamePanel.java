@@ -1,6 +1,7 @@
 package UniMolInvaders.GUI;
 
 
+import UniMolInvaders.Logic.Alien;
 import UniMolInvaders.Logic.Enemy;
 import UniMolInvaders.Logic.Player;
 import UniMolInvaders.Logic.Shot;
@@ -93,20 +94,18 @@ public class GamePanel extends JPanel {
             if (aliens.get(i).getPosX() + aliens.get(i).getSpeedX() < 0) {
                 //gestisce bordo SX e scende tutti gli aliens di 30px
 
-                for (int j = 0; j < aliens.size(); j++) {
-                    aliens.get(j).changeDirection(Enemy.CHANGE_DIR);
-                    aliens.get(j).setPosY(aliens.get(j).getPosY() + 30);
-
+                for (Alien alien : aliens) {
+                    alien.changeDirection(Enemy.CHANGE_DIR);
+                    alien.setPosY(alien.getPosY() + 30);
                 }
 
             } else if (aliens.get(i).getPosX() + aliens.get(i).getSpeedX() > ContentSwitch.WIN_WIDTH - aliens.get(i).getDimX() - 20) {
 
                 //gestisce bordo SX e scende tutti gli aliens di 30px
 
-                for (int j = 0; j < aliens.size(); j++) {
-                    aliens.get(j).changeDirection(Enemy.CHANGE_DIR);
-                    aliens.get(j).setPosY(aliens.get(j).getPosY() + 30);
-
+                for (Alien alien : aliens) {
+                    alien.changeDirection(Enemy.CHANGE_DIR);
+                    alien.setPosY(alien.getPosY() + 30);
                 }
 
             } else {
@@ -280,8 +279,13 @@ public class GamePanel extends JPanel {
             });
         }
 
-        shoot.removeIf(shot -> (!shot.isAlive()));
-        aliens.removeIf(alien -> (!alien.isAlive()));
+        if (shoot != null) {
+            shoot.removeIf(shot -> (!shot.isAlive()));
+        }
+
+        if (aliens != null) {
+            aliens.removeIf(alien -> (!alien.isAlive()));
+        }
     }
 
 

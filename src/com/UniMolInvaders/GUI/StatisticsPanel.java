@@ -53,8 +53,8 @@ public class StatisticsPanel extends JPanel {
 //        graphics.drawString(HIGH_SCORE + getHighestScore(), DISTANCE * 6, DISTANCE);
 //        graphics.drawString(PLAYER_HIGHT_SCORE + getTopPlayer(), DISTANCE * 6, DISTANCE);
 //
-        graphics.drawString(HIGH_SCORE + 10000, DISTANCE * 19, DISTANCE);
-        graphics.drawString(PLAYER_HIGHT_SCORE + "Angelo", DISTANCE * 27, DISTANCE);
+        graphics.drawString(HIGH_SCORE + 560, DISTANCE * 19, DISTANCE);
+        graphics.drawString(PLAYER_HIGHT_SCORE + "angelo", DISTANCE * 27, DISTANCE);
 
     }
 
@@ -70,12 +70,12 @@ public class StatisticsPanel extends JPanel {
         this.life = life;
     }
 
-    //    private String getTopPlayer(){
+    //    private String setTopPlayer(){
 //        //todo
 //        return ;
 //    }
 //
-//    private String getHighestScore(){
+//    private String setHighestScore(){
 //        //todo
 //        return ;
 //    }
