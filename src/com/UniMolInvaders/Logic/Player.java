@@ -12,7 +12,7 @@ import UniMolInvaders.GUI.ContentSwitch;
  ********************************/
 
 
-public class Player extends Character {
+public abstract class Player extends Character {
 
     public static final int DIM_X = 39;
     public static final int DIM_Y = 60;
