@@ -45,7 +45,7 @@ public abstract class Character {
     /**
      * gestione del rettangolo che rappresenta l'entità
      *
-     * @return
+     * @return Rettangolo per gestire le collisioni con i colpi
      */
     public Rectangle getBounds() {
         return new Rectangle(getPosX(), getPosY(), getDimX(), getDimY());
@@ -69,7 +69,7 @@ public abstract class Character {
 
     /**
      * ogni entità ha una direzione diversa per il colpo
-     * @param fireDirection
+     * @param fireDirection true per personaggio, false per gli alieni
      */
     protected void setFireDirection(boolean fireDirection) {
         this.fireDirection = fireDirection;
@@ -97,7 +97,7 @@ public abstract class Character {
 
     /**
      * Imposta i punti di vita dell'entità
-     * @param lifePoints
+     * @param lifePoints numero di punti vita
      */
     public void setLifePoints(int lifePoints) {
         this.lifePoints = lifePoints;
@@ -105,7 +105,7 @@ public abstract class Character {
 
     /**
      * Stato di vita dell'entità
-     * @return
+     * @return è vivo (true/false)
      */
     public boolean isAlive() {
         return alive;
@@ -113,7 +113,7 @@ public abstract class Character {
 
     /**
      * Imposta lo stato di vita dell'entità
-     * @param alive
+     * @param alive è vivo (true/false)
      */
     private void setAlive(boolean alive) {
         this.alive = alive;
@@ -121,7 +121,7 @@ public abstract class Character {
 
     /**
      * Dimensione sull'asse X (orizzontale) dell'entità
-     * @return dimX
+     * @return dimX dimensione dell'oggetto in pixel sull'asse X
      */
     public int getDimX() {
         return dimX;
@@ -129,7 +129,7 @@ public abstract class Character {
 
     /**
      * Imposta la dimensione sull'asse X (orizzontale) dell'entità
-     * @param dimX
+     * @param dimX dimensione dell'oggetto in pixel sull'asse X
      */
     public void setDimX(int dimX) {
         this.dimX = dimX;
@@ -137,7 +137,7 @@ public abstract class Character {
 
     /**
      * Dimensione sull'asse Y (verticale) dell'entità
-     * @return dimY
+     * @return dimY dimensione dell'oggetto in pixel sull'asse Y
      */
     public int getDimY() {
         return dimY;
@@ -145,7 +145,7 @@ public abstract class Character {
 
     /**
      * Imposta la dimensione sull'asse Y (verticale) dell'entità
-     * @param dimY
+     * @param dimY dimensione dell'oggetto in pixel sull'asse Y
      */
     public void setDimY(int dimY) {
         this.dimY = dimY;
@@ -153,7 +153,7 @@ public abstract class Character {
 
     /**
      * restituisce la posizione sull'asse orizzontale (X)
-     * @return
+     * @return posizione asse X
      */
     public int getPosX() {
         return posX;
@@ -161,7 +161,7 @@ public abstract class Character {
 
     /**
      * imposta la posizione sull'asse orizzontale (X)
-     * @param posX
+     * @param posX posizione asse x
      */
     public void setPosX(int posX) {
         this.posX = posX;
@@ -169,7 +169,7 @@ public abstract class Character {
 
     /**
      * restituisce la posizione sull'asse verticale (Y)
-     * @return
+     * @return posizione su asse y
      */
     public int getPosY() {
         return posY;
@@ -177,7 +177,7 @@ public abstract class Character {
 
     /**
      * imposta la posizione sull'asse verticale (Y)
-     * @param posY
+     * @param posY spostamento asse y
      */
     public void setPosY(int posY) {
         this.posY = posY;
@@ -185,7 +185,7 @@ public abstract class Character {
 
     /**
      * restituisce la velocità di spostamento sull'asse X (orizzontale)
-     * @return
+     * @return spostamento asse X
      */
     public int getSpeedX() {
         return speedX;
@@ -193,7 +193,7 @@ public abstract class Character {
 
     /**
      * imposta la velocità di spostamento sull'asse X (orizzontale)
-     * @param speedX
+     * @param speedX spostamento asse x
      */
     public void setSpeedX(int speedX) {
         this.speedX = speedX;

@@ -54,7 +54,7 @@ public abstract class Enemy extends Character {
     /**
      * imposta la velocità di spostamento che aumenta con l'aumentare del livello raggiunto
      *
-     * @param levelNumber
+     * @param levelNumber livello della partita
      */
     @Override
     public void setSpeedX(int levelNumber) {
@@ -68,7 +68,7 @@ public abstract class Enemy extends Character {
 
     /**
      * cambia la direzione di movimento nel momento in cui si raggiunge il bordo
-     * @param directionTo
+     * @param directionTo direzione di spostamento (destra/sinistra)
      */
     public void changeDirection(int directionTo) {
         super.setSpeedX(getSpeedX() * directionTo);
@@ -76,7 +76,7 @@ public abstract class Enemy extends Character {
 
     /**
      * imposta la velocità di dicesa lungo l'asse Y
-     * @param speedY
+     * @param speedY velocità asse y
      */
     public void setSpeedY(int speedY) {
         this.speedY = speedY;

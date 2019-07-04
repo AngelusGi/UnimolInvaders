@@ -112,7 +112,7 @@ public class EndPanel extends JPanel implements ActionListener {
     /**
      * Setta il punteggio totalizzato nella partita
      *
-     * @param points
+     * @param points punteggio totalizzato
      */
     public void setPoints(int points) {
         this.points = points;
@@ -120,7 +120,7 @@ public class EndPanel extends JPanel implements ActionListener {
 
     /**
      * Setta il livello raggiunto nella partita
-     * @param level
+     * @param level livello raggiunto
      */
     public void setLevel(int level) {
         this.level = level;

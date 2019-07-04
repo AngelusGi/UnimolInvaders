@@ -12,6 +12,9 @@ import UniMolInvaders.GUI.ContentSwitch;
  *
  ********************************/
 
+/**
+ * instanzia e avvia il gioco
+ */
 class UniMolInvaders {
 
 
