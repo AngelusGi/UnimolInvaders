@@ -5,6 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Gestisce il menù
+ */
 public class MenuPanel extends JPanel implements ActionListener {
 
     protected static final int BUTTON_Y = 40;

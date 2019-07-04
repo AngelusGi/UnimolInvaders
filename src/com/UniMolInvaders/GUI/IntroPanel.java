@@ -9,6 +9,9 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Gestisce l'animazione introduttiva facendo scorrere 3 immagini con testo associato
+ */
 public class IntroPanel extends JPanel {
 
     private static final String filePath = "./src/com/UniMolInvaders/GUI/Resources/storia.txt";
@@ -48,6 +51,9 @@ public class IntroPanel extends JPanel {
 
     }
 
+    /**
+     * Resetta il gestore dell'animazione
+     */
     protected void reset() {
         this.finish = false;
         this.pos = 0;
@@ -55,6 +61,9 @@ public class IntroPanel extends JPanel {
     }
 
 
+    /**
+     * Inizializza il testo
+     */
     private void initText() {
 
         this.text = new ArrayList<>();
@@ -70,7 +79,9 @@ public class IntroPanel extends JPanel {
         }
     }
 
-
+    /**
+     * Inizializza le immagini che fanno parte dell'animazione
+     */
     private void initImages() {
 
         for (int i = 0; i < this.totalImages; i++) {
@@ -105,13 +116,18 @@ public class IntroPanel extends JPanel {
     }
 
 
+    /**
+     * Avvia l'animazione
+     */
     public void startAnimation() {
 
         this.animation = new Thread(new AnimationThread());
         this.animation.start();
     }
 
-
+    /**
+     * Stop animazione
+     */
     private void stop() {
 
         this.finish = true;

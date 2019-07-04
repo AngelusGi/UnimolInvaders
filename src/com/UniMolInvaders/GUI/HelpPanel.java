@@ -3,6 +3,9 @@ package UniMolInvaders.GUI;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Gestisce il pannello di aiuto mostrato nel menù
+ */
 public class HelpPanel extends JPanel {
 
 

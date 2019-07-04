@@ -1,5 +1,8 @@
 package UniMolInvaders.Logic;
 
+/**
+ * gestisce la componente logica dei colpi
+ */
 public abstract class Shot {
 
 

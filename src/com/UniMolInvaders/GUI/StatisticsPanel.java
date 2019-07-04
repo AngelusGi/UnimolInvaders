@@ -3,11 +3,15 @@ package UniMolInvaders.GUI;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Gestisce la parte di statistiche presenti all'interno della schermata di gioco
+ */
 public class StatisticsPanel extends JPanel {
 
     private static final int DISTANCE = 30;
     private static final int LIFE_DIM = 15;
     private static final int WIN_HEIGHT = 50;
+    private static final int RAISE_POINT = 20;
     private static final String POINT = "PUNTI: ";
     private static final String HIGH_SCORE = "HIGHEST SCORE: ";
     private static final String PLAYER_HIGHT_SCORE = "BY: ";
@@ -58,14 +62,26 @@ public class StatisticsPanel extends JPanel {
 
     }
 
+    /**
+     * Gestisce il punteggio
+     *
+     * @return punteggio
+     */
     public int getPoints() {
         return points;
     }
 
+    /**
+     * Aumenta il punteggio
+     */
     public void raisePoints() {
-        this.points += 20;
+        this.points += RAISE_POINT;
     }
 
+    /**
+     * Gestisce i punti di vita del personaggio
+     * @param life punti vita del personaggio
+     */
     public void setLifePoints(int life) {
         this.life = life;
     }

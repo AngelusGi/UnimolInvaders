@@ -5,6 +5,9 @@ import UniMolInvaders.Logic.Player;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Gestisce la componente grafica del giocatore
+ */
 public class PlayerGraph extends Player {
 
     private Image image;

@@ -10,6 +10,10 @@ import java.util.logging.Logger;
 
 import static UniMolInvaders.GUI.MenuPanel.*;
 
+
+/**
+ * Gestisce il pannello di fine partita
+ */
 public class EndPanel extends JPanel implements ActionListener {
 
     private static final String SAVE_BUTTON = "Salva punteggio";
@@ -105,10 +109,19 @@ public class EndPanel extends JPanel implements ActionListener {
         menu.setVisible(true);
     }
 
+    /**
+     * Setta il punteggio totalizzato nella partita
+     *
+     * @param points
+     */
     public void setPoints(int points) {
         this.points = points;
     }
 
+    /**
+     * Setta il livello raggiunto nella partita
+     * @param level
+     */
     public void setLevel(int level) {
         this.level = level;
     }
@@ -122,6 +135,9 @@ public class EndPanel extends JPanel implements ActionListener {
 
     }
 
+    /**
+     * Mostra la classifica
+     */
     private void showChart() {
 
         scores = new ArrayList<>();
@@ -146,6 +162,9 @@ public class EndPanel extends JPanel implements ActionListener {
 
     }
 
+    /**
+     * Memorizza i dati della partita (livello, punteggio e nome giocatore)
+     */
     private void saveResult() {
 
         try {

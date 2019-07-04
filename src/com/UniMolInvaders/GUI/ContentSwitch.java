@@ -25,6 +25,9 @@ public class ContentSwitch extends JFrame {
     private static StatisticsPanel stats;
     private static EndPanel endGame;
 
+    /**
+     * Si occupa di cambiare il pannello visibile a video
+     */
     public ContentSwitch() {
 
         setTitle(TITLE);
@@ -61,6 +64,11 @@ public class ContentSwitch extends JFrame {
 
     }
 
+    /**
+     * effettua il cambio del cannello
+     *
+     * @param panel : ID del pannello da visualizzare
+     */
     public static void switchPanel(int panel) {
         switch (panel) {
 
@@ -102,22 +110,42 @@ public class ContentSwitch extends JFrame {
         }
     }
 
+    /**
+     * Accede al game panel
+     * @return GamePanel
+     */
     public static GamePanel getGame() {
         return game;
     }
 
+    /**
+     * Accede al pannello statistiche
+     * @return StatisticPanel
+     */
     public static StatisticsPanel getStats() {
         return stats;
     }
 
+    /**
+     * Accede al pannello introduttivo
+     * @return IntroPanel
+     */
     public static IntroPanel getIntro() {
         return intro;
     }
 
+    /**
+     * Accede al pannello del menu
+     * @return MenuPanel
+     */
     public static MenuPanel getMenu() {
         return menu;
     }
 
+    /**
+     * Accede al pannello di fine partita
+     * @return EndPanel
+     */
     public static EndPanel getEndGame() {
         return endGame;
     }

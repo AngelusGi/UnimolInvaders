@@ -3,6 +3,9 @@ package UniMolInvaders.GUI;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Mostra la schermata di about con tutti i crediti e diritti per le risorse
+ */
 public class AboutPanel extends JPanel {
 
 

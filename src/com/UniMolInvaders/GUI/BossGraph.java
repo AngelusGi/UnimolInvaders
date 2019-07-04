@@ -5,6 +5,9 @@ import UniMolInvaders.Logic.Boss;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Gestione della parte grafica dell'entità Alieno Boss
+ */
 public class BossGraph extends Boss {
 
     private static final int DIM_X = 80;
@@ -35,6 +38,9 @@ public class BossGraph extends Boss {
 
     }
 
+    /**
+     * Muove il Boss finché è vivo
+     */
     public void run() {
         if (isAlive()) {
             move();

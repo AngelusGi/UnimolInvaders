@@ -64,6 +64,7 @@ public class GamePanel extends JPanel {
         ContentSwitch.getStats().setLifePoints(player.getLifePoints());
 
         setGameStarted(true);
+
         gameThread = new Thread(new GameThread());
         gameThread.start();
         shooterThread = new Thread(new ShooterThread());

@@ -11,7 +11,9 @@ import UniMolInvaders.GUI.ContentSwitch;
  *
  ********************************/
 
-
+/**
+ * Gestisce la componete logica comune a tutti i nemici
+ */
 public abstract class Enemy extends Character {
 
     public static final int CHANGE_DIR = -1;
@@ -24,6 +26,9 @@ public abstract class Enemy extends Character {
         super(posX, posY, level, SHOT_DIRECTION);
     }
 
+    /**
+     * gestisce il movimento di tutti i nemici e la collisione con i bordi del frame
+     */
     public void move() {
 
         if (this.getPosX() + this.getSpeedX() < 0) {
@@ -46,7 +51,11 @@ public abstract class Enemy extends Character {
 
     }
 
-
+    /**
+     * imposta la velocità di spostamento che aumenta con l'aumentare del livello raggiunto
+     *
+     * @param levelNumber
+     */
     @Override
     public void setSpeedX(int levelNumber) {
 
@@ -57,10 +66,18 @@ public abstract class Enemy extends Character {
         }
     }
 
+    /**
+     * cambia la direzione di movimento nel momento in cui si raggiunge il bordo
+     * @param directionTo
+     */
     public void changeDirection(int directionTo) {
         super.setSpeedX(getSpeedX() * directionTo);
     }
 
+    /**
+     * imposta la velocità di dicesa lungo l'asse Y
+     * @param speedY
+     */
     public void setSpeedY(int speedY) {
         this.speedY = speedY;
     }

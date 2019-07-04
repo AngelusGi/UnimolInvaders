@@ -11,7 +11,9 @@ import UniMolInvaders.GUI.ContentSwitch;
  *
  ********************************/
 
-
+/**
+ * Gestisce la componente logica del giocatore
+ */
 public abstract class Player extends Character {
 
     public static final int DIM_X = 39;
@@ -27,6 +29,9 @@ public abstract class Player extends Character {
         setSpeedX(STOP);
     }
 
+    /**
+     * Gestisce il movimento del personaggio e la collisione con bordi del pannello
+     */
     public void move() {
 
         //BORDO
