@@ -133,7 +133,7 @@ public class IntroPanel extends JPanel {
         this.finish = true;
         this.animation = null;
 
-        ContentSwitch.switchPanel(ContentSwitch.GAME);
+        ContentSwitch.switchPanel(ContentSwitch.Pannelli.GAME);
         repaint();
 
     }

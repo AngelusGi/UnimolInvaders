@@ -127,7 +127,7 @@ public class GamePanel extends JPanel {
         this.reset();
         setLevelNumber(0);
         ContentSwitch.getIntro().reset();
-        ContentSwitch.switchPanel(ContentSwitch.END);
+        ContentSwitch.switchPanel(ContentSwitch.Pannelli.END);
         ContentSwitch.getEndGame().setLevel(levelNumber);
         ContentSwitch.getEndGame().setPoints(ContentSwitch.getStats().getPoints());
     }

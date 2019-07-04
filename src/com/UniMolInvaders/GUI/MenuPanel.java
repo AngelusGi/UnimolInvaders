@@ -122,7 +122,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 
         switch (click.getActionCommand()) {
             case GAME:
-                ContentSwitch.switchPanel(ContentSwitch.INTRO);
+                ContentSwitch.switchPanel(ContentSwitch.Pannelli.INTRO);
                 break;
 
             case HELP:

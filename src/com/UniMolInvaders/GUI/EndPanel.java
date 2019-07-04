@@ -206,7 +206,7 @@ public class EndPanel extends JPanel implements ActionListener {
                 break;
 
             case MENU_BUTTON:
-                ContentSwitch.switchPanel(ContentSwitch.MENU);
+                ContentSwitch.switchPanel(ContentSwitch.Pannelli.MENU);
                 break;
 
 

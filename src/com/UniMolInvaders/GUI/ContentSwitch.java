@@ -8,15 +8,22 @@ import java.awt.event.KeyListener;
 
 public class ContentSwitch extends JFrame {
 
+    /**
+     * Gestisce la selezione dei pannelli
+     */
+    public enum Pannelli {
+        MENU,
+        INTRO,
+        GAME,
+        END
+    }
+
+
     public final static int WIN_WIDTH = 1024;
     public final static int WIN_HEIGHT = 768;
     public final static int TEST_PAUSE = 500;
-    public final static int PAUSE = 5000;
+    public final static int PAUSE = 3000;
     protected final static String TITLE = "UniMol Invaders";
-    protected static final int END = 3;
-    protected static final int GAME = 2;
-    protected static final int INTRO = 1;
-    protected static final int MENU = 0;
     private static final Point ORIGIN = new Point(0, 0);
     private static final Point GAME_ANCHOR = new Point(0, 50);
     private static IntroPanel intro;
@@ -69,7 +76,7 @@ public class ContentSwitch extends JFrame {
      *
      * @param panel : ID del pannello da visualizzare
      */
-    public static void switchPanel(int panel) {
+    public static void switchPanel(Pannelli panel) {
         switch (panel) {
 
             case MENU:
