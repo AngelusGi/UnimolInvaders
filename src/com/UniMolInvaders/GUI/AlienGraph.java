@@ -19,7 +19,7 @@ import java.awt.*;
 /**
  * Gestione della parte grafica dell'entità alieno
  */
-public class AlienGraph extends Alien {
+public final class AlienGraph extends Alien {
 
     private static final int DIM_X = 37;
     private static final int DIM_Y = 50;

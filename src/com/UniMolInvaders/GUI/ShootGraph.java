@@ -7,7 +7,7 @@ import java.awt.*;
 /**
  * Gestisce la componente grafica dei colpi
  */
-public class ShootGraph extends Shot {
+public final class ShootGraph extends Shot {
 
     public ShootGraph(int posX, int posY, boolean direction) {
         super(posX, posY, direction);

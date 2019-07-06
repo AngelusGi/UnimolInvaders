@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * Gestione della parte grafica dell'entità Alieno Boss
  */
-public class BossGraph extends Boss {
+public final class BossGraph extends Boss {
 
     private static final int DIM_X = 80;
     private static final int DIM_Y = 90;

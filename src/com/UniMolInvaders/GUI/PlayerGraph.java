@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * Gestisce la componente grafica del giocatore
  */
-public class PlayerGraph extends Player {
+public final class PlayerGraph extends Player {
 
     private Image image;
 
