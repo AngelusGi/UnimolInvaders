@@ -26,6 +26,7 @@ public class EndPanel extends JPanel implements ActionListener {
     private JButton chart;
     private JButton menu;
     private JTextField nameField;
+    private JLabel gamePoints;
     private int points;
     private int level;
     private String playerName;
@@ -100,6 +101,7 @@ public class EndPanel extends JPanel implements ActionListener {
         save.setVisible(false);
         chart.setVisible(false);
         menu.setVisible(false);
+        gamePoints.setVisible(false);
     }
 
     protected void initPanel() {
@@ -107,6 +109,20 @@ public class EndPanel extends JPanel implements ActionListener {
         save.setVisible(true);
         chart.setVisible(true);
         menu.setVisible(true);
+        initPoints();
+    }
+
+    /**
+     * Inizializza l'area di testo all'interno della quale far visualizzare il punteggio totalizzato nella partita.
+     */
+    private void initPoints(){
+        gamePoints = new JLabel("Hai perso! Ma hai totalizzato " + points + " punti!");
+        gamePoints.setFont(GENERAL_FONT);
+        gamePoints.setBounds(POS_TITLE_X + 10, POS_BUT_Y - 50, 400, BUTTON_Y);
+        gamePoints.setForeground(ORANGE_UNIMOL);
+        gamePoints.setOpaque(false);
+        gamePoints.setVisible(true);
+        add(gamePoints);
     }
 
     /**
@@ -132,7 +148,6 @@ public class EndPanel extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
 
         graphics.drawImage(this.background, BACKGROUND_X, BACKGROUND_Y, Color.BLACK, null);
-
     }
 
     /**
@@ -159,7 +174,6 @@ public class EndPanel extends JPanel implements ActionListener {
         }
 
         JOptionPane.showConfirmDialog(null, scores.toString(), ContentSwitch.TITLE, JOptionPane.OK_OPTION);
-
     }
 
     /**
@@ -168,7 +182,6 @@ public class EndPanel extends JPanel implements ActionListener {
     private void saveResult() {
 
         try {
-
             playerName = nameField.getText();
 
             PrintWriter outputFile = new PrintWriter(new FileOutputStream(SCORE_FILE_NAME, true));
@@ -189,7 +202,6 @@ public class EndPanel extends JPanel implements ActionListener {
         } catch (IOException ioException) {
             Logger.getLogger("Errore scrittura file:", ioException.toString());
             JOptionPane.showMessageDialog(null, "Salvataggio non riuscito!");
-
         }
     }
 
@@ -208,8 +220,6 @@ public class EndPanel extends JPanel implements ActionListener {
             case MENU_BUTTON:
                 ContentSwitch.switchPanel(ContentSwitch.Pannelli.MENU);
                 break;
-
-
         }
     }
 }

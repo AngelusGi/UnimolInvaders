@@ -22,6 +22,8 @@ public class GamePanel extends JPanel {
     private static final int REPAINT_SLEEP = 100;
     private static int MAX_WAIT = 5000;
     private final int INIT_POS_ALIEN = 10;
+    private final int PLAYER_POS_X = ContentSwitch.WIN_WIDTH / 2 - 40;
+    private final int PLAYER_POS_Y = ContentSwitch.WIN_HEIGHT - StatisticsPanel.getWinHeight() - Player.DIM_Y - 50;
     private PlayerGraph player;
     private ArrayList<AlienGraph> aliens;
     private BossGraph boss;
@@ -39,16 +41,14 @@ public class GamePanel extends JPanel {
         setSize(ContentSwitch.WIN_WIDTH, ContentSwitch.WIN_HEIGHT - StatisticsPanel.getWinHeight());
         image = new ImageIcon(this.getClass().getResource("./Resources/background.jpg")).getImage();
         setGameStarted(false);
+        initPlayer();
 
-        //setLevelNumber(1);
 
     }
 
     public void startGame() {
 
         shoot = new ArrayList<>();
-
-        initPlayer();
 
         if (isEven(levelNumber)) {
 
@@ -71,7 +71,6 @@ public class GamePanel extends JPanel {
         shooterThread.start();
         paintThread = new Thread(new PaintThread());
         paintThread.start();
-
 
     }
 
@@ -127,9 +126,9 @@ public class GamePanel extends JPanel {
         this.reset();
         setLevelNumber(0);
         ContentSwitch.getIntro().reset();
-        ContentSwitch.switchPanel(ContentSwitch.Pannelli.END);
         ContentSwitch.getEndGame().setLevel(levelNumber);
         ContentSwitch.getEndGame().setPoints(ContentSwitch.getStats().getPoints());
+        ContentSwitch.switchPanel(ContentSwitch.Pannelli.END);
     }
 
     @Override
@@ -173,19 +172,20 @@ public class GamePanel extends JPanel {
 
 
     protected void winOrLoose() {
-        //todo
 
         //IF vinto, livello incrementato di 1
         if ((aliens != null && aliens.size() == 0) || (boss != null && !boss.isAlive())) {
             setLevelNumber(getLevelNumber() + 1);
             reset();
             startGame();
+            resetPlayerPosition();
         }
 
         //else
         //todo finestra inserimento TITLE e salvataggio su file
         if (!player.isAlive()) {
             gameOver();
+            resetPlayer();
         }
 
 
@@ -218,9 +218,9 @@ public class GamePanel extends JPanel {
 
     }
 
-    private void initPlayer() {
+    protected void initPlayer() {
 
-        this.player = new PlayerGraph(ContentSwitch.WIN_WIDTH / 2 - 40, ContentSwitch.getGame().getHeight() - Player.DIM_Y - 50);
+        this.player = new PlayerGraph(PLAYER_POS_X, PLAYER_POS_Y);
 
     }
 
@@ -236,8 +236,17 @@ public class GamePanel extends JPanel {
         gameThread = null;
         aliens = null;
         boss = null;
-        player = null;
         shoot = null;
+    }
+
+    protected void resetPlayer(){
+        player = null;
+//        initPlayer();
+    }
+
+    protected void resetPlayerPosition(){
+        player.setPosX(PLAYER_POS_X);
+        player.setPosY(PLAYER_POS_Y);
     }
 
     private void kill() {

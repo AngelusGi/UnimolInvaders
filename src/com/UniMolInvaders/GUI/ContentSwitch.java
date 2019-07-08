@@ -104,6 +104,7 @@ public class ContentSwitch extends JFrame {
                 stats.setVisible(true);
                 game.setVisible(true);
                 game.startGame();
+                game.initPlayer();
                 break;
 
             case END:
